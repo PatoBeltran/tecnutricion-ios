@@ -1,0 +1,38 @@
+# General
+*.swp
+*.swo
+*.rbo
+*.gem
+.DS_Store
+.rbenv-version
+.rbx/
+xcuserdata
+DerivedData
+/concatenated.*
+
+# Yardoc
+.yardoc
+/doc
+
+# Specs
+tmp
+spec/fixtures/banana-lib
+spec/fixtures/chameleon
+spec/fixtures/integration/Headers/
+spec/fixtures/vcr
+
+# NutreTec
+Pods
+Podfile.lock
+
+# IDEs
+*.xccheckout
+.idea/
+
+# RVM files
+/.rvmrc
+/.ruby-version
+/.ruby-gemset
+
+# Bundler files
+/.bundle

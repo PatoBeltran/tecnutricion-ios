@@ -14,6 +14,7 @@
 		237E57181AB3BA7B0052802F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237E57171AB3BA7B0052802F /* Images.xcassets */; };
 		237E571B1AB3BA7B0052802F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E57191AB3BA7B0052802F /* LaunchScreen.xib */; };
 		237E57271AB3BA7B0052802F /* NutreTecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57261AB3BA7B0052802F /* NutreTecTests.m */; };
+		B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.debug.xcconfig"; sourceTree = "<group>"; };
 		237E57071AB3BA7B0052802F /* NutreTec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutreTec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E570B1AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E570C1AB3BA7B0052802F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		237E57201AB3BA7B0052802F /* NutreTecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutreTecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E57251AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E57261AB3BA7B0052802F /* NutreTecTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NutreTecTests.m; sourceTree = "<group>"; };
+		66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.release.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.release.xcconfig"; sourceTree = "<group>"; };
+		E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NutreTec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0762349DEB97380509C0FF3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */,
+				66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		237E56FE1AB3BA7B0052802F = {
 			isa = PBXGroup;
 			children = (
 				237E57091AB3BA7B0052802F /* NutreTec */,
 				237E57231AB3BA7B0052802F /* NutreTecTests */,
 				237E57081AB3BA7B0052802F /* Products */,
+				0762349DEB97380509C0FF3F /* Pods */,
+				BADC83C61FA439DCF5A9FB39 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,13 +97,8 @@
 		237E57091AB3BA7B0052802F /* NutreTec */ = {
 			isa = PBXGroup;
 			children = (
-				237E570E1AB3BA7B0052802F /* AppDelegate.h */,
-				237E570F1AB3BA7B0052802F /* AppDelegate.m */,
-				237E57111AB3BA7B0052802F /* ViewController.h */,
-				237E57121AB3BA7B0052802F /* ViewController.m */,
-				237E57141AB3BA7B0052802F /* Main.storyboard */,
-				237E57171AB3BA7B0052802F /* Images.xcassets */,
-				237E57191AB3BA7B0052802F /* LaunchScreen.xib */,
+				237E57301AB3C26E0052802F /* View Controllers */,
+				237E57311AB3C2A40052802F /* Views (Storyboards and xibs) */,
 				237E570A1AB3BA7B0052802F /* Supporting Files */,
 			);
 			path = NutreTec;
@@ -96,10 +107,13 @@
 		237E570A1AB3BA7B0052802F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				237E57171AB3BA7B0052802F /* Images.xcassets */,
+				237E570E1AB3BA7B0052802F /* AppDelegate.h */,
+				237E570F1AB3BA7B0052802F /* AppDelegate.m */,
 				237E570B1AB3BA7B0052802F /* Info.plist */,
 				237E570C1AB3BA7B0052802F /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		237E57231AB3BA7B0052802F /* NutreTecTests */ = {
@@ -119,6 +133,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		237E57301AB3C26E0052802F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				237E57111AB3BA7B0052802F /* ViewController.h */,
+				237E57121AB3BA7B0052802F /* ViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		237E57311AB3C2A40052802F /* Views (Storyboards and xibs) */ = {
+			isa = PBXGroup;
+			children = (
+				237E57141AB3BA7B0052802F /* Main.storyboard */,
+				237E57191AB3BA7B0052802F /* LaunchScreen.xib */,
+			);
+			path = "Views (Storyboards and xibs)";
+			sourceTree = "<group>";
+		};
+		BADC83C61FA439DCF5A9FB39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTec" */;
 			buildPhases = (
+				32AA7D6FA8A2540795FD1DAB /* Check Pods Manifest.lock */,
 				237E57031AB3BA7B0052802F /* Sources */,
 				237E57041AB3BA7B0052802F /* Frameworks */,
 				237E57051AB3BA7B0052802F /* Resources */,
+				2007B54D498BAFB2C9C41BD4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +210,7 @@
 				TargetAttributes = {
 					237E57061AB3BA7B0052802F = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = TAGM86AK24;
 					};
 					237E571F1AB3BA7B0052802F = {
 						CreatedOnToolsVersion = 6.2;
@@ -213,6 +256,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2007B54D498BAFB2C9C41BD4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32AA7D6FA8A2540795FD1DAB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		237E57031AB3BA7B0052802F /* Sources */ = {
@@ -341,8 +417,10 @@
 		};
 		237E572B1AB3BA7B0052802F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NutreTec/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -351,8 +429,10 @@
 		};
 		237E572C1AB3BA7B0052802F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NutreTec/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +492,7 @@
 				237E572C1AB3BA7B0052802F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		237E572D1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTecTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +501,7 @@
 				237E572F1AB3BA7B0052802F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
