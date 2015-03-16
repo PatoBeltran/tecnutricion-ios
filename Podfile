@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 target 'NutreTec' do
-pod "XDKAirMenu"
+pod "MBProgressHUD", '~> 0.9.1'
 end
 
 target 'NutreTecTests' do

@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		237E570D1AB3BA7B0052802F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E570C1AB3BA7B0052802F /* main.m */; };
 		237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E570F1AB3BA7B0052802F /* AppDelegate.m */; };
-		237E57131AB3BA7B0052802F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57121AB3BA7B0052802F /* ViewController.m */; };
+		237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57121AB3BA7B0052802F /* TECMenuViewController.m */; };
 		237E57161AB3BA7B0052802F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 237E57141AB3BA7B0052802F /* Main.storyboard */; };
 		237E57181AB3BA7B0052802F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237E57171AB3BA7B0052802F /* Images.xcassets */; };
 		237E571B1AB3BA7B0052802F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237E57191AB3BA7B0052802F /* LaunchScreen.xib */; };
 		237E57271AB3BA7B0052802F /* NutreTecTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57261AB3BA7B0052802F /* NutreTecTests.m */; };
+		237E57431AB67BD20052802F /* TECHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57421AB67BD20052802F /* TECHomeViewController.m */; };
+		237E57471AB68F2E0052802F /* TECHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57461AB68F2E0052802F /* TECHeaderView.m */; };
+		237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E574B1AB6962D0052802F /* XDKAirMenuController.m */; };
 		B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */; };
 /* End PBXBuildFile section */
 
@@ -34,14 +37,30 @@
 		237E570C1AB3BA7B0052802F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		237E570E1AB3BA7B0052802F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		237E570F1AB3BA7B0052802F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		237E57111AB3BA7B0052802F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		237E57121AB3BA7B0052802F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		237E57111AB3BA7B0052802F /* TECMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TECMenuViewController.h; sourceTree = "<group>"; };
+		237E57121AB3BA7B0052802F /* TECMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TECMenuViewController.m; sourceTree = "<group>"; };
 		237E57151AB3BA7B0052802F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		237E57171AB3BA7B0052802F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		237E571A1AB3BA7B0052802F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		237E57201AB3BA7B0052802F /* NutreTecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutreTecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E57251AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E57261AB3BA7B0052802F /* NutreTecTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NutreTecTests.m; sourceTree = "<group>"; };
+		237E57331AB3CD6B0052802F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		237E57341AB3CD6B0052802F /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		237E57351AB3CD6B0052802F /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		237E57361AB3CD6B0052802F /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		237E57371AB3CD6B0052802F /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		237E57381AB3CD6B0052802F /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		237E57391AB3CD6B0052802F /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		237E573A1AB3CD6B0052802F /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		237E573B1AB3CD6B0052802F /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		237E573C1AB3CD6B0052802F /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		237E57411AB67BD20052802F /* TECHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECHomeViewController.h; sourceTree = "<group>"; };
+		237E57421AB67BD20052802F /* TECHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECHomeViewController.m; sourceTree = "<group>"; };
+		237E57451AB68F2E0052802F /* TECHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECHeaderView.h; sourceTree = "<group>"; };
+		237E57461AB68F2E0052802F /* TECHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECHeaderView.m; sourceTree = "<group>"; };
+		237E574A1AB6962D0052802F /* XDKAirMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDKAirMenuController.h; sourceTree = "<group>"; };
+		237E574B1AB6962D0052802F /* XDKAirMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDKAirMenuController.m; sourceTree = "<group>"; };
 		66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.release.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.release.xcconfig"; sourceTree = "<group>"; };
 		E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NutreTec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -107,6 +126,8 @@
 		237E570A1AB3BA7B0052802F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				237E573D1AB675D70052802F /* Vendor */,
+				237E57321AB3CD020052802F /* Fonts */,
 				237E57171AB3BA7B0052802F /* Images.xcassets */,
 				237E570E1AB3BA7B0052802F /* AppDelegate.h */,
 				237E570F1AB3BA7B0052802F /* AppDelegate.m */,
@@ -136,8 +157,10 @@
 		237E57301AB3C26E0052802F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				237E57111AB3BA7B0052802F /* ViewController.h */,
-				237E57121AB3BA7B0052802F /* ViewController.m */,
+				237E57111AB3BA7B0052802F /* TECMenuViewController.h */,
+				237E57121AB3BA7B0052802F /* TECMenuViewController.m */,
+				237E57411AB67BD20052802F /* TECHomeViewController.h */,
+				237E57421AB67BD20052802F /* TECHomeViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -145,10 +168,54 @@
 		237E57311AB3C2A40052802F /* Views (Storyboards and xibs) */ = {
 			isa = PBXGroup;
 			children = (
+				237E57441AB68F060052802F /* Classes */,
 				237E57141AB3BA7B0052802F /* Main.storyboard */,
 				237E57191AB3BA7B0052802F /* LaunchScreen.xib */,
 			);
 			path = "Views (Storyboards and xibs)";
+			sourceTree = "<group>";
+		};
+		237E57321AB3CD020052802F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				237E57331AB3CD6B0052802F /* OpenSans-Bold.ttf */,
+				237E57341AB3CD6B0052802F /* OpenSans-BoldItalic.ttf */,
+				237E57351AB3CD6B0052802F /* OpenSans-ExtraBold.ttf */,
+				237E57361AB3CD6B0052802F /* OpenSans-ExtraBoldItalic.ttf */,
+				237E57371AB3CD6B0052802F /* OpenSans-Italic.ttf */,
+				237E57381AB3CD6B0052802F /* OpenSans-Light.ttf */,
+				237E57391AB3CD6B0052802F /* OpenSans-LightItalic.ttf */,
+				237E573A1AB3CD6B0052802F /* OpenSans-Regular.ttf */,
+				237E573B1AB3CD6B0052802F /* OpenSans-Semibold.ttf */,
+				237E573C1AB3CD6B0052802F /* OpenSans-SemiboldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		237E573D1AB675D70052802F /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				237E57491AB6962D0052802F /* XDKAirMenu */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		237E57441AB68F060052802F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				237E57451AB68F2E0052802F /* TECHeaderView.h */,
+				237E57461AB68F2E0052802F /* TECHeaderView.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		237E57491AB6962D0052802F /* XDKAirMenu */ = {
+			isa = PBXGroup;
+			children = (
+				237E574A1AB6962D0052802F /* XDKAirMenuController.h */,
+				237E574B1AB6962D0052802F /* XDKAirMenuController.m */,
+			);
+			path = XDKAirMenu;
 			sourceTree = "<group>";
 		};
 		BADC83C61FA439DCF5A9FB39 /* Frameworks */ = {
@@ -295,8 +362,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237E57131AB3BA7B0052802F /* ViewController.m in Sources */,
+				237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */,
+				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
 				237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */,
+				237E57471AB68F2E0052802F /* TECHeaderView.m in Sources */,
+				237E57431AB67BD20052802F /* TECHomeViewController.m in Sources */,
 				237E570D1AB3BA7B0052802F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,7 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = NutreTec/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NutreTec/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -433,7 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = NutreTec/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NutreTec/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
