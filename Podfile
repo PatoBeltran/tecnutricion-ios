@@ -3,6 +3,7 @@
 
 target 'NutreTec' do
 pod "MBProgressHUD", '~> 0.9.1'
+pod 'MaryPopin'
 end
 
 target 'NutreTecTests' do

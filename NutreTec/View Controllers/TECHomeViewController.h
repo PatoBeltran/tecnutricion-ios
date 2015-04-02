@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TECHomeViewController : UIViewController
+@property (nonatomic, assign) BOOL isFromFeedback;
 
 @end
