@@ -54,7 +54,7 @@
     // set the fill color
     _strokeColor = [UIColor whiteColor];
     _closedIndicatorBackgroundStrokeColor = [UIColor clearColor];
-    _coverWidth = 18.0;
+    _coverWidth = self.frame.size.width/4.4;
     
     [self addDisplayLabel];
     

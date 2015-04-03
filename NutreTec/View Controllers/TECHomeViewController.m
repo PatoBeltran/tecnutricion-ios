@@ -44,9 +44,6 @@
     if (self.isFromFeedback) {
         [self showSendFeeback];
     }
-    else {
-        [self setProgress];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -82,6 +79,19 @@
                                                  consumedAmount:7];
     self.fatEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeFat
                                               consumedAmount:1];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.vegetableProgress setupProgressIndicator];
+    [self.milkProgress setupProgressIndicator];
+    [self.meatProgress setupProgressIndicator];
+    [self.sugarProgress setupProgressIndicator];
+    [self.peaProgress setupProgressIndicator];
+    [self.fruitProgress setupProgressIndicator];
+    [self.cerealProgress setupProgressIndicator];
+    [self.fatProgress setupProgressIndicator];
+    [self setProgress];
 }
 
 #pragma mark - Progress modificators

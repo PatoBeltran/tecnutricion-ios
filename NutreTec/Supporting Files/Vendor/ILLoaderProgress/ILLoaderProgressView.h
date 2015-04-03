@@ -11,4 +11,5 @@
 @interface ILLoaderProgressView : UIView
 @property (nonatomic) UIColor *progressColor;
 - (void)setProgressValue:(CGFloat)value forAmount:(CGFloat)amount;
+- (void)setupProgressIndicator;
 @end

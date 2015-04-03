@@ -13,25 +13,32 @@
 static const NSInteger TECLoaderPadding = 10;
 
 @interface ILLoaderProgressView ()
-@property RMDownloadIndicator *closedIndicator;
+@property RMDownloadIndicator  *closedIndicator;
+@property (nonatomic, assign) BOOL hasBeenSetup;
 @end
 
 @implementation ILLoaderProgressView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    [self setNeedsLayout];
-    [self layoutIfNeeded];
-    
-    self.closedIndicator = [[RMDownloadIndicator alloc]initWithFrame:CGRectMake(0, TECLoaderPadding/2.0, self.bounds.size.width - TECLoaderPadding, self.bounds.size.height - TECLoaderPadding)];
-    
-    [self.closedIndicator setBackgroundColor:[UIColor clearColor]];
-    [self.closedIndicator setStrokeColor:[UIColor clearColor]];
-    [self.closedIndicator loadIndicator];
-    [self.closedIndicator updateWithTotalAmount:1 finishedAmount:0];
-    
-    [self addSubview:self.closedIndicator];
+    self.hasBeenSetup = NO;
+}
+
+- (void)setupProgressIndicator {
+    if (!self.hasBeenSetup) {
+        self.closedIndicator = [[RMDownloadIndicator alloc]initWithFrame:CGRectMake(0,
+                                                                                    TECLoaderPadding/2.0,
+                                                                                    self.bounds.size.width - TECLoaderPadding,
+                                                                                    self.bounds.size.height - TECLoaderPadding)];
+        
+        [self.closedIndicator setBackgroundColor:[UIColor clearColor]];
+        [self.closedIndicator setStrokeColor:[UIColor clearColor]];
+        [self.closedIndicator loadIndicator];
+        [self.closedIndicator updateWithTotalAmount:1 finishedAmount:0];
+        
+        [self addSubview:self.closedIndicator];
+        self.hasBeenSetup = YES;
+    }
 }
 
 - (void)setProgressColor:(UIColor *)progressColor {
