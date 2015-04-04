@@ -13,6 +13,7 @@
 #import "TECNutreTecCore.h"
 #import "TECFoodPortion.h"
 #import "TECUserDiet.h"
+#import <FXBlurView/FXBlurView.h>
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -33,6 +34,11 @@
 @property (strong, nonatomic) TECFoodPortion *fruitEaten;
 @property (strong, nonatomic) TECFoodPortion *cerealEaten;
 @property (strong, nonatomic) TECFoodPortion *fatEaten;
+
+@property (strong, nonatomic) FXBlurView *blurredView;
+@property (strong, nonatomic) IBOutlet UIButton *plusButton;
+@property (weak, nonatomic) IBOutlet UIView *checkButtonView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property MFMailComposeViewController *mailComposer;
 @end
@@ -118,6 +124,43 @@
     [self.cerealProgress setProgressValue:self.cerealEaten.consumed forAmount:self.diet.cerealAmount];
     [self.fatProgress setProgressColor:TECFatColor];
     [self.fatProgress setProgressValue:self.fatEaten.consumed forAmount:self.diet.fatAmount];
+}
+
+#pragma mark - Add to current diet
+- (IBAction)didClickOnAddToCurrentDiet:(UIButton *)sender {
+    if (!self.blurredView) {
+        self.blurredView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
+        self.blurredView.tintColor = [UIColor clearColor];
+        self.blurredView.blurRadius = 15;
+        self.blurredView.alpha = 0;
+        
+        UITapGestureRecognizer *dismissViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                         action:@selector(dismissAddPortion:)];
+        
+        [self.blurredView addGestureRecognizer:dismissViewTap];
+    }
+    CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+    [self.scrollView setContentOffset:bottomOffset animated:YES];
+    
+    [self.view insertSubview:self.blurredView belowSubview:self.checkButtonView];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.blurredView.alpha = 1;
+        self.checkButtonView.hidden = NO;
+        self.plusButton.hidden = YES;
+    }];
+
+}
+
+- (void)dismissAddPortion:(UITapGestureRecognizer*)sender {
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         self.plusButton.hidden = NO;
+                         self.blurredView.alpha = 0;
+                         self.checkButtonView.hidden = YES;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.blurredView removeFromSuperview];
+                     }];
 }
 
 #pragma mark - Feedback Actions
