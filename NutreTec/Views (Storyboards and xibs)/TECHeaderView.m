@@ -18,6 +18,8 @@
         [menu closeMenuAnimated];
     }
     else {
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:@"XDAirMenuWillOpen" object:nil];
         [menu openMenuAnimated];
     }
 }

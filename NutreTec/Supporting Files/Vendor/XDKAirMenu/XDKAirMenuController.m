@@ -103,7 +103,8 @@
 #pragma mark - Gestures
 
 - (void)panGesture:(UIPanGestureRecognizer *)sender {
-    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:@"XDAirMenuWillOpen" object:nil];
     if (sender.state == UIGestureRecognizerStateBegan)
         self.startLocation = [sender locationInView:self.view];
     else if (sender.state == UIGestureRecognizerStateEnded
@@ -306,6 +307,8 @@
         else
             frame.origin.x = 0.f;
         self.currentViewController.view.frame = frame;
+        self.currentViewController.view.clipsToBounds = YES;
+        self.currentViewController.view.userInteractionEnabled = NO;
     }];
     
     _isMenuOpened = TRUE;
@@ -328,6 +331,7 @@
         frame = self.currentViewController.view.frame;
         frame.origin.x = 0.f;
         self.currentViewController.view.frame = frame;
+        self.currentViewController.view.userInteractionEnabled = YES;
     }];
     
     _isMenuOpened = FALSE;

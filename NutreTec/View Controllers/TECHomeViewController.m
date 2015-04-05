@@ -14,6 +14,8 @@
 #import "TECFoodPortion.h"
 #import "TECUserDiet.h"
 #import <FXBlurView/FXBlurView.h>
+#import "TECPortionMenuItem.h"
+#import "TECAddPortionMenu.h"
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -39,6 +41,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
 @property (weak, nonatomic) IBOutlet UIView *checkButtonView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) TECAddPortionMenu *addPortionMenu;
 
 @property MFMailComposeViewController *mailComposer;
 @end
@@ -47,6 +50,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
     if (self.isFromFeedback) {
         [self showSendFeeback];
     }
@@ -127,40 +132,106 @@
 }
 
 #pragma mark - Add to current diet
+
 - (IBAction)didClickOnAddToCurrentDiet:(UIButton *)sender {
     if (!self.blurredView) {
         self.blurredView = [[FXBlurView alloc] initWithFrame:self.view.bounds];
         self.blurredView.tintColor = [UIColor clearColor];
         self.blurredView.blurRadius = 15;
         self.blurredView.alpha = 0;
+    }
+    CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
+    
+    [self.view insertSubview:self.blurredView belowSubview:self.checkButtonView];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.blurredView.alpha = 1;
+        self.checkButtonView.hidden = NO;
+        self.plusButton.hidden = YES;
+        [self.scrollView setContentOffset:bottomOffset];
+    }
+                     completion:^(BOOL finished) {
+                         [self expandAddPortionMenu];
+                     }];
+}
+
+- (void)dismissAddPortion:(UITapGestureRecognizer*)sender {
+    [self.addPortionMenu hideMenuItemsWithCompletion:^{
+        CGPoint topOffset = CGPointMake(0, 0);
+        [self.scrollView setContentOffset:topOffset animated:YES];
+        [UIView animateWithDuration:0.3
+                         animations:^{
+                             self.plusButton.hidden = NO;
+                             self.blurredView.alpha = 0;
+                             self.checkButtonView.hidden = YES;
+                         }
+                         completion:^(BOOL finished) {
+                             [self.addPortionMenu removeFromSuperview];
+                             [self.blurredView removeFromSuperview];
+                         }];
+    }];
+}
+
+- (void)expandAddPortionMenu {
+    if(!self.addPortionMenu) {
+        CGFloat sizeOfItems = (self.view.frame.size.width/4)*0.67;
+        TECPortionMenuItem *vegetablesMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"vegetables-circle-icon"]
+                                                                                   selectedImage:[UIImage imageNamed:@"vegetables-circle-selected-icon"]
+                                                                                            size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                            type:TECPortionTypeVegetables];
+        
+        TECPortionMenuItem *milkMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"milk-circle-icon"]
+                                                                             selectedImage:[UIImage imageNamed:@"milk-circle-selected-icon"]
+                                                                                      size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                      type:TECPortionTypeMilk];
+        
+        TECPortionMenuItem *peaMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"pea-circle-icon"]
+                                                                            selectedImage:[UIImage imageNamed:@"pea-circle-selected-icon"]
+                                                                                     size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                     type:TECPortionTypePea];
+        
+        TECPortionMenuItem *cerealMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"cereal-circle-icon"]
+                                                                               selectedImage:[UIImage imageNamed:@"cereal-circle-selected-icon"]
+                                                                                        size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                        type:TECPortionTypeCereal];
+        
+        TECPortionMenuItem *meatMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"meat-circle-icon"]
+                                                                             selectedImage:[UIImage imageNamed:@"meat-circle-selected-icon"]
+                                                                                      size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                      type:TECPortionTypeMeat];
+        
+        TECPortionMenuItem *sugarMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"sugar-circle-icon"]
+                                                                              selectedImage:[UIImage imageNamed:@"sugar-circle-selected-icon"]
+                                                                                       size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                       type:TECPortionTypeSugar];
+        
+        TECPortionMenuItem *fruitMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"fruit-circle-icon"]
+                                                                              selectedImage:[UIImage imageNamed:@"fruit-circle-selected-icon"]
+                                                                                       size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                       type:TECPortionTypeFruit];
+        
+        TECPortionMenuItem *fatMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"fat-circle-icon"]
+                                                                            selectedImage:[UIImage imageNamed:@"fat-circle-selected-icon"]
+                                                                                     size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                     type:TECPortionTypeFat];
+        
+        self.addPortionMenu = [[TECAddPortionMenu alloc] initWithFrame:self.view.bounds
+                                                             startItem:self.checkButtonView
+                                                             menuItems:@[vegetablesMenuItem, milkMenuItem, meatMenuItem, sugarMenuItem, peaMenuItem, fruitMenuItem, cerealMenuItem, fatMenuItem]];
         
         UITapGestureRecognizer *dismissViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                          action:@selector(dismissAddPortion:)];
         
-        [self.blurredView addGestureRecognizer:dismissViewTap];
+        [self.addPortionMenu addGestureRecognizer:dismissViewTap];
     }
-    CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
-    [self.scrollView setContentOffset:bottomOffset animated:YES];
+    [self.view insertSubview:self.addPortionMenu belowSubview:self.checkButtonView];
     
-    [self.view insertSubview:self.blurredView belowSubview:self.checkButtonView];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.blurredView.alpha = 1;
-        self.checkButtonView.hidden = NO;
-        self.plusButton.hidden = YES;
-    }];
-
+    [self.addPortionMenu expandMenuItems];
 }
 
-- (void)dismissAddPortion:(UITapGestureRecognizer*)sender {
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         self.plusButton.hidden = NO;
-                         self.blurredView.alpha = 0;
-                         self.checkButtonView.hidden = YES;
-                     }
-                     completion:^(BOOL finished) {
-                         [self.blurredView removeFromSuperview];
-                     }];
+#pragma mark - Manage Notifications 
+
+- (void)menuWillOpen {
+    [self dismissAddPortion:nil];
 }
 
 #pragma mark - Feedback Actions
