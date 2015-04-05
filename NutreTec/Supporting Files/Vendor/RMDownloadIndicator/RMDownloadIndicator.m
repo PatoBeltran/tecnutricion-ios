@@ -32,7 +32,7 @@
 @property(nonatomic, assign)CGFloat animationDuration;
 
 /**
-  this is display label that displays % downloaded
+ this is display label that displays % downloaded
  */
 @property(nonatomic, strong)RMDisplayLabel *displayLabel;
 
@@ -97,7 +97,7 @@
     _animatingLayer.strokeColor = _strokeColor.CGColor;
     _animatingLayer.fillColor = [UIColor clearColor].CGColor;
     _animatingLayer.lineWidth = _coverWidth - 1.0;
-    self.lastSourceAngle = degreeToRadian(-90);
+    self.lastSourceAngle = degreeToRadian(270);
 }
 
 #pragma mark - Helper Methods
@@ -107,9 +107,17 @@
     for (int frame = 0; frame <= frameCount; frame++) {
         CGFloat startAngle = degreeToRadian(-90);
         
-        CGFloat endAngle = lastUpdatedAngle - (((newAngle - lastUpdatedAngle) * frame) / frameCount);
+        CGFloat endAngle = lastUpdatedAngle + (((newAngle - lastUpdatedAngle) * frame) / frameCount);
         
-        [array addObject:(id)([self pathWithStartAngle:startAngle endAngle:endAngle radius:radius].CGPath)];
+        if (endAngle == degreeToRadian(-90)) {
+            [array addObject:(id)([self pathWithStartAngle:startAngle endAngle:degreeToRadian(270) radius:radius].CGPath)];
+        }
+        else if (endAngle == degreeToRadian(270)) {
+            [array addObject:(id)([self pathWithStartAngle:startAngle endAngle:degreeToRadian(-90) radius:radius].CGPath)];
+        }
+        else {
+            [array addObject:(id)([self pathWithStartAngle:startAngle endAngle:endAngle radius:radius].CGPath)];
+        }
     }
     return [NSArray arrayWithArray:array];
 }
@@ -141,8 +149,10 @@
 
 #pragma mark - update indicator
 - (void)updateWithTotalAmount:(CGFloat)total finishedAmount:(CGFloat)finished {
-    _lastUpdatedPath = [UIBezierPath bezierPathWithCGPath:_animatingLayer.path];
-    [_paths removeAllObjects];
+    self.lastUpdatedPath = [UIBezierPath bezierPathWithCGPath:self.animatingLayer.path];
+    [self.paths removeAllObjects];
+    ;
+    
     CGFloat ratio;
     if (total <= finished) {
         ratio = 1;
@@ -152,14 +162,15 @@
     }
     
     CGFloat destinationAngle = [self destinationAngleForRatio:ratio];
+    
     CGFloat radius = MIN(CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))/2 - self.coverWidth/2;
     
-    [_paths addObjectsFromArray:[self keyframePathsWithDuration:self.animationDuration
-                                               lastUpdatedAngle:self.lastSourceAngle
-                                                       newAngle:destinationAngle
-                                                         radius:radius]];
+    [self.paths addObjectsFromArray:[self keyframePathsWithDuration:self.animationDuration
+                                                   lastUpdatedAngle:self.lastSourceAngle
+                                                           newAngle:destinationAngle
+                                                             radius:radius]];
     
-    _animatingLayer.path = (__bridge CGPathRef)((id)_paths[(_paths.count -1)]);
+    self.animatingLayer.path = (__bridge CGPathRef)((id)self.paths[(self.paths.count -1)]);
     self.lastSourceAngle = destinationAngle;
     
     CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"path"];
@@ -180,11 +191,15 @@
 }
 
 - (CGFloat)destinationAngleForRatio:(CGFloat)ratio {
-    return degreeToRadian(360*ratio-90);
+    return degreeToRadian(360 - 360*ratio-90);
 }
 
 float degreeToRadian(float degree) {
     return ((degree * M_PI)/180.0f);
+}
+
+float radianToDegree(float radian) {
+    return ((radian * 180.0f)/M_PI);
 }
 
 #pragma mark - Setter Methods
