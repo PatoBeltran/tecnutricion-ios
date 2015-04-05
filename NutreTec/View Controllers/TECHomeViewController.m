@@ -112,7 +112,14 @@
 
 - (void)setProgress {
     [self getValuesFromDB];
-    [self updateProgressForView];
+    [self.vegetableProgress setProgressValue:self.vegetablesEaten.consumed forAmount:self.diet.vegetablesAmount];
+    [self.milkProgress setProgressValue:self.milkEaten.consumed forAmount:self.diet.milkAmount];
+    [self.meatProgress setProgressValue:self.meatEaten.consumed forAmount:self.diet.meatAmount];
+    [self.sugarProgress setProgressValue:self.sugarEaten.consumed forAmount:self.diet.sugarAmount];
+    [self.peaProgress setProgressValue:self.peasEaten.consumed forAmount:self.diet.peaAmount];
+    [self.fruitProgress setProgressValue:self.fruitEaten.consumed forAmount:self.diet.fruitAmount];
+    [self.cerealProgress setProgressValue:self.cerealEaten.consumed forAmount:self.diet.cerealAmount];
+    [self.fatProgress setProgressValue:self.fatEaten.consumed forAmount:self.diet.fatAmount];
 }
 
 - (void)setupColorsForView {
