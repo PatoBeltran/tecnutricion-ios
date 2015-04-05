@@ -94,6 +94,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
     [self.vegetableProgress setupProgressIndicator];
     [self.milkProgress setupProgressIndicator];
     [self.meatProgress setupProgressIndicator];
