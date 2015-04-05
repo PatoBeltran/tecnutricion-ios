@@ -35,11 +35,20 @@ extern float degreeToRadian(float degree);
     self.isAnimating = YES;
 }
 
-- (void)hideMenuItemsWithCompletion:(void (^)())completion {
+- (void)hideAndUnselectMenuItemsWithCompletion:(void (^)())completion {
     [self unselectAllItems];
     [self closeAnimation];
     self.isAnimating = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        completion();
+    });
+}
+
+- (void)hideMenuItemsWithCompletion:(void (^)())completion {
+    [self closeAnimation];
+    self.isAnimating = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self unselectAllItems];
         completion();
     });
 }

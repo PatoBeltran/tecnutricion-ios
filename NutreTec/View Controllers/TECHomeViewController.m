@@ -102,6 +102,7 @@
     [self.fruitProgress setupProgressIndicator];
     [self.cerealProgress setupProgressIndicator];
     [self.fatProgress setupProgressIndicator];
+    [self setupColorsForView];
     [self setProgress];
 }
 
@@ -109,26 +110,45 @@
 
 - (void)setProgress {
     [self getValuesFromDB];
-    [self setAllProgressForView];
+    [self updateProgressForView];
 }
 
-- (void)setAllProgressForView {
+- (void)setupColorsForView {
     [self.vegetableProgress setProgressColor:TECVegetablesColor];
-    [self.vegetableProgress setProgressValue:self.vegetablesEaten.consumed forAmount:self.diet.vegetablesAmount];
     [self.milkProgress setProgressColor:TECMilkColor];
-    [self.milkProgress setProgressValue:self.milkEaten.consumed forAmount:self.diet.milkAmount];
     [self.meatProgress setProgressColor:TECMeatColor];
-    [self.meatProgress setProgressValue:self.meatEaten.consumed forAmount:self.diet.meatAmount];
     [self.sugarProgress setProgressColor:TECSugarColor];
-    [self.sugarProgress setProgressValue:self.sugarEaten.consumed forAmount:self.diet.sugarAmount];
     [self.peaProgress setProgressColor:TECPeaColor];
-    [self.peaProgress setProgressValue:self.peasEaten.consumed forAmount:self.diet.peaAmount];
     [self.fruitProgress setProgressColor:TECFruitColor];
-    [self.fruitProgress setProgressValue:self.fruitEaten.consumed forAmount:self.diet.fruitAmount];
     [self.cerealProgress setProgressColor:TECCerealColor];
-    [self.cerealProgress setProgressValue:self.cerealEaten.consumed forAmount:self.diet.cerealAmount];
     [self.fatProgress setProgressColor:TECFatColor];
-    [self.fatProgress setProgressValue:self.fatEaten.consumed forAmount:self.diet.fatAmount];
+}
+
+- (void)updateProgressForView {
+    if (self.vegetableProgress.currentAmount.integerValue != self.vegetablesEaten.consumed) {
+        [self.vegetableProgress setProgressValue:self.vegetablesEaten.consumed forAmount:self.diet.vegetablesAmount];
+    }
+    if (self.milkProgress.currentAmount.integerValue != self.milkEaten.consumed) {
+        [self.milkProgress setProgressValue:self.milkEaten.consumed forAmount:self.diet.milkAmount];
+    }
+    if (self.meatProgress.currentAmount.integerValue != self.meatEaten.consumed) {
+        [self.meatProgress setProgressValue:self.meatEaten.consumed forAmount:self.diet.meatAmount];
+    }
+    if (self.sugarProgress.currentAmount.integerValue != self.sugarEaten.consumed) {
+        [self.sugarProgress setProgressValue:self.sugarEaten.consumed forAmount:self.diet.sugarAmount];
+    }
+    if (self.peaProgress.currentAmount.integerValue != self.peasEaten.consumed) {
+        [self.peaProgress setProgressValue:self.peasEaten.consumed forAmount:self.diet.peaAmount];
+    }
+    if (self.fruitProgress.currentAmount.integerValue != self.fruitEaten.consumed) {
+        [self.fruitProgress setProgressValue:self.fruitEaten.consumed forAmount:self.diet.fruitAmount];
+    }
+    if (self.cerealProgress.currentAmount.integerValue != self.cerealEaten.consumed) {
+        [self.cerealProgress setProgressValue:self.cerealEaten.consumed forAmount:self.diet.cerealAmount];
+    }
+    if (self.fatProgress.currentAmount.integerValue != self.fatEaten.consumed) {
+        [self.fatProgress setProgressValue:self.fatEaten.consumed forAmount:self.diet.fatAmount];
+    }
 }
 
 #pragma mark - Add to current diet
@@ -155,20 +175,25 @@
 }
 
 - (void)dismissAddPortion:(UITapGestureRecognizer*)sender {
-    [self.addPortionMenu hideMenuItemsWithCompletion:^{
-        CGPoint topOffset = CGPointMake(0, 0);
-        [self.scrollView setContentOffset:topOffset animated:YES];
-        [UIView animateWithDuration:0.3
-                         animations:^{
-                             self.plusButton.hidden = NO;
-                             self.blurredView.alpha = 0;
-                             self.checkButtonView.hidden = YES;
-                         }
-                         completion:^(BOOL finished) {
-                             [self.addPortionMenu removeFromSuperview];
-                             [self.blurredView removeFromSuperview];
-                         }];
+    [self.addPortionMenu hideAndUnselectMenuItemsWithCompletion:^{
+        [self willDismissAddPortion];
     }];
+}
+
+- (void)willDismissAddPortion {
+    CGPoint topOffset = CGPointMake(0, 0);
+    [self.scrollView setContentOffset:topOffset animated:YES];
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         self.plusButton.hidden = NO;
+                         self.blurredView.alpha = 0;
+                         self.checkButtonView.hidden = YES;
+                     }
+                     completion:^(BOOL finished) {
+                         [self.addPortionMenu removeFromSuperview];
+                         [self.blurredView removeFromSuperview];
+                         [self updateProgressForView];
+                     }];
 }
 
 - (void)expandAddPortionMenu {
@@ -226,6 +251,41 @@
     [self.view insertSubview:self.addPortionMenu belowSubview:self.checkButtonView];
     
     [self.addPortionMenu expandMenuItems];
+}
+- (IBAction)addCheckDidClicked {
+    for (TECPortionMenuItem *item in self.addPortionMenu.menuItems) {
+        if (item.selected) {
+            switch (item.portionType) {
+                case TECPortionTypeVegetables:
+                    self.vegetablesEaten.consumed++;
+                    break;
+                case TECPortionTypeMilk:
+                    self.milkEaten.consumed++;
+                    break;
+                case TECPortionTypeMeat:
+                    self.meatEaten.consumed++;
+                    break;
+                case TECPortionTypeSugar:
+                    self.sugarEaten.consumed++;
+                    break;
+                case TECPortionTypePea:
+                    self.peasEaten.consumed++;
+                    break;
+                case TECPortionTypeFruit:
+                    self.fruitEaten.consumed++;
+                    break;
+                case TECPortionTypeCereal:
+                    self.cerealEaten.consumed++;
+                    break;
+                case TECPortionTypeFat:
+                    self.fatEaten.consumed++;
+                    break;
+            }
+        }
+    }
+    [self.addPortionMenu hideMenuItemsWithCompletion:^{
+        [self willDismissAddPortion];
+    }];
 }
 
 #pragma mark - Manage Notifications 

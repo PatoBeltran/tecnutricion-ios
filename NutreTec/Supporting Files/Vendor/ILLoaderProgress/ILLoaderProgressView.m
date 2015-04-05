@@ -22,6 +22,7 @@ static const NSInteger TECLoaderPadding = 10;
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.hasBeenSetup = NO;
+    self.currentAmount = 0;
 }
 
 - (void)setupProgressIndicator {
@@ -48,6 +49,7 @@ static const NSInteger TECLoaderPadding = 10;
 }
 
 - (void)setProgressValue:(CGFloat)value forAmount:(CGFloat)amount {
+    self.currentAmount = @(value);
     [self.closedIndicator updateWithTotalAmount:amount finishedAmount:value];
 }
 

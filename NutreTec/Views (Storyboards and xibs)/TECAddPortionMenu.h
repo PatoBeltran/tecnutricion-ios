@@ -16,4 +16,5 @@
 - (instancetype)initWithFrame:(CGRect)frame startItem:(UIView *)startItem menuItems:(NSArray *)menuItems;
 - (void)expandMenuItems;
 - (void)hideMenuItemsWithCompletion:(void (^)())completion;
+- (void)hideAndUnselectMenuItemsWithCompletion:(void (^)())completion;
 @end

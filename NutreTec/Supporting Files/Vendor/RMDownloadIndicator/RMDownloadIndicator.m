@@ -31,7 +31,9 @@
 /* this the animation duration (default: 0.5) */
 @property(nonatomic, assign)CGFloat animationDuration;
 
-/* this is display label that displays % downloaded */
+/**
+  this is display label that displays % downloaded
+ */
 @property(nonatomic, strong)RMDisplayLabel *displayLabel;
 
 @end
@@ -167,7 +169,7 @@
     [pathAnimation setRemovedOnCompletion:YES];
     [_animatingLayer addAnimation:pathAnimation forKey:@"path"];
     
-    if (finished >= total) {
+    if (ratio == 1) {
         [self.displayLabel setTextColor:[UIColor colorWithRed:228./255 green:7./255 blue:7./255 alpha:1.0]];
     }
     else {
