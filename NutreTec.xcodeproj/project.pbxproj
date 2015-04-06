@@ -14,6 +14,8 @@
 		232833841ACDD57300449B25 /* TECUserDiet.m in Sources */ = {isa = PBXBuildFile; fileRef = 232833831ACDD57300449B25 /* TECUserDiet.m */; };
 		233790201AC473BA0009FC2F /* CCMBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337901F1AC473BA0009FC2F /* CCMBorderView.m */; };
 		233790231AC4792E0009FC2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233790211AC479010009FC2F /* Images.xcassets */; };
+		2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */; };
+		2369F15C1AD2416900DABCB2 /* portions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2369F15B1AD2416900DABCB2 /* portions.plist */; };
 		2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58A1AB8DD8600E696F5 /* ILLoaderProgressView.m */; };
 		2372E58F1AB8DE9700E696F5 /* RMDownloadIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58E1AB8DE9700E696F5 /* RMDownloadIndicator.m */; };
 		2372E5921AB8DF6100E696F5 /* RMDisplayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E5911AB8DF6100E696F5 /* RMDisplayLabel.m */; };
@@ -55,6 +57,9 @@
 		2337901E1AC473BA0009FC2F /* CCMBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMBorderView.h; sourceTree = "<group>"; };
 		2337901F1AC473BA0009FC2F /* CCMBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMBorderView.m; sourceTree = "<group>"; };
 		233790211AC479010009FC2F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2369F1581AD21C9100DABCB2 /* TECReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceCell.h; sourceTree = "<group>"; };
+		2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceCell.m; sourceTree = "<group>"; };
+		2369F15B1AD2416900DABCB2 /* portions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = portions.plist; sourceTree = "<group>"; };
 		2372E5891AB8DD8600E696F5 /* ILLoaderProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILLoaderProgressView.h; sourceTree = "<group>"; };
 		2372E58A1AB8DD8600E696F5 /* ILLoaderProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILLoaderProgressView.m; sourceTree = "<group>"; };
 		2372E58D1AB8DE9700E696F5 /* RMDownloadIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDownloadIndicator.h; sourceTree = "<group>"; };
@@ -199,6 +204,7 @@
 		237E570A1AB3BA7B0052802F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2369F15B1AD2416900DABCB2 /* portions.plist */,
 				237E573D1AB675D70052802F /* Vendor */,
 				237E57321AB3CD020052802F /* Fonts */,
 				237E570E1AB3BA7B0052802F /* AppDelegate.h */,
@@ -282,6 +288,8 @@
 				2337901E1AC473BA0009FC2F /* CCMBorderView.h */,
 				2337901F1AC473BA0009FC2F /* CCMBorderView.m */,
 				237E57451AB68F2E0052802F /* TECHeaderView.h */,
+				2369F1581AD21C9100DABCB2 /* TECReferenceCell.h */,
+				2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */,
 				237E57461AB68F2E0052802F /* TECHeaderView.m */,
 				230627EE1AD0B3E70055BFBB /* TECPortionMenuItem.h */,
 				230627EF1AD0B3E70055BFBB /* TECPortionMenuItem.m */,
@@ -393,6 +401,7 @@
 			files = (
 				233790231AC4792E0009FC2F /* Images.xcassets in Resources */,
 				237E57161AB3BA7B0052802F /* Main.storyboard in Resources */,
+				2369F15C1AD2416900DABCB2 /* portions.plist in Resources */,
 				237E571B1AB3BA7B0052802F /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +458,7 @@
 				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
 				232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */,
 				2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */,
+				2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */,
 				230627F31AD0BACD0055BFBB /* TECAddPortionMenu.m in Sources */,
 				232833841ACDD57300449B25 /* TECUserDiet.m in Sources */,
 				237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */,
