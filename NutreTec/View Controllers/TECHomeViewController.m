@@ -16,6 +16,8 @@
 #import <FXBlurView/FXBlurView.h>
 #import "TECPortionMenuItem.h"
 #import "TECAddPortionMenu.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -43,6 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) TECAddPortionMenu *addPortionMenu;
 
+@property (strong, nonatomic) NSString *currentDate;
+
 @property MFMailComposeViewController *mailComposer;
 @end
 
@@ -55,41 +59,151 @@
     if (self.isFromFeedback) {
         [self showSendFeeback];
     }
+    
+    /*
+     //Creates Diet
+     //TODO this is for the diet view
+     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+     
+     printf("Creating new diet for today\n");
+     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
+     
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
+     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
+     [newDiet setValue:@"static" forKey:@"type"];
+     
+     NSError *error;
+     [context save: &error];
+     */
+    
+    //Get today's date
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    self.currentDate = [dateFormat stringFromDate:today];
+    
+    //Create new entry if today's doesn't exist
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+    
+    if(matchObjects.count == 0)
+    {
+        printf("Creating new diet for today\n");
+        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Day" inManagedObjectContext:context];
+        
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
+        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
+        [newDiet setValue:_currentDate forKey:@"day"];
+        
+        [context save: &error];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    //@TODO - Commit all changes to the database
+    //Modify today's entry
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+    
+    if(matchObjects.count == 0){
+        printf("Daily entry not found");
+    }
+    else
+    {
+        printf("Saving diet for today\n");
+        NSManagedObject *modDiet = matchObjects[0];
+        
+        [modDiet setValue:[NSNumber numberWithInteger:self.vegetablesEaten.consumed] forKey:@"vegetable"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.milkEaten.consumed] forKey:@"milk"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.meatEaten.consumed] forKey:@"meat"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.cerealEaten.consumed] forKey:@"cereal"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.sugarEaten.consumed] forKey:@"sugar"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.fatEaten.consumed] forKey:@"fat"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.fruitEaten.consumed] forKey:@"fruit"];
+        [modDiet setValue:[NSNumber numberWithInteger:self.peasEaten.consumed] forKey:@"pea"];
+        
+        [context save: &error];
+    }
+
 }
 
 #pragma mark - Database Interaction
 
 - (void)getValuesFromDB {
-    //@TODO - Get values from database and change the hardcoded ones
-    self.diet = [[TECUserDiet alloc] initWithVegetables:10
-                                                   milk:8
-                                                   meat:3
-                                                  sugar:8
-                                                   peas:12
-                                                  fruit:13
-                                                 cereal:8
-                                                    fat:4];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
     
-    self.vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
-                                                     consumedAmount:12];
-    self.milkEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeMilk
-                                               consumedAmount:2];
-    self.meatEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeMeat
-                                               consumedAmount:2];
-    self.sugarEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeSugar
-                                                consumedAmount:4];
-    self.peasEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypePea
-                                               consumedAmount:5];
-    self.fruitEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeFruit
-                                                consumedAmount:0];
-    self.cerealEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeCereal
-                                                 consumedAmount:7];
-    self.fatEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeFat
-                                              consumedAmount:1];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+    
+    if(matchObjects.count == 0) {
+        printf("No daily entry found");
+    }
+    else {
+        printf("Loading diet for today");
+        NSManagedObject *matchRegister = matchObjects[0];
+        self.diet = [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
+                                                       milk:[[matchRegister valueForKey:@"milk"] integerValue]
+                                                       meat:[[matchRegister valueForKey:@"meat"] integerValue]
+                                                      sugar:[[matchRegister valueForKey:@"sugar"] integerValue]
+                                                       peas:[[matchRegister valueForKey:@"pea"] integerValue]
+                                                      fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
+                                                     cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
+                                                        fat:[[matchRegister valueForKey:@"fat"] integerValue]];
+        
+        self.vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
+                                                         consumedAmount:[[matchRegister valueForKey:@"vegetable"] integerValue]];
+        self.milkEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeMilk
+                                                   consumedAmount:[[matchRegister valueForKey:@"milk"] integerValue]];
+        self.meatEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeMeat
+                                                   consumedAmount:[[matchRegister valueForKey:@"meat"] integerValue]];
+        self.sugarEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeSugar
+                                                    consumedAmount:[[matchRegister valueForKey:@"sugar"] integerValue]];
+        self.peasEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypePea
+                                                   consumedAmount:[[matchRegister valueForKey:@"pea"] integerValue]];
+        self.fruitEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeFruit
+                                                    consumedAmount:[[matchRegister valueForKey:@"fruit"] integerValue]];
+        self.cerealEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeCereal
+                                                     consumedAmount:[[matchRegister valueForKey:@"cereal"] integerValue]];
+        self.fatEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeFat
+                                                  consumedAmount:[[matchRegister valueForKey:@"fat"] integerValue]];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
