@@ -29,4 +29,6 @@ typedef NS_ENUM(NSInteger, TECReferencePortionType){
 @property (assign, nonatomic) TECReferencePortionType cellType;
 @property (strong, nonatomic) UITableView *portionsTable;
 @property (assign, nonatomic) BOOL hasUpdatedWidth;
+
+- (void)initTable;
 @end

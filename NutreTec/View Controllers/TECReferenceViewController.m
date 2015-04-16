@@ -191,6 +191,11 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
             break;
     }
     if (openCell) {
+        if(!cell.portionsTable) {
+            cell.portionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, cell.contentWrapper.frame.size.height, self.widthOfCell, self.view.frame.size.height - (cell.contentWrapper.frame.size.height + 85))
+                                                              style:UITableViewStylePlain];
+            [cell initTable];
+        }
         [UIView animateWithDuration:0.3 animations:^{
             cell.contentWrapper.borderWidth = 0;
             CGRect frame = cell.contentWrapper.frame;
@@ -200,6 +205,8 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
             cell.name.alpha = 0;
             cell.selectedView.alpha = 1;
             cell.icon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-white-icon", cellname]];
+            [cell addSubview:cell.portionsTable];
+            [cell.portionsTable reloadData];
         }];
     }
     else {
@@ -209,6 +216,7 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
             cell.icon.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-color-icon", cellname]];
             cell.name.alpha = 1;
             cell.selectedView.alpha = 0;
+            [cell.portionsTable removeFromSuperview];
         }];
     }
 }
