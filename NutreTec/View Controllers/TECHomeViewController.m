@@ -60,6 +60,12 @@
         [self showSendFeeback];
     }
     
+    //Get today's date
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    self.currentDate = [dateFormat stringFromDate:today];
+    
     /*
      //Creates Diet
      //TODO this is for the diet view
@@ -69,25 +75,20 @@
      printf("Creating new diet for today\n");
      NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
      
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
+     [newDiet setValue:[NSNumber numberWithInteger:8] forKey:@"vegetable"];
+     [newDiet setValue:[NSNumber numberWithInteger:5] forKey:@"milk"];
+     [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"meat"];
+     [newDiet setValue:[NSNumber numberWithInteger:2] forKey:@"cereal"];
+     [newDiet setValue:[NSNumber numberWithInteger:1] forKey:@"sugar"];
+     [newDiet setValue:[NSNumber numberWithInteger:3] forKey:@"fat"];
+     [newDiet setValue:[NSNumber numberWithInteger:2] forKey:@"fruit"];
+     [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"pea"];
+     [newDiet setValue:self.currentDate forKey:@"fecha"];
      [newDiet setValue:@"static" forKey:@"type"];
      
      NSError *error;
      [context save: &error];
-     */
-    
-    //Get today's date
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    self.currentDate = [dateFormat stringFromDate:today];
+    */
     
     //Create new entry if today's doesn't exist
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -119,6 +120,7 @@
         
         [context save: &error];
     }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -162,22 +164,22 @@
 - (void)getValuesFromDB {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
-    [request setPredicate:predicate];
+    //Load static diet
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
     
     NSError *error;
-    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
-    if(matchObjects.count == 0) {
-        printf("No daily entry found");
+    if(matchObjectsDiet.count == 0) {
+        printf("No diet entry found");
     }
     else {
-        printf("Loading diet for today");
-        NSManagedObject *matchRegister = matchObjects[0];
+        printf("Loading static diet.\n");
+        NSManagedObject *matchRegister = matchObjectsDiet[1];
         self.diet = [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
                                                        milk:[[matchRegister valueForKey:@"milk"] integerValue]
                                                        meat:[[matchRegister valueForKey:@"meat"] integerValue]
@@ -186,6 +188,24 @@
                                                       fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
                                                      cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
                                                         fat:[[matchRegister valueForKey:@"fat"] integerValue]];
+    }
+    
+    //Load current diet (progress)
+    NSEntityDescription *entityDay = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    
+    NSFetchRequest *requestDay = [[NSFetchRequest alloc] init];
+    [requestDay setEntity:entityDay];
+    NSPredicate *predicateDay = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [requestDay setPredicate:predicateDay];
+    
+    NSArray *matchObjectsDay = [context executeFetchRequest:requestDay error:&error];
+    
+    if(matchObjectsDay.count == 0) {
+        printf("No daily entry found");
+    }
+    else {
+        printf("Loading diet for today");
+        NSManagedObject *matchRegister = matchObjectsDay[0];
         
         self.vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
                                                          consumedAmount:[[matchRegister valueForKey:@"vegetable"] integerValue]];
