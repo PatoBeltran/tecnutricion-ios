@@ -28,6 +28,8 @@
 		237E57431AB67BD20052802F /* TECHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57421AB67BD20052802F /* TECHomeViewController.m */; };
 		237E57471AB68F2E0052802F /* TECHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57461AB68F2E0052802F /* TECHeaderView.m */; };
 		237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E574B1AB6962D0052802F /* XDKAirMenuController.m */; };
+		239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239306361AD2E757007E6E3B /* TECReferencePortionInnerCell.m */; };
+		239306391AD2E757007E6E3B /* TECReferencePortionInnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */; };
 		23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */; };
 		7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9B8A711ADF69B500B699E8 /* CoreData.framework */; };
 		7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B8A731ADF6A9F00B699E8 /* TECModel.xcdatamodeld */; };
@@ -96,6 +98,9 @@
 		237E57461AB68F2E0052802F /* TECHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECHeaderView.m; sourceTree = "<group>"; };
 		237E574A1AB6962D0052802F /* XDKAirMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDKAirMenuController.h; sourceTree = "<group>"; };
 		237E574B1AB6962D0052802F /* XDKAirMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDKAirMenuController.m; sourceTree = "<group>"; };
+		239306351AD2E757007E6E3B /* TECReferencePortionInnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferencePortionInnerCell.h; sourceTree = "<group>"; };
+		239306361AD2E757007E6E3B /* TECReferencePortionInnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferencePortionInnerCell.m; sourceTree = "<group>"; };
+		239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TECReferencePortionInnerCell.xib; sourceTree = "<group>"; };
 		23F331F71AD11BA30052A7CC /* TECReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceViewController.h; sourceTree = "<group>"; };
 		23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceViewController.m; sourceTree = "<group>"; };
 		66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.release.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				237E57441AB68F060052802F /* Classes */,
+				239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */,
 				237E57141AB3BA7B0052802F /* Main.storyboard */,
 				237E57191AB3BA7B0052802F /* LaunchScreen.xib */,
 			);
@@ -302,6 +308,8 @@
 				230627EF1AD0B3E70055BFBB /* TECPortionMenuItem.m */,
 				230627F11AD0BACD0055BFBB /* TECAddPortionMenu.h */,
 				230627F21AD0BACD0055BFBB /* TECAddPortionMenu.m */,
+				239306351AD2E757007E6E3B /* TECReferencePortionInnerCell.h */,
+				239306361AD2E757007E6E3B /* TECReferencePortionInnerCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 			files = (
 				233790231AC4792E0009FC2F /* Images.xcassets in Resources */,
 				237E57161AB3BA7B0052802F /* Main.storyboard in Resources */,
+				239306391AD2E757007E6E3B /* TECReferencePortionInnerCell.xib in Resources */,
 				2369F15C1AD2416900DABCB2 /* portions.plist in Resources */,
 				237E571B1AB3BA7B0052802F /* LaunchScreen.xib in Resources */,
 			);
@@ -464,6 +473,7 @@
 				237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */,
 				23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */,
 				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
+				239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */,
 				232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */,
 				2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */,
 				2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */,

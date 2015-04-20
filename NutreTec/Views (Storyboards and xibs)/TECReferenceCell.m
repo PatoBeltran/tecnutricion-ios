@@ -7,6 +7,9 @@
 //
 
 #import "TECReferenceCell.h"
+#import "TECReferencePortionInnerCell.h"
+
+static NSString * const TECPortionsInnerCellIdentifier = @"portionInnerCell";
 
 @interface TECReferenceCell() <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSArray *portions;
@@ -23,15 +26,25 @@
     self.portionsTable.delegate = self;
     self.portionsTable.allowsSelection = NO;
     self.portionsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.portions = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portions" ofType:@"plist"]];
+    self.portions = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portions" ofType:@"plist"]][self.cellTypeName];
+    [self.portionsTable registerNib:[UINib nibWithNibName:@"TECReferencePortionInnerCell" bundle:nil] forCellReuseIdentifier:TECPortionsInnerCellIdentifier];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.portions[self.cellType] count];
+    return [self.portions count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    TECReferencePortionInnerCell * cell = [tableView dequeueReusableCellWithIdentifier:TECPortionsInnerCellIdentifier];
+    
+    if (!cell) {
+        cell = [[TECReferencePortionInnerCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                                   reuseIdentifier:TECPortionsInnerCellIdentifier];
+    }
+    
+    cell.leftLabel.text = self.portions[indexPath.row][@"name"];
+    cell.rightLabel.text = self.portions[indexPath.row][@"portion"];
+    return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -1,808 +1,804 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<array>
+<dict>
+	<key>fruit</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Arándanos</string>
-			<key>Racion</key>
-			<string>2 cucharadas</string>
+			<key>portion</key>
+			<string>2 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Ciruela</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>3 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Chabacano</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>4 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Durazno</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Fresa</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Guayaba</string>
-			<key>Racion</key>
-			<string>2 medianas</string>
+			<key>portion</key>
+			<string>2 med.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jugo de frutas</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jugo de uva</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/4 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Limón</string>
-			<key>Racion</key>
-			<string>Libre</string>
+			<key>portion</key>
+			<string>libre</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Mandarina</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Mango</string>
-			<key>Racion</key>
-			<string>1/2 mediano</string>
+			<key>portion</key>
+			<string>1/2 med.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Kiwi</string>
-			<key>Racion</key>
-			<string>1 1/2 pieza</string>
+			<key>portion</key>
+			<string>1.5 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Manzana</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Melón</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Naranja</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Papaya</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2/3 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pera</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Piña</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2/3 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Plátano</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Sandía</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Toronja</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Tuna</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Uva</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>9 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pasitas</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>10 piezas</string>
 		</dict>
 	</array>
+	<key>vegetables</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
+			<string>Chile poblano</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>Acelga</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Alcachofas</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Apio</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Berenjena</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Brócoli</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cebolla</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cilantro</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Coliflor</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Champiñones</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Chayote</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Ejotes</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Ensalada promedio</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Espárragos</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Espinacas</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Flor de calabaza</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Germen</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jícama</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jitomate</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Lechuga</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Nopales</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pepino</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Perejil</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Rábano</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Repollo</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Tomate</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cantidad libre)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Betabel</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Calabacita</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cebolla</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jugo de tomate</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Jugo de verduras</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pimiento</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Zanahorias</string>
-			<key>Racion</key>
-			<string>1/2 taza (Cocidas)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 	</array>
+	<key>pea</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Lentejas</string>
-			<key>Racion</key>
-			<string>1/2 taza (250 ml)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Garbanzo</string>
-			<key>Racion</key>
-			<string>1/2 taza (250 ml)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Habas</string>
-			<key>Racion</key>
-			<string>1/2 taza (250 ml)</string>
+			<key>portion</key>
+			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Chícharos</string>
-			<key>Racion</key>
-			<string>1/2 taza (250 ml)</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Alubias</string>
-			<key>Racion</key>
-			<string>1/2 taza (250 ml)</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
-			<string>Frijol (molido o en bola)</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Frijol (refrito)</string>
-			<key>Racion</key>
-			<string>1/3 taza</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
-			<string>Soya (seca)</string>
-			<key>Racion</key>
-			<string>3 cucharadas</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
-			<string>Soya (cocida)</string>
-			<key>Racion</key>
-			<string>1/3 taza</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
-			<string>Soya (germanizada)</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Frijol cocido o en bola</string>
+			<key>portion</key>
 			<string>1/2 taza</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Frijol refrito</string>
+			<key>portion</key>
+			<string>1/3 taza</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Soya texturizada</string>
+			<key>portion</key>
+			<string>3 C</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Soya cocida</string>
+			<key>portion</key>
+			<string>1/3 taza</string>
 		</dict>
 	</array>
+	<key>meat</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
-			<string>Aves (pechuga de pollo o pavo)</string>
-			<key>Racion</key>
-			<string>30 gr.</string>
+			<key>name</key>
+			<string>Aves</string>
+			<key>portion</key>
+			<string>30 grs.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Res (aguayón, agujas, bistec de bola, etc)</string>
-			<key>Racion</key>
-			<string>30 gr.</string>
+			<key>name</key>
+			<string>Res</string>
+			<key>portion</key>
+			<string>30 grs.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Pescados y mariscos (atún fresco, pulpo, cangrejo, etc)</string>
-			<key>Racion</key>
-			<string>30 gr.</string>
+			<key>name</key>
+			<string>Pescados y Mariscos</string>
+			<key>portion</key>
+			<string>30 grs.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pollo deshebrado</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/4 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Queso cottage o requesón</string>
-			<key>Racion</key>
-			<string>3 cucharadas</string>
+			<key>portion</key>
+			<string>3 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Queso fresco (panela)</string>
-			<key>Racion</key>
-			<string>40 gr.</string>
+			<key>portion</key>
+			<string>40 g.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Atún en agua</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/3 lata</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Carnes frías (pavo)</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 reb. chicas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Salchicha (pavo)</string>
-			<key>Racion</key>
-			<string>1 pieza</string>
+			<key>portion</key>
+			<string>1 pza.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Huevo</string>
-			<key>Racion</key>
-			<string>1 pieza</string>
+			<key>portion</key>
+			<string>1 pza.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Clara de huevo</string>
-			<key>Racion</key>
-			<string>2 pieza</string>
-		</dict>
-		<dict>
-			<key>Nombre</key>
-			<string>Surimi</string>
-			<key>Racion</key>
-			<string>3/4 barra</string>
+			<key>portion</key>
+			<string>2 pza.</string>
 		</dict>
 	</array>
+	<key>milk</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Leche de vaca o Soya</string>
-			<key>Racion</key>
-			<string>1 taza (250 ml.)</string>
+			<key>portion</key>
+			<string>250 ml.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Yoghurt</string>
-			<key>Racion</key>
-			<string>1 taza (250 ml.)</string>
+			<key>portion</key>
+			<string>250 ml.</string>
 		</dict>
 	</array>
+	<key>cereal</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cereal sin endulzar</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Arroz cocido</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Amaranto tostado</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/3 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Avena cocida</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Salvado y germen de trigo</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pasta cocida</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Harina / Maizena</string>
-			<key>Racion</key>
-			<string>2 cucharadas</string>
+			<key>portion</key>
+			<string>2 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pan de barra integral</string>
-			<key>Racion</key>
-			<string>1 rebanada</string>
+			<key>portion</key>
+			<string>1 reb</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Pan para hot dog</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Pan p/hot dog</string>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Galletas saladas</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>6 cuadros</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Kraker Bran</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>3 cuadros</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Galletas Habaneras</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>3 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Galletas Marías</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>4 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Elote desgranado</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Elote mazorca</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>3/4 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Papa con cáscara</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Papa c/cáscara</string>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Granola (simple)</string>
-			<key>Racion</key>
-			<string>3 cucharadas</string>
+			<key>portion</key>
+			<string>3 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Tortilla de maíz</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Tortilla maíz</string>
+			<key>portion</key>
 			<string>1 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Tostada Horneada</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pan p/hamburguesa ch.</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pan p/hamburguesa gde.</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/3 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Pan fránces sin migajón</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Pan fránces s/migajón</string>
+			<key>portion</key>
 			<string>1/2 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Pan fránces con migajón</string>
-			<key>Racion</key>
+			<key>name</key>
+			<string>Pan fránces c/migajón</string>
+			<key>portion</key>
 			<string>1/4 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Crotones</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/2 taza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Palomitas naturales</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>2 tazas</string>
 		</dict>
 	</array>
+	<key>fat</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Aceite</string>
-			<key>Racion</key>
-			<string>1 cucharadita</string>
+			<key>portion</key>
+			<string>1 c</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Queso crema</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Crema</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Guacamole</string>
-			<key>Racion</key>
-			<string>2 cucharadas</string>
+			<key>portion</key>
+			<string>2 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cacahuate</string>
-			<key>Racion</key>
-			<string>18 piezas</string>
+			<key>portion</key>
+			<string>18 pzas.</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Semillas de girasol</string>
-			<key>Racion</key>
-			<string>1 1/2 cucharadas</string>
+			<key>name</key>
+			<string>Semillas de girasol o calabaza</string>
+			<key>portion</key>
+			<string>1.5 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Piñones</string>
-			<key>Racion</key>
-			<string>2 cucharaditas</string>
+			<key>portion</key>
+			<string>2 c</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Mantequilla</string>
-			<key>Racion</key>
-			<string>1 cucharadita</string>
+			<key>portion</key>
+			<string>1 c</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Mayonesa</string>
-			<key>Racion</key>
-			<string>1 cucharadita</string>
+			<key>portion</key>
+			<string>1 c</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Nuez</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>3 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Pistaches</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>6 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Almendras</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>10 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Aguacate</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/4 pieza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Aceitunas</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>6 piezas</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cocoa</string>
-			<key>Racion</key>
-			<string>2 cucharadas</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Aderezo</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Leche de almendras</string>
-			<key>Racion</key>
-			<string>1 taza (250 ml.)</string>
+			<key>portion</key>
+			<string>250 ml.</string>
 		</dict>
 	</array>
+	<key>sugar</key>
 	<array>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Azúcar</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Miel</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Mermelada</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Yakult</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1 (80 ml)</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Cajeta</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
-			<string>Gelatina preparada normal</string>
-			<key>Racion</key>
-			<string>1/2 taza</string>
+			<key>name</key>
+			<string>Gelatina regular</string>
+			<key>portion</key>
+			<string>1/2 tza</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Chocolate en polvo</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Refrescos</string>
-			<key>Racion</key>
+			<key>portion</key>
 			<string>1/4 lata</string>
 		</dict>
 		<dict>
-			<key>Nombre</key>
+			<key>name</key>
 			<string>Catsup</string>
-			<key>Racion</key>
-			<string>1 cucharada</string>
+			<key>portion</key>
+			<string>1 C</string>
 		</dict>
 	</array>
-</array>
+</dict>
 </plist>

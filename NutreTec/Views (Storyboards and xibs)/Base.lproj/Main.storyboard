@@ -1753,7 +1753,6 @@
         <!--Reference View Controller-->
         <scene sceneID="ghU-4W-bub">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WDh-Xb-DTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="reference" id="Nql-bm-SrE" customClass="TECReferenceViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Uzv-PU-ueD"/>
@@ -1871,10 +1870,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H4O-wl-87a" id="rJ9-fD-ERO">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-Rf-gli" customClass="CCMBorderView">
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lR4-Rf-gli" customClass="CCMBorderView">
                                                     <rect key="frame" x="20" y="-8" width="318" height="86"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="df5-KO-60V">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="df5-KO-60V">
                                                             <rect key="frame" x="63" y="33" width="235" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="YhO-le-Wnf"/>
@@ -1897,7 +1896,7 @@
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8s-B9-RJ9">
+                                                        <view alpha="0.0" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D8s-B9-RJ9">
                                                             <rect key="frame" x="62" y="20" width="235" height="46"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV8-9s-gvg">
@@ -1956,12 +1955,12 @@
                                                                 </mask>
                                                                 <mask key="constraints">
                                                                     <exclude reference="jBL-DL-BkO"/>
-                                                                    <exclude reference="6Tv-S8-mGT"/>
-                                                                    <exclude reference="c9o-ZV-lmE"/>
-                                                                    <exclude reference="cfa-fU-Wrk"/>
                                                                     <exclude reference="7Gh-mr-5uj"/>
                                                                     <exclude reference="Plz-0r-JLf"/>
                                                                     <exclude reference="lhC-ci-mmP"/>
+                                                                    <exclude reference="6Tv-S8-mGT"/>
+                                                                    <exclude reference="c9o-ZV-lmE"/>
+                                                                    <exclude reference="cfa-fU-Wrk"/>
                                                                 </mask>
                                                             </variation>
                                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
@@ -1972,16 +1971,16 @@
                                                                 </mask>
                                                                 <mask key="constraints">
                                                                     <include reference="jBL-DL-BkO"/>
-                                                                    <include reference="6Tv-S8-mGT"/>
-                                                                    <include reference="c9o-ZV-lmE"/>
-                                                                    <include reference="cfa-fU-Wrk"/>
                                                                     <include reference="7Gh-mr-5uj"/>
                                                                     <include reference="Plz-0r-JLf"/>
                                                                     <include reference="lhC-ci-mmP"/>
+                                                                    <include reference="6Tv-S8-mGT"/>
+                                                                    <include reference="c9o-ZV-lmE"/>
+                                                                    <include reference="cfa-fU-Wrk"/>
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-O8-lfy">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vM0-O8-lfy">
                                                             <rect key="frame" x="20" y="25" width="35" height="37"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="IHc-pR-OiA"/>
@@ -2120,6 +2119,7 @@
                         <outlet property="referenceTable" destination="dBH-5i-4R2" id="cwC-eU-KRg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDh-Xb-DTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1594.5" y="1085.25"/>
         </scene>

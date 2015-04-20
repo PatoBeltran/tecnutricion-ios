@@ -10,6 +10,8 @@
 #import "XDKAirMenuController.h"
 #import "TECHomeViewController.h"
 
+//@TODO - Fix menu for iphone 4 size
+
 typedef NS_ENUM(NSInteger, PBMenuItem){
     PBMenuItemHome = 0,
     PBMenuItemHowAmIGoing,
