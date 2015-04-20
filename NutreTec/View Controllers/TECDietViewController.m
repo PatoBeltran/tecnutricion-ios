@@ -33,6 +33,32 @@
     self.peaAmount.delegate = self;
     self.fruitAmount.delegate = self;
     self.fatAmount.delegate = self;
+    /*
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error;
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
+    
+    if(matchObjectsDiet.count != 0){
+        NSManagedObject *matchRegister = matchObjectsDiet[0];
+        self.vegetablesAmount.text = [matchRegister valueForKey:@"vegetable"];
+        self.milkAmount.text = [matchRegister valueForKey:@"milk"];
+        self.meatAmount.text = [matchRegister valueForKey:@"meat"];
+        self.sugarAmount.text = [matchRegister valueForKey:@"sugar"];
+        self.peaAmount.text = [matchRegister valueForKey:@"pea"];
+        self.fruitAmount.text = [matchRegister valueForKey:@"fruit"];
+        self.cerealAmount.text = [matchRegister valueForKey:@"cereal"];
+        self.fatAmount.text = [matchRegister valueForKey:@"fat"];
+    }*/
 }
 
 - (void)didReceiveMemoryWarning {
