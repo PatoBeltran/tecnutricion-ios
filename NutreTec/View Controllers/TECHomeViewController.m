@@ -18,6 +18,7 @@
 #import "TECAddPortionMenu.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -46,6 +47,9 @@
 @property (strong, nonatomic) TECAddPortionMenu *addPortionMenu;
 
 @property (strong, nonatomic) NSString *currentDate;
+
+@property (weak, nonatomic) IBOutlet UIView *noDietAlertView;
+@property (weak, nonatomic) IBOutlet UIView *noDietAlertInner;
 
 @property MFMailComposeViewController *mailComposer;
 @end
