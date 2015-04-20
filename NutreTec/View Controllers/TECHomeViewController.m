@@ -170,6 +170,8 @@
     
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSError *error;
     NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
@@ -179,7 +181,8 @@
     }
     else {
         printf("Loading static diet.\n");
-        NSManagedObject *matchRegister = matchObjectsDiet[1];
+        
+        NSManagedObject *matchRegister = matchObjectsDiet[0];
         self.diet = [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
                                                        milk:[[matchRegister valueForKey:@"milk"] integerValue]
                                                        meat:[[matchRegister valueForKey:@"meat"] integerValue]
