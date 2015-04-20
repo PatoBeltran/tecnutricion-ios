@@ -7,6 +7,7 @@
 //
 
 #import "TECDietViewController.h"
+#import "AppDelegate.h"
 
 @interface TECDietViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vegetablesAmount;
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *peaAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fruitAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fatAmount;
+@property (weak, nonatomic) NSDate *currentDate;
 @end
 
 @implementation TECDietViewController
@@ -41,14 +43,27 @@
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
         //@TODO - save to database
-//        self.vegetablesAmount.text;
-//        self.milkAmount.text;
-//        self.meatAmount.text;
-//        self.sugarAmount.text;
-//        self.cerealAmount.text;
-//        self.peaAmount.text;
-//        self.fruitAmount.text;
-//        self.fatAmount.text;
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+        printf("Creating new diet for today\n");
+        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
+
+        self.currentDate = [NSDate date];
+
+        [newDiet setValue:[NSNumber numberWithInteger:[self.vegetablesAmount.text integerValue]] forKey:@"vegetable"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.milkAmount.text integerValue]] forKey:@"milk"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.meatAmount.text integerValue]] forKey:@"meat"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.cerealAmount.text integerValue]] forKey:@"cereal"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.sugarAmount.text integerValue]] forKey:@"sugar"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.fatAmount.text integerValue]] forKey:@"fat"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.fruitAmount.text integerValue]] forKey:@"fruit"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.peaAmount.text integerValue]] forKey:@"pea"];
+        [newDiet setValue:self.currentDate forKey:@"fecha"];
+        [newDiet setValue:@"static" forKey:@"type"];
+
+        NSError *error;
+        [context save: &error];
         
         [[[UIAlertView alloc] initWithTitle:@"¡Perfecto!"
                                     message:@"Tu dieta ha sido grabada exitosamente."
