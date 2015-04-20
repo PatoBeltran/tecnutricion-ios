@@ -15,6 +15,8 @@
 		233498731AE57AE300A8D9E8 /* TECDietViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233498721AE57AE300A8D9E8 /* TECDietViewController.m */; };
 		233790201AC473BA0009FC2F /* CCMBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337901F1AC473BA0009FC2F /* CCMBorderView.m */; };
 		233790231AC4792E0009FC2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233790211AC479010009FC2F /* Images.xcassets */; };
+		233B3B671AE598B600C2E7FF /* TECDietPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */; };
+		233B3B6A1AE598E000C2E7FF /* CCMPlayNDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */; };
 		2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */; };
 		2369F15C1AD2416900DABCB2 /* portions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2369F15B1AD2416900DABCB2 /* portions.plist */; };
 		2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58A1AB8DD8600E696F5 /* ILLoaderProgressView.m */; };
@@ -64,6 +66,10 @@
 		2337901E1AC473BA0009FC2F /* CCMBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMBorderView.h; sourceTree = "<group>"; };
 		2337901F1AC473BA0009FC2F /* CCMBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMBorderView.m; sourceTree = "<group>"; };
 		233790211AC479010009FC2F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		233B3B651AE598B600C2E7FF /* TECDietPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECDietPopupViewController.h; sourceTree = "<group>"; };
+		233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECDietPopupViewController.m; sourceTree = "<group>"; };
+		233B3B681AE598E000C2E7FF /* CCMPlayNDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMPlayNDropView.h; path = CCMPlayNDropView/CCMPlayNDropView.h; sourceTree = "<group>"; };
+		233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMPlayNDropView.m; path = CCMPlayNDropView/CCMPlayNDropView.m; sourceTree = "<group>"; };
 		2369F1581AD21C9100DABCB2 /* TECReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceCell.h; sourceTree = "<group>"; };
 		2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceCell.m; sourceTree = "<group>"; };
 		2369F15B1AD2416900DABCB2 /* portions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = portions.plist; sourceTree = "<group>"; };
@@ -159,6 +165,15 @@
 				232833831ACDD57300449B25 /* TECUserDiet.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		233B3B6B1AE598EC00C2E7FF /* CCMPlayNDropView */ = {
+			isa = PBXGroup;
+			children = (
+				233B3B681AE598E000C2E7FF /* CCMPlayNDropView.h */,
+				233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */,
+			);
+			name = CCMPlayNDropView;
 			sourceTree = "<group>";
 		};
 		2372E5881AB8DD8600E696F5 /* ILLoaderProgress */ = {
@@ -257,6 +272,8 @@
 				23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */,
 				233498711AE57AE300A8D9E8 /* TECDietViewController.h */,
 				233498721AE57AE300A8D9E8 /* TECDietViewController.m */,
+				233B3B651AE598B600C2E7FF /* TECDietPopupViewController.h */,
+				233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -292,6 +309,7 @@
 		237E573D1AB675D70052802F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				233B3B6B1AE598EC00C2E7FF /* CCMPlayNDropView */,
 				2372E58C1AB8DE9700E696F5 /* RMDownloadIndicator */,
 				2372E5881AB8DD8600E696F5 /* ILLoaderProgress */,
 				237E57491AB6962D0052802F /* XDKAirMenu */,
@@ -478,12 +496,14 @@
 				23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */,
 				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
 				239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */,
+				233B3B6A1AE598E000C2E7FF /* CCMPlayNDropView.m in Sources */,
 				232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */,
 				2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */,
 				2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */,
 				233498731AE57AE300A8D9E8 /* TECDietViewController.m in Sources */,
 				230627F31AD0BACD0055BFBB /* TECAddPortionMenu.m in Sources */,
 				232833841ACDD57300449B25 /* TECUserDiet.m in Sources */,
+				233B3B671AE598B600C2E7FF /* TECDietPopupViewController.m in Sources */,
 				7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */,
 				237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */,
 				233790201AC473BA0009FC2F /* CCMBorderView.m in Sources */,

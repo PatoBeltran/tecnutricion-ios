@@ -7,6 +7,9 @@
 //
 
 #import "TECDietViewController.h"
+#import "UIViewController+MaryPopin.h"
+#import "TECNutreTecCore.h"
+#import "TECDietPopupViewController.h"
 
 @interface TECDietViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vegetablesAmount;
@@ -33,6 +36,33 @@
     self.fatAmount.delegate = self;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (![TECNutreTecCore dietPopupHasBeenShown]) {
+        [self performSelector:@selector(presentPopupController) withObject:nil afterDelay:0.5];
+    }
+}
+
+- (void)presentPopupController {
+    TECDietPopupViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"dietPopupController"];
+    
+    [TECNutreTecCore sharedInstance].popupDietControllerPresenter = self;
+    [vc setPopinTransitionStyle:BKTPopinTransitionStyleSnap];
+    [vc setPopinOptions:BKTPopinDisableAutoDismiss|BKTPopinBlurryDimmingView];
+    
+    BKTBlurParameters *blurParameters = [BKTBlurParameters new];
+    blurParameters.alpha = 0.75f;
+    blurParameters.radius = 8.0f;
+    blurParameters.tintColor = [UIColor colorWithRed:82./255 green:192./255 blue:202./255 alpha:1];
+    
+    [vc setBlurParameters:blurParameters];
+    [vc setPreferedPopinContentSize:CGSizeMake(280, 300)];
+    [vc setPopinTransitionDirection:BKTPopinTransitionDirectionTop];
+    [vc setPopinAlignment:BKTPopinAlignementOptionCentered];
+    
+    [self presentPopinController:vc animated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,11 +80,13 @@
 //        self.fruitAmount.text;
 //        self.fatAmount.text;
         
+        [self.view endEditing:YES];
         [[[UIAlertView alloc] initWithTitle:@"¡Perfecto!"
                                     message:@"Tu dieta ha sido grabada exitosamente."
                                    delegate:nil
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil] show];
+        
     } else {
         [[[UIAlertView alloc] initWithTitle:@"¡No estas listo!"
                                     message:@"Primero llena todos los campos."

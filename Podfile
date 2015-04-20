@@ -6,6 +6,7 @@ pod 'MBProgressHUD', '~> 0.9.1'
 pod 'MaryPopin'
 pod 'FXBlurView'
 pod 'TPKeyboardAvoiding'
+pod 'MaryPopin'
 end
 
 target 'NutreTecTests' do
