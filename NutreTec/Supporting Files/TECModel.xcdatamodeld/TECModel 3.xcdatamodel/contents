@@ -10,6 +10,7 @@
         <attribute name="pea" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sugar" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="vegetable" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="staticDiet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Diet" syncable="YES"/>
     </entity>
     <entity name="Diet" syncable="YES">
         <attribute name="cereal" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -24,7 +25,7 @@
         <attribute name="vegetable" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="9" positionY="126" width="128" height="178"/>
-        <element name="Diet" positionX="-227" positionY="72" width="128" height="195"/>
+        <element name="Day" positionX="9" positionY="126" width="128" height="195"/>
+        <element name="Diet" positionX="-263" positionY="84" width="128" height="195"/>
     </elements>
 </model>

@@ -93,19 +93,33 @@
     //Create new entry if today's doesn't exist
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    
+    //Request diet to set as foreign key
+    //TODO needs testing (check if diet is kept)
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error;
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entity];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
     [request setPredicate:predicate];
     
-    NSError *error;
     NSArray *matchObjects = [context executeFetchRequest:request error:&error];
     
     if(matchObjects.count == 0)
     {
         printf("Creating new diet for today\n");
+        NSManagedObject *matchRegister = matchObjectsDiet[0];
         NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Day" inManagedObjectContext:context];
         
         [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
@@ -116,11 +130,11 @@
         [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
         [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
         [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
+        [newDiet setValue:matchRegister forKey:@"staticDiet"];
         [newDiet setValue:_currentDate forKey:@"day"];
         
         [context save: &error];
     }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
