@@ -8,6 +8,9 @@
 
 #import "TECDietViewController.h"
 #import "AppDelegate.h"
+#import "UIViewController+MaryPopin.h"
+#import "TECDietPopupViewController.h"
+#import "TECNutreTecCore.h"
 
 @interface TECDietViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vegetablesAmount;
@@ -33,7 +36,6 @@
     self.peaAmount.delegate = self;
     self.fruitAmount.delegate = self;
     self.fatAmount.delegate = self;
-    /*
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
@@ -48,17 +50,18 @@
     NSError *error;
     NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
-    if(matchObjectsDiet.count != 0){
+    
+    if([matchObjectsDiet count] != 0){
         NSManagedObject *matchRegister = matchObjectsDiet[0];
-        self.vegetablesAmount.text = [matchRegister valueForKey:@"vegetable"];
-        self.milkAmount.text = [matchRegister valueForKey:@"milk"];
-        self.meatAmount.text = [matchRegister valueForKey:@"meat"];
-        self.sugarAmount.text = [matchRegister valueForKey:@"sugar"];
-        self.peaAmount.text = [matchRegister valueForKey:@"pea"];
-        self.fruitAmount.text = [matchRegister valueForKey:@"fruit"];
-        self.cerealAmount.text = [matchRegister valueForKey:@"cereal"];
-        self.fatAmount.text = [matchRegister valueForKey:@"fat"];
-    }*/
+        self.vegetablesAmount.text = [[matchRegister valueForKey:@"vegetable"] stringValue];
+        self.milkAmount.text = [[matchRegister valueForKey:@"milk"] stringValue];
+        self.meatAmount.text = [[matchRegister valueForKey:@"meat"] stringValue];
+        self.sugarAmount.text = [[matchRegister valueForKey:@"sugar"] stringValue];
+        self.peaAmount.text = [[matchRegister valueForKey:@"pea"] stringValue];
+        self.fruitAmount.text = [[matchRegister valueForKey:@"fruit"] stringValue];
+        self.cerealAmount.text = [[matchRegister valueForKey:@"cereal"] stringValue];
+        self.fatAmount.text = [[matchRegister valueForKey:@"fat"] stringValue];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -90,7 +93,7 @@
 
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
-        //@TODO - save to database
+        //@TODO - if diet is equals to the last diet (if user clicked save multiple times) dont save
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
