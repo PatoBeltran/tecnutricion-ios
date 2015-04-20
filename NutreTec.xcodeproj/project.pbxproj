@@ -113,6 +113,11 @@
 		23F331F71AD11BA30052A7CC /* TECReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceViewController.h; sourceTree = "<group>"; };
 		23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceViewController.m; sourceTree = "<group>"; };
 		66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.release.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.release.xcconfig"; sourceTree = "<group>"; };
+		7E33CC0B1AE55CD400FDA535 /* TECModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		7E33CC0C1AE562C900FDA535 /* TECModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 3.xcdatamodel"; sourceTree = "<group>"; };
+		7E443D941AE596E200DCCACE /* TECModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 4.xcdatamodel"; sourceTree = "<group>"; };
+		7E443D951AE5982B00DCCACE /* TECModel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 5.xcdatamodel"; sourceTree = "<group>"; };
+		7E443D961AE5A1FF00DCCACE /* TECModel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 6.xcdatamodel"; sourceTree = "<group>"; };
 		7E9B8A711ADF69B500B699E8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E9B8A741ADF6A9F00B699E8 /* TECModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TECModel.xcdatamodel; sourceTree = "<group>"; };
 		E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NutreTec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -725,9 +730,14 @@
 		7E9B8A731ADF6A9F00B699E8 /* TECModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7E443D961AE5A1FF00DCCACE /* TECModel 6.xcdatamodel */,
+				7E443D951AE5982B00DCCACE /* TECModel 5.xcdatamodel */,
+				7E443D941AE596E200DCCACE /* TECModel 4.xcdatamodel */,
+				7E33CC0C1AE562C900FDA535 /* TECModel 3.xcdatamodel */,
+				7E33CC0B1AE55CD400FDA535 /* TECModel 2.xcdatamodel */,
 				7E9B8A741ADF6A9F00B699E8 /* TECModel.xcdatamodel */,
 			);
-			currentVersion = 7E9B8A741ADF6A9F00B699E8 /* TECModel.xcdatamodel */;
+			currentVersion = 7E443D961AE5A1FF00DCCACE /* TECModel 6.xcdatamodel */;
 			path = TECModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

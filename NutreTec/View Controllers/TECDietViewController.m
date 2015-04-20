@@ -7,9 +7,7 @@
 //
 
 #import "TECDietViewController.h"
-#import "UIViewController+MaryPopin.h"
-#import "TECNutreTecCore.h"
-#import "TECDietPopupViewController.h"
+#import "AppDelegate.h"
 
 @interface TECDietViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vegetablesAmount;
@@ -20,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *peaAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fruitAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fatAmount;
+@property (weak, nonatomic) NSDate *currentDate;
 @end
 
 @implementation TECDietViewController
@@ -34,6 +33,32 @@
     self.peaAmount.delegate = self;
     self.fruitAmount.delegate = self;
     self.fatAmount.delegate = self;
+    /*
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error;
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
+    
+    if(matchObjectsDiet.count != 0){
+        NSManagedObject *matchRegister = matchObjectsDiet[0];
+        self.vegetablesAmount.text = [matchRegister valueForKey:@"vegetable"];
+        self.milkAmount.text = [matchRegister valueForKey:@"milk"];
+        self.meatAmount.text = [matchRegister valueForKey:@"meat"];
+        self.sugarAmount.text = [matchRegister valueForKey:@"sugar"];
+        self.peaAmount.text = [matchRegister valueForKey:@"pea"];
+        self.fruitAmount.text = [matchRegister valueForKey:@"fruit"];
+        self.cerealAmount.text = [matchRegister valueForKey:@"cereal"];
+        self.fatAmount.text = [matchRegister valueForKey:@"fat"];
+    }*/
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -66,14 +91,27 @@
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
         //@TODO - save to database
-//        self.vegetablesAmount.text;
-//        self.milkAmount.text;
-//        self.meatAmount.text;
-//        self.sugarAmount.text;
-//        self.cerealAmount.text;
-//        self.peaAmount.text;
-//        self.fruitAmount.text;
-//        self.fatAmount.text;
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+        printf("Creating new diet for today\n");
+        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
+
+        self.currentDate = [NSDate date];
+
+        [newDiet setValue:[NSNumber numberWithInteger:[self.vegetablesAmount.text integerValue]] forKey:@"vegetable"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.milkAmount.text integerValue]] forKey:@"milk"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.meatAmount.text integerValue]] forKey:@"meat"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.cerealAmount.text integerValue]] forKey:@"cereal"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.sugarAmount.text integerValue]] forKey:@"sugar"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.fatAmount.text integerValue]] forKey:@"fat"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.fruitAmount.text integerValue]] forKey:@"fruit"];
+        [newDiet setValue:[NSNumber numberWithInteger:[self.peaAmount.text integerValue]] forKey:@"pea"];
+        [newDiet setValue:self.currentDate forKey:@"fecha"];
+        [newDiet setValue:@"static" forKey:@"type"];
+
+        NSError *error;
+        [context save: &error];
         
         [self.view endEditing:YES];
         [[[UIAlertView alloc] initWithTitle:@"¡Perfecto!"

@@ -64,7 +64,36 @@
         [self showSendFeeback];
     }
     
-    if (/* DISABLES CODE */ (NO)) { //@TODO - user has no diet
+    //Get today's date
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    self.currentDate = [dateFormat stringFromDate:today];
+    
+    //Initialize for core data
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    //Set entity to obtain diet
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    //Entity for day table
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
+    
+    if (matchObjectsDiet.count == 0) {
         self.noDietAlertView.hidden = NO;
         [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];
         [self.noDietAlertInner.layer setShadowOpacity:1.0];
@@ -73,66 +102,31 @@
     }
     else {
         self.noDietAlertView.hidden = YES;
-    }
-    
-    /*
-     //Creates Diet
-     //TODO this is for the diet view
-     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-     
-     printf("Creating new diet for today\n");
-     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
-     
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
-     [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
-     [newDiet setValue:@"static" forKey:@"type"];
-     
-     NSError *error;
-     [context save: &error];
-     */
-    
-    //Get today's date
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    self.currentDate = [dateFormat stringFromDate:today];
-    
-    //Create new entry if today's doesn't exist
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
-    [request setPredicate:predicate];
-    
-    NSError *error;
-    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
-    
-    if(matchObjects.count == 0)
-    {
-        printf("Creating new diet for today\n");
-        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Day" inManagedObjectContext:context];
+        NSArray *matchObjects = [context executeFetchRequest:request error:&error];
         
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
-        [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
-        [newDiet setValue:_currentDate forKey:@"day"];
-        
-        [context save: &error];
+        //Create new daily diet in case it doesn't exist
+        if(matchObjects.count == 0)
+        {
+            printf("Creating new diet for today\n");
+            NSManagedObject *matchRegister = matchObjectsDiet[0];
+            NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Day" inManagedObjectContext:context];
+            
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"milk"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"meat"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"cereal"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"sugar"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
+            [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
+            [newDiet setValue:[matchRegister valueForKey:@"fecha"] forKey:@"diet"];
+            [newDiet setValue:_currentDate forKey:@"day"];
+            
+            [context save: &error];
+        }
+        else {
+            //Verify
+        }
     }
 }
 
@@ -151,7 +145,7 @@
     NSArray *matchObjects = [context executeFetchRequest:request error:&error];
     
     if(matchObjects.count == 0){
-        printf("Daily entry not found");
+        printf("Daily entry not found.\n");
     }
     else
     {
@@ -177,22 +171,27 @@
 - (void)getValuesFromDB {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
-    [request setPredicate:predicate];
+    //Load static diet
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    
+    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+    [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
+    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSError *error;
-    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
-    if(matchObjects.count == 0) {
-        printf("No daily entry found");
+    if(matchObjectsDiet.count == 0) {
+        printf("No diet entry found.\n");
     }
     else {
-        printf("Loading diet for today");
-        NSManagedObject *matchRegister = matchObjects[0];
+        printf("Loading static diet.\n");
+        
+        NSManagedObject *matchRegister = matchObjectsDiet[0];
         self.diet = [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
                                                        milk:[[matchRegister valueForKey:@"milk"] integerValue]
                                                        meat:[[matchRegister valueForKey:@"meat"] integerValue]
@@ -201,6 +200,24 @@
                                                       fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
                                                      cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
                                                         fat:[[matchRegister valueForKey:@"fat"] integerValue]];
+    }
+    
+    //Load current diet (progress)
+    NSEntityDescription *entityDay = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
+    
+    NSFetchRequest *requestDay = [[NSFetchRequest alloc] init];
+    [requestDay setEntity:entityDay];
+    NSPredicate *predicateDay = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+    [requestDay setPredicate:predicateDay];
+    
+    NSArray *matchObjectsDay = [context executeFetchRequest:requestDay error:&error];
+    
+    if(matchObjectsDay.count == 0) {
+        printf("No daily entry found.\n");
+    }
+    else {
+        printf("Loading diet for today.\n");
+        NSManagedObject *matchRegister = matchObjectsDay[0];
         
         self.vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
                                                          consumedAmount:[[matchRegister valueForKey:@"vegetable"] integerValue]];
