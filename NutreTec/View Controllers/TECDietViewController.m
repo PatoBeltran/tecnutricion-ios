@@ -63,11 +63,6 @@
     [self presentPopinController:vc animated:YES completion:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
         //@TODO - save to database
