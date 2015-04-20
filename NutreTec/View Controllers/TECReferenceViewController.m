@@ -65,48 +65,56 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
             icon = [UIImage imageNamed:@"vegetables-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeVegetables;
+            cell.cellTypeName = TECReferencePortionTypeNameVegetables;
             break;
         case TECReferencePortionTypeMilk:
             titleText = @"LECHE";
             icon = [UIImage imageNamed:@"milk-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeMilk;
+            cell.cellTypeName = TECReferencePortionTypeNameMilk;
             break;
         case TECReferencePortionTypeMeat:
             titleText = @"CARNES";
             icon = [UIImage imageNamed:@"meat-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeMeat;
+            cell.cellTypeName = TECReferencePortionTypeNameMeat;
             break;
         case TECReferencePortionTypeSugar:
             titleText = @"AZÚCARES";
             icon = [UIImage imageNamed:@"sugar-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeSugar;
+            cell.cellTypeName = TECReferencePortionTypeNameSugar;
             break;
         case TECReferencePortionTypePeas:
             titleText = @"LEGUMINOSAS";
             icon = [UIImage imageNamed:@"pea-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypePeas;
+            cell.cellTypeName = TECReferencePortionTypeNamePeas;
             break;
         case TECReferencePortionTypeFruit:
             titleText = @"FRUTAS";
             icon = [UIImage imageNamed:@"fruit-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeFruit;
+            cell.cellTypeName = TECReferencePortionTypeNameFruit;
             break;
         case TECReferencePortionTypeCereal:
             titleText = @"CEREALES";
             icon = [UIImage imageNamed:@"cereal-color-icon"];
             cell.contentWrapper.borderBottom = YES;
             cell.cellType = TECReferencePortionTypeCereal;
+            cell.cellTypeName = TECReferencePortionTypeNameCereal;
             break;
         case TECReferencePortionTypeFat:
             titleText = @"GRASAS";
             icon = [UIImage imageNamed:@"fat-color-icon"];
             cell.contentWrapper.borderBottom = NO;
             cell.cellType = TECReferencePortionTypeFat;
+            cell.cellTypeName = TECReferencePortionTypeNameFat;
             break;
     }
     cell.icon.contentMode = UIViewContentModeScaleAspectFit;
@@ -194,8 +202,8 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
         if(!cell.portionsTable) {
             cell.portionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, cell.contentWrapper.frame.size.height, self.widthOfCell, self.view.frame.size.height - (cell.contentWrapper.frame.size.height + 85))
                                                               style:UITableViewStylePlain];
-            [cell initTable];
         }
+        [cell initTable];
         [UIView animateWithDuration:0.3 animations:^{
             cell.contentWrapper.borderWidth = 0;
             CGRect frame = cell.contentWrapper.frame;

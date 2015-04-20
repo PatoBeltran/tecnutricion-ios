@@ -26,7 +26,7 @@ static NSString * const TECPortionsInnerCellIdentifier = @"portionInnerCell";
     self.portionsTable.delegate = self;
     self.portionsTable.allowsSelection = NO;
     self.portionsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.portions = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portions" ofType:@"plist"]][self.cellType];
+    self.portions = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portions" ofType:@"plist"]][self.cellTypeName];
     [self.portionsTable registerNib:[UINib nibWithNibName:@"TECReferencePortionInnerCell" bundle:nil] forCellReuseIdentifier:TECPortionsInnerCellIdentifier];
 }
 
@@ -42,8 +42,8 @@ static NSString * const TECPortionsInnerCellIdentifier = @"portionInnerCell";
                                                    reuseIdentifier:TECPortionsInnerCellIdentifier];
     }
     
-    cell.leftLabel.text = self.portions[indexPath.row][@"Nombre"];
-    cell.rightLabel.text = self.portions[indexPath.row][@"Racion"];
+    cell.leftLabel.text = self.portions[indexPath.row][@"name"];
+    cell.rightLabel.text = self.portions[indexPath.row][@"portion"];
     return cell;
 }
 
