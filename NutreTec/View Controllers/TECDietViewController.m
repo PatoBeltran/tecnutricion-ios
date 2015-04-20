@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *peaAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fruitAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fatAmount;
-@property (weak, nonatomic) NSDate *currentDate;
+@property (weak, nonatomic) NSString *currentDate;
 @end
 
 @implementation TECDietViewController
@@ -43,16 +43,11 @@
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
     
-    //Sort query to get last entry to table Diet
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
-    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
     NSError *error;
     NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
-    
     if([matchObjectsDiet count] != 0){
-        NSManagedObject *matchRegister = matchObjectsDiet[0];
+        NSManagedObject *matchRegister = [matchObjectsDiet lastObject];
         self.vegetablesAmount.text = [[matchRegister valueForKey:@"vegetable"] stringValue];
         self.milkAmount.text = [[matchRegister valueForKey:@"milk"] stringValue];
         self.meatAmount.text = [[matchRegister valueForKey:@"meat"] stringValue];
@@ -97,10 +92,14 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
-        printf("Creating new diet for today\n");
+        printf("Creating new static diet\n");
         NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
 
-        self.currentDate = [NSDate date];
+        NSDate *today = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+
+        self.currentDate = [dateFormatter stringFromDate:today];
 
         [newDiet setValue:[NSNumber numberWithInteger:[self.vegetablesAmount.text integerValue]] forKey:@"vegetable"];
         [newDiet setValue:[NSNumber numberWithInteger:[self.milkAmount.text integerValue]] forKey:@"milk"];
