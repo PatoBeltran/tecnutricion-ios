@@ -53,6 +53,7 @@
             <string>OpenSans-Semibold</string>
             <string>OpenSans-Semibold</string>
             <string>OpenSans-Semibold</string>
+            <string>OpenSans-Semibold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1545,7 +1546,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¡Todavia no tienes dieta!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2w-at-0bh">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="15"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" misplaced="YES">
                                                     <rect key="frame" x="24" y="71" width="187" height="18"/>
@@ -1557,7 +1558,7 @@
                                                     <constraint firstAttribute="height" constant="53" id="djG-S2-vga"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -3438,6 +3439,108 @@
             </objects>
             <point key="canvasLocation" x="1605" y="-566"/>
         </scene>
+        <!--Diet Popup View Controller-->
+        <scene sceneID="7xU-6n-PGQ">
+            <objects>
+                <viewController storyboardIdentifier="dietPopupController" id="Z5h-7n-BgR" customClass="TECDietPopupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Phd-wd-Aiz"/>
+                        <viewControllerLayoutGuide type="bottom" id="yQU-kf-kkM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E4G-eW-3vg" customClass="CCMPlayNDropView">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa las porciones de tu dieta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRD-pa-kUg">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="242" id="V3z-RU-ZMP"/>
+                                    <constraint firstAttribute="width" secondItem="yRD-pa-kUg" secondAttribute="height" multiplier="121:35" id="qWx-Ll-ZXh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="V3z-RU-ZMP"/>
+                                        <exclude reference="qWx-Ll-ZXh"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="V3z-RU-ZMP"/>
+                                        <include reference="qWx-Ll-ZXh"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ct2-tc-RMl">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="DCf-PU-Mj9"/>
+                                    <constraint firstAttribute="height" constant="100" id="PRh-Ao-a2Y"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DCf-PU-Mj9"/>
+                                        <exclude reference="PRh-Ao-a2Y"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="DCf-PU-Mj9"/>
+                                        <include reference="PRh-Ao-a2Y"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="yRD-pa-kUg" secondAttribute="centerX" constant="-3" id="OBc-4t-dg2"/>
+                            <constraint firstItem="yRD-pa-kUg" firstAttribute="top" secondItem="ct2-tc-RMl" secondAttribute="bottom" constant="31" id="YFJ-eC-w7f"/>
+                            <constraint firstItem="ct2-tc-RMl" firstAttribute="top" secondItem="Phd-wd-Aiz" secondAttribute="bottom" constant="35" id="dE8-no-hhM"/>
+                            <constraint firstAttribute="centerX" secondItem="ct2-tc-RMl" secondAttribute="centerX" id="ibA-gT-2GK"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="dismissable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="yRD-pa-kUg"/>
+                                <exclude reference="ct2-tc-RMl"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="OBc-4t-dg2"/>
+                                <exclude reference="YFJ-eC-w7f"/>
+                                <exclude reference="dE8-no-hhM"/>
+                                <exclude reference="ibA-gT-2GK"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="yRD-pa-kUg"/>
+                                <include reference="ct2-tc-RMl"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="OBc-4t-dg2"/>
+                                <include reference="YFJ-eC-w7f"/>
+                                <include reference="dE8-no-hhM"/>
+                                <include reference="ibA-gT-2GK"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <outlet property="delegate" destination="Z5h-7n-BgR" id="DJv-Nu-ApB"/>
+                        </connections>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="300"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lie-DA-aeh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2242.5" y="-485"/>
+        </scene>
         <!--Menu View Controller-->
         <scene sceneID="MMI-e9-bdj">
             <objects>
@@ -4118,6 +4221,7 @@
         <image name="candy-icon" width="56" height="83"/>
         <image name="carrot-icon" width="68" height="75"/>
         <image name="cereal-color-icon" width="63" height="63"/>
+        <image name="edit-icon" width="253" height="253"/>
         <image name="fat-color-icon" width="36" height="60"/>
         <image name="fruit-color-icon" width="47" height="57"/>
         <image name="meat-color-icon" width="54" height="58"/>
