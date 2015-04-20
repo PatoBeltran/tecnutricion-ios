@@ -10,5 +10,4 @@
 
 @interface TECHomeViewController : UIViewController
 @property (nonatomic, assign) BOOL isFromFeedback;
-
 @end

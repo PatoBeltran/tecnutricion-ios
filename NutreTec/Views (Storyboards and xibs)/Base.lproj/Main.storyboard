@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mBb-4I-ntv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -4056,10 +4055,10 @@
             </objects>
             <point key="canvasLocation" x="1594.5" y="1085.25"/>
         </scene>
-        <!--View Controller-->
+        <!--History Days View Controller-->
         <scene sceneID="KXB-Hk-5tY">
             <objects>
-                <viewController storyboardIdentifier="howAmI" automaticallyAdjustsScrollViewInsets="NO" id="5Wf-Ii-n2M" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="daysHistoryController" automaticallyAdjustsScrollViewInsets="NO" id="5Wf-Ii-n2M" customClass="TECHistoryDaysViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="brA-68-48Y"/>
                         <viewControllerLayoutGuide type="bottom" id="9WQ-Qr-X8O"/>
@@ -4084,7 +4083,8 @@
                                                 <exclude reference="RaO-ZP-fGR"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="64"/>
                                             <mask key="constraints">
                                                 <include reference="RaO-ZP-fGR"/>
                                             </mask>
@@ -4117,6 +4117,9 @@
                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="22"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="128" y="14" width="144" height="26"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4140,7 +4143,8 @@
                                         <exclude reference="xgT-iH-NeU"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="64"/>
                                     <mask key="constraints">
                                         <include reference="S9v-EG-xwh"/>
                                         <include reference="VXb-kp-RiM"/>
@@ -4152,34 +4156,16 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1tG-mk-lw5">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="YWD-bF-QyS" firstAttribute="width" secondItem="w7Q-OG-fYO" secondAttribute="width" id="4iP-1e-H0f"/>
-                            <constraint firstItem="1tG-mk-lw5" firstAttribute="width" secondItem="w7Q-OG-fYO" secondAttribute="width" id="B68-0k-Xjh"/>
-                            <constraint firstItem="1tG-mk-lw5" firstAttribute="height" secondItem="w7Q-OG-fYO" secondAttribute="height" constant="-64" id="Iiu-wL-uE4"/>
-                            <constraint firstItem="1tG-mk-lw5" firstAttribute="leading" secondItem="w7Q-OG-fYO" secondAttribute="leadingMargin" constant="-16" id="L09-CT-dp9"/>
-                            <constraint firstItem="1tG-mk-lw5" firstAttribute="top" secondItem="YWD-bF-QyS" secondAttribute="bottom" id="Pyo-ga-XFx"/>
                             <constraint firstItem="YWD-bF-QyS" firstAttribute="top" secondItem="brA-68-48Y" secondAttribute="bottom" constant="-20" id="R9S-S3-aUn"/>
-                            <constraint firstAttribute="centerY" secondItem="1tG-mk-lw5" secondAttribute="centerY" constant="-32" id="abZ-gq-7RQ"/>
                             <constraint firstItem="YWD-bF-QyS" firstAttribute="leading" secondItem="w7Q-OG-fYO" secondAttribute="leadingMargin" constant="-16" id="b4Q-Aj-Cdg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1tG-mk-lw5" secondAttribute="trailing" constant="-16" id="qra-pX-hwx"/>
                             <constraint firstAttribute="centerX" secondItem="YWD-bF-QyS" secondAttribute="centerX" id="rku-c1-EsX"/>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="1tG-mk-lw5"/>
-                            </mask>
                             <mask key="constraints">
-                                <exclude reference="B68-0k-Xjh"/>
-                                <exclude reference="Iiu-wL-uE4"/>
-                                <exclude reference="L09-CT-dp9"/>
-                                <exclude reference="Pyo-ga-XFx"/>
-                                <exclude reference="abZ-gq-7RQ"/>
-                                <exclude reference="qra-pX-hwx"/>
                                 <exclude reference="4iP-1e-H0f"/>
                                 <exclude reference="R9S-S3-aUn"/>
                                 <exclude reference="b4Q-Aj-Cdg"/>
@@ -4187,16 +4173,7 @@
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="1tG-mk-lw5"/>
-                            </mask>
                             <mask key="constraints">
-                                <include reference="B68-0k-Xjh"/>
-                                <include reference="Iiu-wL-uE4"/>
-                                <include reference="L09-CT-dp9"/>
-                                <include reference="Pyo-ga-XFx"/>
-                                <include reference="abZ-gq-7RQ"/>
-                                <include reference="qra-pX-hwx"/>
                                 <include reference="4iP-1e-H0f"/>
                                 <include reference="R9S-S3-aUn"/>
                                 <include reference="b4Q-Aj-Cdg"/>
@@ -4209,6 +4186,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZZ-Fl-O5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1594.5" y="242"/>
+        </scene>
+        <!--History Weeks View Controller-->
+        <scene sceneID="DPc-3W-rBu">
+            <objects>
+                <viewController storyboardIdentifier="weeksHistoryController" id="CmV-cb-rmh" customClass="TECHistoryWeeksViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gNq-wu-6P4"/>
+                        <viewControllerLayoutGuide type="bottom" id="JSz-KE-7UL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V6U-p7-MEM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="0.3479431371562548" blue="0.31624453378762019" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FFw-Xf-s2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2271" y="242"/>
+        </scene>
+        <!--History Months View Controller-->
+        <scene sceneID="YeO-qc-vPm">
+            <objects>
+                <viewController storyboardIdentifier="monthsHistoryController" id="kXl-Qx-ixY" customClass="TECHistoryMonthsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fAY-aD-q77"/>
+                        <viewControllerLayoutGuide type="bottom" id="iez-Rx-Ydg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cri-zt-5g4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.59077634494243325" green="0.55336288872958694" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFv-am-MSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2916" y="242"/>
         </scene>
     </scenes>
     <resources>

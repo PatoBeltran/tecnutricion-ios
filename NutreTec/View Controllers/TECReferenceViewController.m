@@ -174,28 +174,28 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
     NSString *cellname;
     switch (indexPath.row) {
         case TECReferencePortionTypeVegetables:
-            cellname = @"vegetables";
+            cellname = TECReferencePortionTypeNameVegetables;
             break;
         case TECReferencePortionTypeMilk:
-            cellname = @"milk";
+            cellname = TECReferencePortionTypeNameMilk;
             break;
         case TECReferencePortionTypeMeat:
-            cellname = @"meat";
+            cellname = TECReferencePortionTypeNameMeat;
             break;
         case TECReferencePortionTypeSugar:
-            cellname = @"sugar";
+            cellname = TECReferencePortionTypeNameSugar;
             break;
         case TECReferencePortionTypePeas:
-            cellname = @"pea";
+            cellname = TECReferencePortionTypeNamePeas;
             break;
         case TECReferencePortionTypeFruit:
-            cellname = @"fruit";
+            cellname = TECReferencePortionTypeNameFruit;
             break;
         case TECReferencePortionTypeCereal:
-            cellname = @"cereal";
+            cellname = TECReferencePortionTypeNameCereal;
             break;
         case TECReferencePortionTypeFat:
-            cellname = @"fat";
+            cellname = TECReferencePortionTypeNameFat;
             break;
     }
     if (openCell) {

@@ -67,7 +67,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (![TECNutreTecCore dietPopupHasBeenShown]) {
-        [self performSelector:@selector(presentPopupController) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(presentPopupController) withObject:nil afterDelay:0.3];
     }
 }
 
