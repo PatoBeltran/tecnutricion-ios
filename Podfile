@@ -5,6 +5,7 @@ target 'NutreTec' do
 pod 'MBProgressHUD', '~> 0.9.1'
 pod 'MaryPopin'
 pod 'FXBlurView'
+pod 'TPKeyboardAvoiding'
 end
 
 target 'NutreTecTests' do

@@ -18,6 +18,7 @@
 #import "TECAddPortionMenu.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -47,6 +48,9 @@
 
 @property (strong, nonatomic) NSString *currentDate;
 
+@property (weak, nonatomic) IBOutlet UIView *noDietAlertView;
+@property (weak, nonatomic) IBOutlet UIView *noDietAlertInner;
+
 @property MFMailComposeViewController *mailComposer;
 @end
 
@@ -58,6 +62,17 @@
     [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
     if (self.isFromFeedback) {
         [self showSendFeeback];
+    }
+    
+    if (/* DISABLES CODE */ (NO)) { //@TODO - user has no diet
+        self.noDietAlertView.hidden = NO;
+        [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self.noDietAlertInner.layer setShadowOpacity:1.0];
+        [self.noDietAlertInner.layer setShadowRadius:8.0];
+        [self.noDietAlertInner.layer setShadowOffset:CGSizeMake(3.0, 3.0)];
+    }
+    else {
+        self.noDietAlertView.hidden = YES;
     }
     
     /*

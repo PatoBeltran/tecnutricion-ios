@@ -12,6 +12,7 @@
 		2328337D1ACDD17900449B25 /* TECNutreTecCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2328337C1ACDD17900449B25 /* TECNutreTecCore.m */; };
 		232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */ = {isa = PBXBuildFile; fileRef = 232833801ACDD47B00449B25 /* TECFoodPortion.m */; };
 		232833841ACDD57300449B25 /* TECUserDiet.m in Sources */ = {isa = PBXBuildFile; fileRef = 232833831ACDD57300449B25 /* TECUserDiet.m */; };
+		233498731AE57AE300A8D9E8 /* TECDietViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233498721AE57AE300A8D9E8 /* TECDietViewController.m */; };
 		233790201AC473BA0009FC2F /* CCMBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2337901F1AC473BA0009FC2F /* CCMBorderView.m */; };
 		233790231AC4792E0009FC2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233790211AC479010009FC2F /* Images.xcassets */; };
 		2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */; };
@@ -58,6 +59,8 @@
 		232833801ACDD47B00449B25 /* TECFoodPortion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECFoodPortion.m; sourceTree = "<group>"; };
 		232833821ACDD57300449B25 /* TECUserDiet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECUserDiet.h; sourceTree = "<group>"; };
 		232833831ACDD57300449B25 /* TECUserDiet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECUserDiet.m; sourceTree = "<group>"; };
+		233498711AE57AE300A8D9E8 /* TECDietViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECDietViewController.h; sourceTree = "<group>"; };
+		233498721AE57AE300A8D9E8 /* TECDietViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECDietViewController.m; sourceTree = "<group>"; };
 		2337901E1AC473BA0009FC2F /* CCMBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMBorderView.h; sourceTree = "<group>"; };
 		2337901F1AC473BA0009FC2F /* CCMBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMBorderView.m; sourceTree = "<group>"; };
 		233790211AC479010009FC2F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				237E57421AB67BD20052802F /* TECHomeViewController.m */,
 				23F331F71AD11BA30052A7CC /* TECReferenceViewController.h */,
 				23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */,
+				233498711AE57AE300A8D9E8 /* TECDietViewController.h */,
+				233498721AE57AE300A8D9E8 /* TECDietViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */,
 				2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */,
 				2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */,
+				233498731AE57AE300A8D9E8 /* TECDietViewController.m in Sources */,
 				230627F31AD0BACD0055BFBB /* TECAddPortionMenu.m in Sources */,
 				232833841ACDD57300449B25 /* TECUserDiet.m in Sources */,
 				7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */,
