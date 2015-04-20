@@ -170,6 +170,8 @@
     
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
+    
+    //Sort query to get last entry to table Diet
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
     [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
