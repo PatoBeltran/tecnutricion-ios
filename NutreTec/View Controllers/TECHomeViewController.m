@@ -119,10 +119,13 @@
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
-            [newDiet setValue:matchRegister forKey:@"staticDiet"];
+            [newDiet setValue:[matchRegister valueForKey:@"fecha"] forKey:@"diet"];
             [newDiet setValue:_currentDate forKey:@"day"];
             
             [context save: &error];
+        }
+        else {
+            //Verify
         }
     }
 }
