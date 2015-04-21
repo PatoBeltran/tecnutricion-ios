@@ -79,10 +79,6 @@
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
     
-    //Sort query to get last entry to table Diet
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
-    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
     //Entity for day table
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -92,6 +88,7 @@
     
     NSError *error;
     NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
+    NSArray *matchObjects = [context executeFetchRequest:request error:&error];
     
     if (matchObjectsDiet.count == 0) {
         self.noDietAlertView.hidden = NO;
@@ -102,13 +99,11 @@
     }
     else {
         self.noDietAlertView.hidden = YES;
-        NSArray *matchObjects = [context executeFetchRequest:request error:&error];
-        
+        NSManagedObject *matchRegisterDiet = [matchObjectsDiet lastObject];
         //Create new daily diet in case it doesn't exist
         if(matchObjects.count == 0)
         {
             printf("Creating new diet for today\n");
-            NSManagedObject *matchRegister = matchObjectsDiet[0];
             NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Day" inManagedObjectContext:context];
             
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"vegetable"];
@@ -119,13 +114,29 @@
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fat"];
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"fruit"];
             [newDiet setValue:[NSNumber numberWithInteger:0] forKey:@"pea"];
-            [newDiet setValue:[matchRegister valueForKey:@"fecha"] forKey:@"diet"];
+            [newDiet setValue:[matchRegisterDiet valueForKey:@"fecha"] forKey:@"diet"];
             [newDiet setValue:_currentDate forKey:@"day"];
             
             [context save: &error];
         }
         else {
-            //Verify
+            //Verify if diet has change
+            NSManagedObject *matchRegister = matchObjects[0];
+            if(![[matchRegisterDiet valueForKey:@"fecha"] isEqualToString:[matchRegister valueForKey:@"diet"]]) {
+                printf("Diet has changed.\n");
+                NSFetchRequest *request = [[NSFetchRequest alloc] init];
+                [request setEntity:entity];
+                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
+                [request setPredicate:predicate];
+                
+                NSError *error;
+                NSArray *matchObjects = [context executeFetchRequest:request error:&error];
+                
+                NSManagedObject *modDiet = matchObjects[0];
+                [modDiet setValue:[matchRegisterDiet valueForKey:@"fecha"] forKey:@"diet"];
+                
+                [context save: &error];
+            }
         }
     }
 }
@@ -178,10 +189,6 @@
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
     
-    //Sort query to get last entry to table Diet
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"fecha" ascending:NO];
-    [requestDiet setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
     NSError *error;
     NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
     
@@ -190,8 +197,7 @@
     }
     else {
         printf("Loading static diet.\n");
-        
-        NSManagedObject *matchRegister = matchObjectsDiet[0];
+        NSManagedObject *matchRegister = [matchObjectsDiet lastObject];
         self.diet = [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
                                                        milk:[[matchRegister valueForKey:@"milk"] integerValue]
                                                        meat:[[matchRegister valueForKey:@"meat"] integerValue]
