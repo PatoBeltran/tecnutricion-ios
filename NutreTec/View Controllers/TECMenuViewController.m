@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, PBMenuItem){
             ((TECHomeViewController *)viewContoller).isFromFeedback = NO;
             break;
         case PBMenuItemHowAmIGoing:
-            viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"daysHistoryController"];
+            viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"howAmI"];
             break;
         case PBMenuItemDiet:
             viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"diet"];
