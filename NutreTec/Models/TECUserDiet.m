@@ -57,7 +57,7 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
                                                  fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
                                                 cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
                                                    fat:[[matchRegister valueForKey:@"fat"] integerValue]
-                                                dietId:[[matchRegister valueForKey:@"fecha"] stringValue]];
+                                                dietId:[matchRegister valueForKey:@"fecha"]];
     }
 }
 

@@ -87,7 +87,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
                                                              fruit:fruitEaten
                                                             cereal:cerealEaten
                                                                fat:fatEaten
-                                                            dietId:[[matchRegister valueForKey:@"diet"] stringValue]
+                                                            dietId:[matchRegister valueForKey:@"diet"]
                                                        currentDate:date];
     }
 }
