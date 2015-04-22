@@ -34,6 +34,7 @@ class SlidingContainerViewController: UIViewController, UIScrollViewDelegate, Sl
         self.contentViewControllers = contentViewControllers
         self.titles = titles
         self.icons = icons
+        view.backgroundColor = UIColor(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
         
         // Move to parent
         
