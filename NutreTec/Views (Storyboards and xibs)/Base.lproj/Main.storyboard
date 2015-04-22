@@ -1535,7 +1535,8 @@
                                                         <exclude reference="moN-Vv-91a"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="95" y="13" width="50" height="50"/>
                                                     <mask key="constraints">
                                                         <include reference="13V-s4-P5j"/>
                                                         <include reference="moN-Vv-91a"/>
@@ -1547,6 +1548,9 @@
                                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="24" y="71" width="192" height="21"/>
+                                                </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresala en la sección de dieta." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4t-vD-Yqe">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -1561,7 +1565,8 @@
                                                         <exclude reference="djG-S2-vga"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="24" y="100" width="192" height="53"/>
                                                     <mask key="constraints">
                                                         <include reference="djG-S2-vga"/>
                                                     </mask>
@@ -1796,6 +1801,9 @@
                                         <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="22"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="170" y="28" width="61" height="30"/>
+                                        </variation>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Menu" translatesAutoresizingMaskIntoConstraints="NO" id="bJ9-yr-ldC">
                                         <rect key="frame" x="23" y="30" width="33" height="26"/>
@@ -1910,6 +1918,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="122" y="15" width="99" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegetables-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="t25-fZ-nds">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2078,6 +2089,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="143" y="15" width="57" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="milk-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="pWg-Hr-g8q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2240,6 +2254,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="135" y="15" width="72" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meat-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-4u-Egt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2402,6 +2419,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="124" y="15" width="94" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sugar-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="eEQ-IC-qhf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2564,6 +2584,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="127" y="15" width="88" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cereal-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="hcR-NB-pDQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2726,6 +2749,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="105" y="15" width="133" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pea-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Fje-kl-IiM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2891,6 +2917,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="137" y="15" width="68" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fruit-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="IZ3-h3-qw0">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -3053,6 +3082,9 @@
                                                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="136" y="15" width="71" height="26"/>
+                                                                </variation>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fat-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-5g-Wi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -5387,7 +5419,6 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfk-Yr-uq9">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                <color key="backgroundColor" red="1" green="0.31304950305810392" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXZ-As-GqE">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
