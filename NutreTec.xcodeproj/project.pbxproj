@@ -39,6 +39,7 @@
 		23840F3B1AE5B721008BCAD3 /* TECHistoryMonthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23840F3A1AE5B721008BCAD3 /* TECHistoryMonthsViewController.m */; };
 		239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 239306361AD2E757007E6E3B /* TECReferencePortionInnerCell.m */; };
 		239306391AD2E757007E6E3B /* TECReferencePortionInnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */; };
+		23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0807F1AE7757500A9C975 /* TECDaySummary.m */; };
 		23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */; };
 		71FF4D7B1E73901FE3BDC208 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C3F8AA0858C0CB658EF0AF /* libPods.a */; };
 		7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9B8A711ADF69B500B699E8 /* CoreData.framework */; };
@@ -128,6 +129,8 @@
 		239306351AD2E757007E6E3B /* TECReferencePortionInnerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferencePortionInnerCell.h; sourceTree = "<group>"; };
 		239306361AD2E757007E6E3B /* TECReferencePortionInnerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferencePortionInnerCell.m; sourceTree = "<group>"; };
 		239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TECReferencePortionInnerCell.xib; sourceTree = "<group>"; };
+		23C0807E1AE7757500A9C975 /* TECDaySummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECDaySummary.h; sourceTree = "<group>"; };
+		23C0807F1AE7757500A9C975 /* TECDaySummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECDaySummary.m; sourceTree = "<group>"; };
 		23F331F71AD11BA30052A7CC /* TECReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceViewController.h; sourceTree = "<group>"; };
 		23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceViewController.m; sourceTree = "<group>"; };
 		40C3F8AA0858C0CB658EF0AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +202,8 @@
 				232833801ACDD47B00449B25 /* TECFoodPortion.m */,
 				232833821ACDD57300449B25 /* TECUserDiet.h */,
 				232833831ACDD57300449B25 /* TECUserDiet.m */,
+				23C0807E1AE7757500A9C975 /* TECDaySummary.h */,
+				23C0807F1AE7757500A9C975 /* TECDaySummary.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */,
+				23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */,
 				23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */,
 				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
 				239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */,
@@ -692,6 +698,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/NutreTec/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

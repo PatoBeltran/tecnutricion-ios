@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 #define TECVegetablesColor                  [UIColor colorWithRed:129./255 green:192./255 blue:112./255 alpha:1.0]
 #define TECMilkColor                        [UIColor colorWithRed:109./255 green:155./255 blue:188./255 alpha:1.0]
@@ -23,8 +24,13 @@
 @interface TECNutreTecCore : NSObject
 @property BOOL dietPopupHasBeenShown;
 @property (weak) UIViewController *popupDietControllerPresenter;
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 + (BOOL)dietPopupHasBeenShown;
 + (void)setDietPopupHasBeenShown:(BOOL)flag;
 + (instancetype)sharedInstance;
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 @end

@@ -17,6 +17,7 @@
 @property (nonatomic, assign) NSInteger fruitAmount;
 @property (nonatomic, assign) NSInteger cerealAmount;
 @property (nonatomic, assign) NSInteger fatAmount;
+@property (nonatomic, copy) NSString *dietId;
 
 - (instancetype)initWithVegetables:(NSInteger)veggies
                               milk:(NSInteger)milk
@@ -25,5 +26,9 @@
                               peas:(NSInteger)peas
                              fruit:(NSInteger)fruit
                             cereal:(NSInteger)cereal
-                               fat:(NSInteger)fat;
+                               fat:(NSInteger)fat
+                            dietId:(NSString *)dietId;
+
++ (instancetype)initFromLastDietInDatabase;
+
 @end

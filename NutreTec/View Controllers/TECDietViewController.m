@@ -7,7 +7,6 @@
 //
 
 #import "TECDietViewController.h"
-#import "AppDelegate.h"
 #import "UIViewController+MaryPopin.h"
 #import "TECDietPopupViewController.h"
 #import "TECNutreTecCore.h"
@@ -36,15 +35,13 @@
     self.peaAmount.delegate = self;
     self.fruitAmount.delegate = self;
     self.fatAmount.delegate = self;
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:context];
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
     [requestDiet setEntity:entityDiet];
     
     NSError *error;
-    NSArray *matchObjectsDiet = [context executeFetchRequest:requestDiet error:&error];
+    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:requestDiet error:&error];
     
     if([matchObjectsDiet count] != 0){
         NSManagedObject *matchRegister = [matchObjectsDiet lastObject];
@@ -89,11 +86,9 @@
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
         //@TODO - if diet is equals to the last diet (if user clicked save multiple times) dont save
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
         printf("Creating new static diet\n");
-        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:context];
+        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
 
         NSDate *today = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -113,7 +108,7 @@
         [newDiet setValue:@"static" forKey:@"type"];
 
         NSError *error;
-        [context save: &error];
+        [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
         
         [self.view endEditing:YES];
         [[[UIAlertView alloc] initWithTitle:@"¡Perfecto!"
