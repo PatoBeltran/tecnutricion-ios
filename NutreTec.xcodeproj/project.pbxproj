@@ -25,6 +25,7 @@
 		2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58A1AB8DD8600E696F5 /* ILLoaderProgressView.m */; };
 		2372E58F1AB8DE9700E696F5 /* RMDownloadIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58E1AB8DE9700E696F5 /* RMDownloadIndicator.m */; };
 		2372E5921AB8DF6100E696F5 /* RMDisplayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E5911AB8DF6100E696F5 /* RMDisplayLabel.m */; };
+		237D13031AE8401E00DA70BF /* BTSpiderPlotterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 237D13021AE8401E00DA70BF /* BTSpiderPlotterView.m */; };
 		237E570D1AB3BA7B0052802F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E570C1AB3BA7B0052802F /* main.m */; };
 		237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E570F1AB3BA7B0052802F /* AppDelegate.m */; };
 		237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 237E57121AB3BA7B0052802F /* TECMenuViewController.m */; };
@@ -91,6 +92,8 @@
 		2372E58E1AB8DE9700E696F5 /* RMDownloadIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDownloadIndicator.m; sourceTree = "<group>"; };
 		2372E5901AB8DF6100E696F5 /* RMDisplayLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDisplayLabel.h; sourceTree = "<group>"; };
 		2372E5911AB8DF6100E696F5 /* RMDisplayLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDisplayLabel.m; sourceTree = "<group>"; };
+		237D13011AE8401E00DA70BF /* BTSpiderPlotterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTSpiderPlotterView.h; sourceTree = "<group>"; };
+		237D13021AE8401E00DA70BF /* BTSpiderPlotterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSpiderPlotterView.m; sourceTree = "<group>"; };
 		237E57071AB3BA7B0052802F /* NutreTec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutreTec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E570B1AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E570C1AB3BA7B0052802F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -235,6 +238,15 @@
 			path = RMDownloadIndicator;
 			sourceTree = "<group>";
 		};
+		237D13001AE8401E00DA70BF /* BTSpiderPlotterView */ = {
+			isa = PBXGroup;
+			children = (
+				237D13011AE8401E00DA70BF /* BTSpiderPlotterView.h */,
+				237D13021AE8401E00DA70BF /* BTSpiderPlotterView.m */,
+			);
+			path = BTSpiderPlotterView;
+			sourceTree = "<group>";
+		};
 		237E56FE1AB3BA7B0052802F = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +368,7 @@
 		237E573D1AB675D70052802F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				237D13001AE8401E00DA70BF /* BTSpiderPlotterView */,
 				23082A621AE5C89100D0EEE3 /* SlidingContainerViewController */,
 				233B3B6B1AE598EC00C2E7FF /* CCMPlayNDropView */,
 				2372E58C1AB8DE9700E696F5 /* RMDownloadIndicator */,
@@ -557,6 +570,7 @@
 				230627F31AD0BACD0055BFBB /* TECAddPortionMenu.m in Sources */,
 				230DF8F11AE5D1D3003B813C /* SlidingContainerSliderView.swift in Sources */,
 				23840F351AE5B701008BCAD3 /* TECHistoryDaysViewController.m in Sources */,
+				237D13031AE8401E00DA70BF /* BTSpiderPlotterView.m in Sources */,
 				230DF8F21AE5D1D3003B813C /* SlidingContainerViewController.swift in Sources */,
 				232833841ACDD57300449B25 /* TECUserDiet.m in Sources */,
 				233B3B671AE598B600C2E7FF /* TECDietPopupViewController.m in Sources */,

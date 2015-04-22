@@ -8,6 +8,7 @@ target 'NutreTec' do
     pod 'TPKeyboardAvoiding'
     pod 'MaryPopin'
     pod 'IQDropDownTextField'
+    pod 'JBChartView'
 end
 
 target 'NutreTecTests' do
