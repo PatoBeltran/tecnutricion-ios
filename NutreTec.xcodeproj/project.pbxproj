@@ -41,7 +41,6 @@
 		239306391AD2E757007E6E3B /* TECReferencePortionInnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */; };
 		23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0807F1AE7757500A9C975 /* TECDaySummary.m */; };
 		23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */; };
-		71FF4D7B1E73901FE3BDC208 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C3F8AA0858C0CB658EF0AF /* libPods.a */; };
 		7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9B8A711ADF69B500B699E8 /* CoreData.framework */; };
 		7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B8A731ADF6A9F00B699E8 /* TECModel.xcdatamodeld */; };
 		B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */; };
@@ -153,7 +152,6 @@
 			files = (
 				7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */,
 				B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */,
-				71FF4D7B1E73901FE3BDC208 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,7 +696,19 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/NutreTec/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -714,6 +724,19 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/NutreTec/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 			};
