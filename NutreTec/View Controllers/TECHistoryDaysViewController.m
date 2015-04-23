@@ -28,13 +28,13 @@
 
 @property (nonatomic, strong) TECUserDiet *diet;
 @property (strong, nonatomic) TECDaySummary *dayProgress;
+@property (strong, nonatomic) NSMutableArray *days;
 @end
 
 @implementation TECHistoryDaysViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     if (/* DISABLES CODE */ (NO)) {
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
@@ -47,14 +47,44 @@
         [self setProgress];
         self.dayChooser.isOptionalDropDown = NO;
         self.dayChooser.delegate = self;
-        [self.dayChooser setItemList:[NSArray arrayWithObjects:@"Lunes, 15 Marzo",@"Martes, 16 Marzo",@"Miercoles, 17 Marzo",@"Jueves, 17 Marzo",@"Viernes, 18 Marzo",@"Sabado, 19 Marzo", nil]];
+        self.days = [[NSMutableArray alloc] init];
+        
+        //Generate drop list of past entries
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        
+        [request setEntity:entity];
+        
+        NSError *error;
+        NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+        
+        if([matchObjects count] == 0) {
+            //No diets found
+        }
+        else {
+            NSManagedObject *matchRegister;
+            NSString *day;
+            for(int i=0; i<matchObjects.count; i++){
+                matchRegister = matchObjects[i];
+                day = [matchRegister valueForKey:@"day"];
+                NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"dd/MM/yyyy"];
+                NSDate *myDate = [df dateFromString: day];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
+                day = [formatter stringFromDate:myDate];
+                [self.days addObject:day];
+            }
+        }
+        
+        self.diet = [TECUserDiet initFromLastDietInDatabase];
+        
+        [self.dayChooser setItemList:self.days];
         
         UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
         UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
         swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-        
-        [self.view addGestureRecognizer:tapBackground];
-        [self.view addGestureRecognizer:swipeDown];
     }
 }
 
@@ -84,7 +114,7 @@
     //@TODO - you shouldn't get values of today
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    [self getValuesFromDBForDate:[dateFormat stringFromDate:[NSDate date]]];
+    [self getProgressFromDBForDate:[dateFormat stringFromDate:[NSDate date]]];
     
     [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
     [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
@@ -136,12 +166,27 @@
 
 #pragma mark - Database Interaction
 
-- (void)getValuesFromDBForDate:(NSString *)date {
+- (void)getProgressFromDBForDate:(NSString *)date {
     self.dayProgress = [TECDaySummary initFromDatabaseWithDate:date];
 }
 
+- (void)getDietFromDate:(NSString *)date {
+    self.diet = [TECUserDiet initFromDateInDatabase:date];
+}
+
 - (void)updateValuesForItem:(NSString *)string {
+<<<<<<< HEAD
     //    [self getValuesFromDBForDate:string];
+=======
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"EEEE, dd MMMM yyyy"];
+    NSDate *myDate = [df dateFromString: string];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    string = [formatter stringFromDate:myDate];
+    [self getProgressFromDBForDate:string];
+    [self getDietFromDate:string];
+>>>>>>> 3fda801310f9572f4722ecbb776f47780020c02f
     [self updateProgressForView];
 }
 
