@@ -57,14 +57,13 @@
         self.noDaysAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         [self setupColorsForView];
-        [self setProgress: [NSDate date]];
         self.dayChooser.isOptionalDropDown = NO;
         self.dayChooser.delegate = self;
         self.days = [[NSMutableArray alloc] init];
         
         NSManagedObject *matchRegister;
         NSString *day;
-        for(int i=1; i<matchObjects.count; i++){
+        for(long i=(matchObjects.count-2); i>=0; i--){
             matchRegister = matchObjects[i];
             day = [matchRegister valueForKey:@"day"];
             NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -78,8 +77,8 @@
         
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         [df setDateFormat:@"dd/MM/yyyy"];
-        self.dayBefore = [df dateFromString: [matchObjects[1] valueForKey:@"day"]];
-        self.diet = [TECUserDiet initFromDateInDatabase:[matchObjects[1] valueForKey:@"day"]];
+        self.dayBefore = [df dateFromString: [matchObjects[matchObjects.count-2] valueForKey:@"day"]];
+        self.diet = [TECUserDiet initFromDateInDatabase:[matchObjects[matchObjects.count-2] valueForKey:@"day"]];
     
         [self.dayChooser setItemList:self.days];
     
