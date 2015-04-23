@@ -14,6 +14,8 @@
 #import "TECDaySummary.h"
 
 @interface TECHistoryDaysViewController () <IQDropDownTextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *noDaysAlert;
+@property (weak, nonatomic) IBOutlet UIView *innerWrapperView;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *vegetablesProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *milkProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *meatProgress;
@@ -53,31 +55,52 @@
         //No diets found
     }
     else {
-        NSManagedObject *matchRegister;
-        NSString *day;
-        for(int i=0; i<matchObjects.count; i++){
-            matchRegister = matchObjects[i];
-            day = [matchRegister valueForKey:@"day"];
-            NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:@"dd/MM/yyyy"];
-            NSDate *myDate = [df dateFromString: day];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
-            day = [formatter stringFromDate:myDate];
-            [self.days addObject:day];
+        self.noDaysAlert.hidden = YES;
+        self.innerWrapperView.hidden = NO;
+        
+        [self setupColorsForView];
+        [self setProgress];
+        self.dayChooser.isOptionalDropDown = NO;
+        self.dayChooser.delegate = self;
+        self.days = [[NSMutableArray alloc] init];
+        
+        //Generate drop list of past entries
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        
+        [request setEntity:entity];
+        
+        NSError *error;
+        NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+        
+        if([matchObjects count] == 0) {
+            //No diets found
         }
+        else {
+            NSManagedObject *matchRegister;
+            NSString *day;
+            for(int i=0; i<matchObjects.count; i++){
+                matchRegister = matchObjects[i];
+                day = [matchRegister valueForKey:@"day"];
+                NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                [df setDateFormat:@"dd/MM/yyyy"];
+                NSDate *myDate = [df dateFromString: day];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
+                day = [formatter stringFromDate:myDate];
+                [self.days addObject:day];
+            }
+        }
+        
+        self.diet = [TECUserDiet initFromLastDietInDatabase];
+        
+        [self.dayChooser setItemList:self.days];
+        
+        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
     }
-    
-    self.diet = [TECUserDiet initFromLastDietInDatabase];
-    
-    [self.dayChooser setItemList:self.days];
-    
-    UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-    
-    [self.view addGestureRecognizer:tapBackground];
-    [self.view addGestureRecognizer:swipeDown];
 }
 
 - (void)hideKeyboard:(id)sender {
@@ -139,6 +162,9 @@
 }
 
 - (void)updateValuesForItem:(NSString *)string {
+<<<<<<< HEAD
+    //    [self getValuesFromDBForDate:string];
+=======
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"EEEE, dd MMMM yyyy"];
     NSDate *myDate = [df dateFromString: string];
