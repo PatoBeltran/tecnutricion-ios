@@ -54,7 +54,10 @@
         [self showSendFeeback];
     }
     
-    [self getDietFromDB];
+    //[self getDietFromDB];
+    
+    //Use for generating database
+    [self genDB];
     
     NSDate *sourceDate = [NSDate date];
     
@@ -102,6 +105,64 @@
 //                [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
 //            }
 //        }
+    }
+}
+
+-(void) genDB {
+    NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    self.currentDate = [dateFormatter stringFromDate:today];
+    
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"vegetable"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"milk"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"meat"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"cereal"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"sugar"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fat"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fruit"];
+    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"pea"];
+    [newDiet setValue:self.currentDate forKey:@"fecha"];
+    [newDiet setValue:@"static" forKey:@"type"];
+    
+    NSError *error;
+    [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
+    
+    [self getDietFromDB];
+    
+    for(int i=8; i>0; i--) {
+        NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+                                                                inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        NSDate *sourceDate = [NSDate date];
+        
+        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+        
+        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+        
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+        NSString *date = [dateFormat stringFromDate:destinationDate];
+        NSLog(@"%@", date);
+        
+        [newDay setValue:date forKey:@"day"];
+        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"vegetable"];
+        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"meat"];
+        [newDay setValue:[NSNumber numberWithInt:1] forKey:@"milk"];
+        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"fruit"];
+        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"fat"];
+        [newDay setValue:[NSNumber numberWithInt:1] forKey:@"cereal"];
+        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"sugar"];
+        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"pea"];
+        [newDay setValue:self.diet.dietId forKey:@"diet"];
+        NSError *error;
+        [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
     }
 }
 
