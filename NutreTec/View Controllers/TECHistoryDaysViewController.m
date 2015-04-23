@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupColorsForView];
-    [self setProgress];
+    [self setProgress: [NSDate date]];
     self.dayChooser.isOptionalDropDown = NO;
     self.dayChooser.delegate = self;
     self.days = [[NSMutableArray alloc] init];
@@ -97,16 +97,15 @@
     [self.cerealProgress setupProgressIndicator];
     [self.fatProgress setupProgressIndicator];
     [self setupColorsForView];
-    [self setProgress];
+    [self setProgress:[NSDate date]];
 }
 
 #pragma mark - Progress modificators
 
-- (void)setProgress {
-    //@TODO - you shouldn't get values of today
+- (void)setProgress:(NSDate *) date{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    [self getProgressFromDBForDate:[dateFormat stringFromDate:[NSDate date]]];
+    [self getProgressFromDBForDate:[dateFormat stringFromDate:date]];
     
     [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
     [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
@@ -129,33 +128,6 @@
     [self.fatProgress setProgressColor:TECFatColor];
 }
 
-- (void)updateProgressForView {
-    if (self.vegetablesProgress.currentAmount.integerValue != self.dayProgress.vegetable.consumed) {
-        [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
-    }
-    if (self.milkProgress.currentAmount.integerValue != self.dayProgress.milk.consumed) {
-        [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
-    }
-    if (self.meatProgress.currentAmount.integerValue != self.dayProgress.meat.consumed) {
-        [self.meatProgress setProgressValue:self.dayProgress.meat.consumed forAmount:self.diet.meatAmount];
-    }
-    if (self.sugarProgress.currentAmount.integerValue != self.dayProgress.sugar.consumed) {
-        [self.sugarProgress setProgressValue:self.dayProgress.sugar.consumed forAmount:self.diet.sugarAmount];
-    }
-    if (self.peasProgress.currentAmount.integerValue != self.dayProgress.pea.consumed) {
-        [self.peasProgress setProgressValue:self.dayProgress.pea.consumed forAmount:self.diet.peaAmount];
-    }
-    if (self.fruitProgress.currentAmount.integerValue != self.dayProgress.fruit.consumed) {
-        [self.fruitProgress setProgressValue:self.dayProgress.fruit.consumed forAmount:self.diet.fruitAmount];
-    }
-    if (self.cerealProgress.currentAmount.integerValue != self.dayProgress.cereal.consumed) {
-        [self.cerealProgress setProgressValue:self.dayProgress.cereal.consumed forAmount:self.diet.cerealAmount];
-    }
-    if (self.fatProgress.currentAmount.integerValue != self.dayProgress.fat.consumed) {
-        [self.fatProgress setProgressValue:self.dayProgress.fat.consumed forAmount:self.diet.fatAmount];
-    }
-}
-
 #pragma mark - Database Interaction
 
 - (void)getProgressFromDBForDate:(NSString *)date {
@@ -175,7 +147,9 @@
     string = [formatter stringFromDate:myDate];
     [self getProgressFromDBForDate:string];
     [self getDietFromDate:string];
-    [self updateProgressForView];
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
+    [self setProgress: myDate];
+
 }
 
 #pragma mark - UITextFieldDelegate
