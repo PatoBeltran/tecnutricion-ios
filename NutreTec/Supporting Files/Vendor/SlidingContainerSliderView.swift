@@ -142,11 +142,11 @@ class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
         labelView.userInteractionEnabled = true
         labelView.clipsToBounds = true
         
-        let iconView = UIImageView (image: icon)
-        iconView.center = labelView.center
-        iconView.center.x -= 30
-        
-        labelView.addSubview(iconView)
+//        let iconView = UIImageView (image: icon)
+//        iconView.center = labelView.center
+//        iconView.center.x -= 30
+//        
+//        labelView.addSubview(iconView)
         
         let label = UILabel (frame: CGRect (x: 0, y: (sliderHeight - 11)/2, width: self.labelWidth, height: 22))
         label.text = title

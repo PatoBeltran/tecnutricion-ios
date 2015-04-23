@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, TECPortionType) {
 @property (nonatomic, assign) CGPoint nearPoint;
 
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, assign) NSInteger tag;
 
 @property (nonatomic, assign, readonly) BOOL selected;
 @property (nonatomic, assign) TECPortionType portionType;

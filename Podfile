@@ -7,7 +7,6 @@ target 'NutreTec' do
     pod 'FXBlurView'
     pod 'TPKeyboardAvoiding'
     pod 'MaryPopin'
-    pod 'IQDropDownTextField'
 end
 
 target 'NutreTecTests' do
