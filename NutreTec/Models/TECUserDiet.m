@@ -61,4 +61,33 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
     }
 }
 
++ (instancetype)initFromDateInDatabase:(NSString *)date {
+    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:TECDietCoreDataEntityName
+                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"fecha like %@", date];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setEntity:entityDiet];
+    
+    NSError *error;
+    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+    
+    if([matchObjectsDiet count] == 0) {
+        return nil;
+    }
+    else {
+        NSManagedObject *matchRegister = [matchObjectsDiet lastObject];
+        return [[TECUserDiet alloc] initWithVegetables:[[matchRegister valueForKey:@"vegetable"] integerValue]
+                                                  milk:[[matchRegister valueForKey:@"milk"] integerValue]
+                                                  meat:[[matchRegister valueForKey:@"meat"] integerValue]
+                                                 sugar:[[matchRegister valueForKey:@"sugar"] integerValue]
+                                                  peas:[[matchRegister valueForKey:@"pea"] integerValue]
+                                                 fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
+                                                cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
+                                                   fat:[[matchRegister valueForKey:@"fat"] integerValue]
+                                                dietId:[matchRegister valueForKey:@"fecha"]];
+    }
+}
+
 @end
