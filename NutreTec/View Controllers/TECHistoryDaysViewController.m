@@ -14,6 +14,8 @@
 #import "TECDaySummary.h"
 
 @interface TECHistoryDaysViewController () <IQDropDownTextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIView *noDaysAlert;
+@property (weak, nonatomic) IBOutlet UIView *innerWrapperView;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *vegetablesProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *milkProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *meatProgress;
@@ -32,18 +34,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupColorsForView];
-    [self setProgress];
-    self.dayChooser.isOptionalDropDown = NO;
-    self.dayChooser.delegate = self;
-    [self.dayChooser setItemList:[NSArray arrayWithObjects:@"Lunes, 15 Marzo",@"Martes, 16 Marzo",@"Miercoles, 17 Marzo",@"Jueves, 17 Marzo",@"Viernes, 18 Marzo",@"Sabado, 19 Marzo", nil]];
     
-    UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-    swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-    
-    [self.view addGestureRecognizer:tapBackground];
-    [self.view addGestureRecognizer:swipeDown];
+    if (/* DISABLES CODE */ (NO)) {
+        self.noDaysAlert.hidden = NO;
+        self.innerWrapperView.hidden = YES;
+    }
+    else {
+        self.noDaysAlert.hidden = YES;
+        self.innerWrapperView.hidden = NO;
+        
+        [self setupColorsForView];
+        [self setProgress];
+        self.dayChooser.isOptionalDropDown = NO;
+        self.dayChooser.delegate = self;
+        [self.dayChooser setItemList:[NSArray arrayWithObjects:@"Lunes, 15 Marzo",@"Martes, 16 Marzo",@"Miercoles, 17 Marzo",@"Jueves, 17 Marzo",@"Viernes, 18 Marzo",@"Sabado, 19 Marzo", nil]];
+        
+        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+        
+        [self.view addGestureRecognizer:tapBackground];
+        [self.view addGestureRecognizer:swipeDown];
+    }
 }
 
 - (void)hideKeyboard:(id)sender {
@@ -129,7 +141,7 @@
 }
 
 - (void)updateValuesForItem:(NSString *)string {
-//    [self getValuesFromDBForDate:string];
+    //    [self getValuesFromDBForDate:string];
     [self updateProgressForView];
 }
 
