@@ -16,6 +16,7 @@
 #import <FXBlurView/FXBlurView.h>
 #import "TECPortionMenuItem.h"
 #import "TECAddPortionMenu.h"
+#import <stdlib.h>
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -133,7 +134,7 @@
     
     [self getDietFromDB];
     
-    for(int i=8; i>0; i--) {
+    for(int i=1; i<100; i++) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];
@@ -145,21 +146,20 @@
         NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
         NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
         
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
         NSString *date = [dateFormat stringFromDate:destinationDate];
-        NSLog(@"%@", date);
         
         [newDay setValue:date forKey:@"day"];
-        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"vegetable"];
-        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"meat"];
-        [newDay setValue:[NSNumber numberWithInt:1] forKey:@"milk"];
-        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"fruit"];
-        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"fat"];
-        [newDay setValue:[NSNumber numberWithInt:1] forKey:@"cereal"];
-        [newDay setValue:[NSNumber numberWithInt:3] forKey:@"sugar"];
-        [newDay setValue:[NSNumber numberWithInt:2] forKey:@"pea"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fruit"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"cereal"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"sugar"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"pea"];
         [newDay setValue:self.diet.dietId forKey:@"diet"];
         NSError *error;
         [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
