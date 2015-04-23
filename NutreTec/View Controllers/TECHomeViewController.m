@@ -134,7 +134,7 @@
     
     [self getDietFromDB];
     
-    for(int i=1; i<100; i++) {
+    for(int i=10; i>0; i--) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];
@@ -146,7 +146,7 @@
         NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
         NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
         
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
         NSString *date = [dateFormat stringFromDate:destinationDate];

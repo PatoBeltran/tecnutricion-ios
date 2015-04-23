@@ -59,7 +59,19 @@
     NSError *errorDay;
     NSArray *matchObjectsDay = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:requestDay error:&errorDay];
     
-    for(long i=matchObjectsDay.count-2; i>=0; i--){
+    self.firstMonday = matchObjectsDay.count-2;
+    
+    if (matchObjects.count != 0) {
+        NSString *lastSunday = [[matchObjects lastObject] valueForKey:@"end"];
+        long i=matchObjectsDay.count-1;
+        while(![[matchObjectsDay[i] valueForKey:@"day"] isEqualToString: lastSunday]){
+            i--;
+            self.firstMonday = i;
+        }
+        self.firstMonday = self.firstMonday - 1;
+    }
+
+    for(long i=self.firstMonday; i>=0; i--){
         NSString *day, *name;
         day = [matchObjectsDay[i] valueForKey:@"day"];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -69,13 +81,14 @@
         [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
         day = [formatter stringFromDate:myDate];
         name = [day componentsSeparatedByString:@","][0];
+
         if([name isEqualToString:@"Sunday"]){
             self.canrun = true;
         }
         [self.days addObject:day];
     }
     
-    if (!self.canrun) {
+    if (!self.canrun && matchObjects.count == 0) {
         self.noWeeksAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
     }
@@ -83,128 +96,109 @@
         self.noWeeksAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         
-        self.firstMonday = self.days.count-1;
-        
-        //Looks for first monday that should start to generate weeks
-        matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-        if (matchObjects.count != 0) {
-            NSString *lastSunday = [[matchObjects[matchObjects.count-1] valueForKey:@"end"] componentsSeparatedByString:@"-"][1];
-            lastSunday = [lastSunday stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if(self.canrun){
+            NSString *date, *startDate;
+            NSInteger milk, meat, pea, fruit, fat, cereal, sugar, vegetable;
+            milk = meat = pea = fruit = fat = cereal = sugar = vegetable = 0;
+            NSInteger milkT, meatT, peaT, fruitT, fatT, cerealT, sugarT, vegetableT;
+            milkT = meatT = peaT = fruitT = fatT = cerealT = sugarT = vegetableT = 0;
             
-            NSDateFormatter *df = [[NSDateFormatter alloc] init];
-            [df setDateFormat:@"EEEE,ddMMMMyyyy"];
-            NSDate *myDate = [df dateFromString: lastSunday];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"dd/MM/yyyy"];
-            lastSunday = [formatter stringFromDate:myDate];
-            
-            for(long i=self.days.count-1; self.days[i] != lastSunday; i++){
-                self.firstMonday = i;
-            }
-            self.firstMonday--;
-        }
-        
-        NSString *date, *startDate;
-        NSInteger milk, meat, pea, fruit, fat, cereal, sugar, vegetable;
-        milk = meat = pea = fruit = fat = cereal = sugar = vegetable = 0;
-        NSInteger milkT, meatT, peaT, fruitT, fatT, cerealT, sugarT, vegetableT;
-        milkT = meatT = peaT = fruitT = fatT = cerealT = sugarT = vegetableT = 0;
-        
-        //Generate week tables
-        for(long i=self.firstMonday; i>=0; i--){
-            //When sunday is found make entry in week table
-            while((![[self.days[i] componentsSeparatedByString:@","][0] isEqualToString:@"Sunday"]) && i>0){
-                NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"EEEE, dd MMMM yyyy"];
-                NSDate *myDate = [df dateFromString: self.days[i]];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"dd/MM/yyyy"];
-                date = [formatter stringFromDate:myDate];
-                if(milk==0&&meat==0&&pea==0&&fruit==0&&fat==0&&cereal==0&&sugar==0&&vegetable==0){
-                    startDate = date;
+            //Generate week tables
+            for(long i=self.firstMonday; i>=0; i--){
+                //When sunday is found make entry in week table
+                while((![[self.days[i] componentsSeparatedByString:@","][0] isEqualToString:@"Sunday"]) && i>0){
+                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                    [df setDateFormat:@"EEEE, dd MMMM yyyy"];
+                    NSDate *myDate = [df dateFromString: self.days[i]];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"dd/MM/yyyy"];
+                    date = [formatter stringFromDate:myDate];
+                    if(milk==0&&meat==0&&pea==0&&fruit==0&&fat==0&&cereal==0&&sugar==0&&vegetable==0){
+                        startDate = date;
+                    }
+                    
+                    //Obtain progress and diet according to date
+                    self.progress = [TECDaySummary initFromDatabaseWithDate:date];
+                    self.diet = [TECUserDiet initFromDateInDatabase:self.progress.dietId];
+                    
+                    milk+=self.progress.milk.consumed;
+                    meat+=self.progress.meat.consumed;
+                    pea+=self.progress.pea.consumed;
+                    fruit+=self.progress.fruit.consumed;
+                    fat+=self.progress.fat.consumed;
+                    cereal+=self.progress.cereal.consumed;
+                    sugar+=self.progress.sugar.consumed;
+                    vegetable+=self.progress.vegetable.consumed;
+                    
+                    milkT+=self.diet.milkAmount;
+                    meatT+=self.diet.meatAmount;
+                    peaT+=self.diet.peaAmount;
+                    fruitT+=self.diet.fruitAmount;
+                    fatT+=self.diet.fatAmount;
+                    cerealT+=self.diet.cerealAmount;
+                    sugarT+=self.diet.sugarAmount;
+                    vegetableT+=self.diet.vegetablesAmount;
+                    i--;
                 }
-                
-                //Obtain progress and diet according to date
-                self.progress = [TECDaySummary initFromDatabaseWithDate:date];
-                self.diet = [TECUserDiet initFromDateInDatabase:self.progress.dietId];
-                
-                milk+=self.progress.milk.consumed;
-                meat+=self.progress.meat.consumed;
-                pea+=self.progress.pea.consumed;
-                fruit+=self.progress.fruit.consumed;
-                fat+=self.progress.fat.consumed;
-                cereal+=self.progress.cereal.consumed;
-                sugar+=self.progress.sugar.consumed;
-                vegetable+=self.progress.vegetable.consumed;
-                
-                milkT+=self.diet.milkAmount;
-                meatT+=self.diet.meatAmount;
-                peaT+=self.diet.peaAmount;
-                fruitT+=self.diet.fruitAmount;
-                fatT+=self.diet.fatAmount;
-                cerealT+=self.diet.cerealAmount;
-                sugarT+=self.diet.sugarAmount;
-                vegetableT+=self.diet.vegetablesAmount;
-                i--;
-            }
-            if ([[self.days[i] componentsSeparatedByString:@","][0] isEqualToString:@"Sunday"]) {
-                NSManagedObject *newWeek = [NSEntityDescription insertNewObjectForEntityForName:@"Week"
-                                                                         inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-                
-                NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"EEEE, dd MMMM yyyy"];
-                NSDate *myDate = [df dateFromString: self.days[i]];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"dd/MM/yyyy"];
-                date = [formatter stringFromDate:myDate];
-                [newWeek setValue:startDate forKey:@"start"];
-                [newWeek setValue:date forKey:@"end"];
-                
-                //Obtain progress and diet according to date
-                self.progress = [TECDaySummary initFromDatabaseWithDate:date];
-                self.diet = [TECUserDiet initFromDateInDatabase:self.progress.dietId];
-                
-                milk+=self.progress.milk.consumed;
-                meat+=self.progress.meat.consumed;
-                pea+=self.progress.pea.consumed;
-                fruit+=self.progress.fruit.consumed;
-                fat+=self.progress.fat.consumed;
-                cereal+=self.progress.cereal.consumed;
-                sugar+=self.progress.sugar.consumed;
-                vegetable+=self.progress.vegetable.consumed;
-                
-                milkT+=self.diet.milkAmount;
-                meatT+=self.diet.meatAmount;
-                peaT+=self.diet.peaAmount;
-                fruitT+=self.diet.fruitAmount;
-                fatT+=self.diet.fatAmount;
-                cerealT+=self.diet.cerealAmount;
-                sugarT+=self.diet.sugarAmount;
-                vegetableT+=self.diet.vegetablesAmount;
-                
-                NSInteger milkP = (double) milk / (double) milkT * 100.0;
-                NSInteger meatP = (double) meat / (double) meatT * 100.0;
-                NSInteger peaP = (double) pea / (double) peaT * 100.0;
-                NSInteger fruitP = (double) fruit / (double) fruitT * 100.0;
-                NSInteger fatP = (double) fat / (double) fatT * 100.0;
-                NSInteger cerealP = (double) cereal / (double) cerealT * 100.0;
-                NSInteger sugarP = (double) sugar / (double) sugarT * 100.0;
-                NSInteger vegetableP = (double) vegetable / (double) vegetableT * 100.0;
-                
-                [newWeek setValue:[NSNumber numberWithInteger:milkP] forKey:@"milk"];
-                [newWeek setValue:[NSNumber numberWithInteger:meatP] forKey:@"meat"];
-                [newWeek setValue:[NSNumber numberWithInteger:peaP] forKey:@"pea"];
-                [newWeek setValue:[NSNumber numberWithInteger:fruitP] forKey:@"fruit"];
-                [newWeek setValue:[NSNumber numberWithInteger:fatP] forKey:@"fat"];
-                [newWeek setValue:[NSNumber numberWithInteger:cerealP] forKey:@"cereal"];
-                [newWeek setValue:[NSNumber numberWithInteger:sugarP] forKey:@"sugar"];
-                [newWeek setValue:[NSNumber numberWithInteger:vegetableP] forKey:@"vegetable"];
-                
-                NSError *error;
-                [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
-                
-                milk = meat = pea = fruit = fat = cereal = sugar = vegetable = 0;
-                milkT = meatT = peaT = fruitT = fatT = cerealT = sugarT = vegetableT = 0;
+                if ([[self.days[i] componentsSeparatedByString:@","][0] isEqualToString:@"Sunday"]) {
+                    NSManagedObject *newWeek = [NSEntityDescription insertNewObjectForEntityForName:@"Week"
+                                                                             inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+                    
+                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                    [df setDateFormat:@"EEEE, dd MMMM yyyy"];
+                    NSDate *myDate = [df dateFromString: self.days[i]];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"dd/MM/yyyy"];
+                    date = [formatter stringFromDate:myDate];
+                    [newWeek setValue:startDate forKey:@"start"];
+                    [newWeek setValue:date forKey:@"end"];
+                    
+                    //Obtain progress and diet according to date
+                    self.progress = [TECDaySummary initFromDatabaseWithDate:date];
+                    self.diet = [TECUserDiet initFromDateInDatabase:self.progress.dietId];
+                    
+                    milk+=self.progress.milk.consumed;
+                    meat+=self.progress.meat.consumed;
+                    pea+=self.progress.pea.consumed;
+                    fruit+=self.progress.fruit.consumed;
+                    fat+=self.progress.fat.consumed;
+                    cereal+=self.progress.cereal.consumed;
+                    sugar+=self.progress.sugar.consumed;
+                    vegetable+=self.progress.vegetable.consumed;
+                    
+                    milkT+=self.diet.milkAmount;
+                    meatT+=self.diet.meatAmount;
+                    peaT+=self.diet.peaAmount;
+                    fruitT+=self.diet.fruitAmount;
+                    fatT+=self.diet.fatAmount;
+                    cerealT+=self.diet.cerealAmount;
+                    sugarT+=self.diet.sugarAmount;
+                    vegetableT+=self.diet.vegetablesAmount;
+                    
+                    NSInteger milkP = (double) milk / (double) milkT * 100.0;
+                    NSInteger meatP = (double) meat / (double) meatT * 100.0;
+                    NSInteger peaP = (double) pea / (double) peaT * 100.0;
+                    NSInteger fruitP = (double) fruit / (double) fruitT * 100.0;
+                    NSInteger fatP = (double) fat / (double) fatT * 100.0;
+                    NSInteger cerealP = (double) cereal / (double) cerealT * 100.0;
+                    NSInteger sugarP = (double) sugar / (double) sugarT * 100.0;
+                    NSInteger vegetableP = (double) vegetable / (double) vegetableT * 100.0;
+                    
+                    [newWeek setValue:[NSNumber numberWithInteger:milkP] forKey:@"milk"];
+                    [newWeek setValue:[NSNumber numberWithInteger:meatP] forKey:@"meat"];
+                    [newWeek setValue:[NSNumber numberWithInteger:peaP] forKey:@"pea"];
+                    [newWeek setValue:[NSNumber numberWithInteger:fruitP] forKey:@"fruit"];
+                    [newWeek setValue:[NSNumber numberWithInteger:fatP] forKey:@"fat"];
+                    [newWeek setValue:[NSNumber numberWithInteger:cerealP] forKey:@"cereal"];
+                    [newWeek setValue:[NSNumber numberWithInteger:sugarP] forKey:@"sugar"];
+                    [newWeek setValue:[NSNumber numberWithInteger:vegetableP] forKey:@"vegetable"];
+                    
+                    NSError *error;
+                    [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
+                    
+                    milk = meat = pea = fruit = fat = cereal = sugar = vegetable = 0;
+                    milkT = meatT = peaT = fruitT = fatT = cerealT = sugarT = vegetableT = 0;
+                }
             }
         }
         
