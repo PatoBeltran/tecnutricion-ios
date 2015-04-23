@@ -55,7 +55,6 @@
     else {
         NSManagedObject *matchRegister;
         NSString *day;
-        //Iterate through rows of table Day
         for(int i=0; i<matchObjects.count; i++){
             matchRegister = matchObjects[i];
             day = [matchRegister valueForKey:@"day"];
@@ -68,6 +67,8 @@
             [self.days addObject:day];
         }
     }
+    
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
     
     [self.dayChooser setItemList:self.days];
     
