@@ -42,9 +42,8 @@
     else {
         self.noDaysAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
-        
         [self setupColorsForView];
-        [self setProgress];
+        [self setProgress: [NSDate date]];
         self.dayChooser.isOptionalDropDown = NO;
         self.dayChooser.delegate = self;
         self.days = [[NSMutableArray alloc] init];
@@ -63,28 +62,55 @@
             //No diets found
         }
         else {
-            NSManagedObject *matchRegister;
-            NSString *day;
-            for(int i=0; i<matchObjects.count; i++){
-                matchRegister = matchObjects[i];
-                day = [matchRegister valueForKey:@"day"];
-                NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                [df setDateFormat:@"dd/MM/yyyy"];
-                NSDate *myDate = [df dateFromString: day];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
-                day = [formatter stringFromDate:myDate];
-                [self.days addObject:day];
+            self.noDaysAlert.hidden = YES;
+            self.innerWrapperView.hidden = NO;
+        
+            [self setupColorsForView];
+            [self setProgress: [NSDate date]];
+            self.dayChooser.isOptionalDropDown = NO;
+            self.dayChooser.delegate = self;
+            self.days = [[NSMutableArray alloc] init];
+        
+            //Generate drop list of past entries
+            NSFetchRequest *request = [[NSFetchRequest alloc]init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        
+            [request setEntity:entity];
+        
+            NSError *error;
+            NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+        
+            if([matchObjects count] == 0) {
+                //No diets found
             }
+            else {
+                NSManagedObject *matchRegister;
+                NSString *day;
+                for(int i=0; i<matchObjects.count; i++){
+                    matchRegister = matchObjects[i];
+                    day = [matchRegister valueForKey:@"day"];
+                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                    [df setDateFormat:@"dd/MM/yyyy"];
+                    NSDate *myDate = [df dateFromString: day];
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
+                    day = [formatter stringFromDate:myDate];
+                    [self.days addObject:day];
+                }
+            }
+        
+            self.diet = [TECUserDiet initFromLastDietInDatabase];
+        
+            [self.dayChooser setItemList:self.days];
+        
+            UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+            UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+            swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+            
+            [self.view addGestureRecognizer:tapBackground];
+            [self.view addGestureRecognizer:swipeDown];
         }
-        
-        self.diet = [TECUserDiet initFromLastDietInDatabase];
-        
-        [self.dayChooser setItemList:self.days];
-        
-        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
     }
 }
 
@@ -105,16 +131,15 @@
     [self.cerealProgress setupProgressIndicator];
     [self.fatProgress setupProgressIndicator];
     [self setupColorsForView];
-    [self setProgress];
+    [self setProgress:[NSDate date]];
 }
 
 #pragma mark - Progress modificators
 
-- (void)setProgress {
-    //@TODO - you shouldn't get values of today
+- (void)setProgress:(NSDate *) date{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    [self getProgressFromDBForDate:[dateFormat stringFromDate:[NSDate date]]];
+    [self getProgressFromDBForDate:[dateFormat stringFromDate:date]];
     
     [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
     [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
@@ -137,33 +162,6 @@
     [self.fatProgress setProgressColor:TECFatColor];
 }
 
-- (void)updateProgressForView {
-    if (self.vegetablesProgress.currentAmount.integerValue != self.dayProgress.vegetable.consumed) {
-        [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
-    }
-    if (self.milkProgress.currentAmount.integerValue != self.dayProgress.milk.consumed) {
-        [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
-    }
-    if (self.meatProgress.currentAmount.integerValue != self.dayProgress.meat.consumed) {
-        [self.meatProgress setProgressValue:self.dayProgress.meat.consumed forAmount:self.diet.meatAmount];
-    }
-    if (self.sugarProgress.currentAmount.integerValue != self.dayProgress.sugar.consumed) {
-        [self.sugarProgress setProgressValue:self.dayProgress.sugar.consumed forAmount:self.diet.sugarAmount];
-    }
-    if (self.peasProgress.currentAmount.integerValue != self.dayProgress.pea.consumed) {
-        [self.peasProgress setProgressValue:self.dayProgress.pea.consumed forAmount:self.diet.peaAmount];
-    }
-    if (self.fruitProgress.currentAmount.integerValue != self.dayProgress.fruit.consumed) {
-        [self.fruitProgress setProgressValue:self.dayProgress.fruit.consumed forAmount:self.diet.fruitAmount];
-    }
-    if (self.cerealProgress.currentAmount.integerValue != self.dayProgress.cereal.consumed) {
-        [self.cerealProgress setProgressValue:self.dayProgress.cereal.consumed forAmount:self.diet.cerealAmount];
-    }
-    if (self.fatProgress.currentAmount.integerValue != self.dayProgress.fat.consumed) {
-        [self.fatProgress setProgressValue:self.dayProgress.fat.consumed forAmount:self.diet.fatAmount];
-    }
-}
-
 #pragma mark - Database Interaction
 
 - (void)getProgressFromDBForDate:(NSString *)date {
@@ -175,9 +173,6 @@
 }
 
 - (void)updateValuesForItem:(NSString *)string {
-<<<<<<< HEAD
-    //    [self getValuesFromDBForDate:string];
-=======
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"EEEE, dd MMMM yyyy"];
     NSDate *myDate = [df dateFromString: string];
@@ -186,8 +181,9 @@
     string = [formatter stringFromDate:myDate];
     [self getProgressFromDBForDate:string];
     [self getDietFromDate:string];
->>>>>>> 3fda801310f9572f4722ecbb776f47780020c02f
-    [self updateProgressForView];
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
+    [self setProgress: myDate];
+
 }
 
 #pragma mark - UITextFieldDelegate
