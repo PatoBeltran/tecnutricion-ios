@@ -30,6 +30,7 @@
 @property (strong, nonatomic) TECDaySummary *dayProgress;
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSDate *dayBefore;
+@property (nonatomic) BOOL canrun;
 @end
 
 @implementation TECHistoryDaysViewController
@@ -41,13 +42,14 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
                                               inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    
+    self.canrun = true;
     [request setEntity:entity];
     
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
     
     if ([matchObjects count] <= 1) {
+        self.canrun = false;
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
     }
@@ -87,6 +89,16 @@
         
         [self.view addGestureRecognizer:tapBackground];
         [self.view addGestureRecognizer:swipeDown];
+    }
+}
+
+- (void)hideKeyboard:(id)sender {
+    [self.view endEditing:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if(self.canrun){
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
         [self.vegetablesProgress setupProgressIndicator];
@@ -100,10 +112,6 @@
         [self setupColorsForView];
         [self setProgress:self.dayBefore];
     }
-}
-
-- (void)hideKeyboard:(id)sender {
-    [self.view endEditing:YES];
 }
 
 #pragma mark - Progress modificators
