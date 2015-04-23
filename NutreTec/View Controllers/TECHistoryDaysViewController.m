@@ -78,7 +78,7 @@
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         [df setDateFormat:@"dd/MM/yyyy"];
         self.dayBefore = [df dateFromString: [matchObjects[matchObjects.count-2] valueForKey:@"day"]];
-        self.diet = [TECUserDiet initFromDateInDatabase:[matchObjects[matchObjects.count-2] valueForKey:@"day"]];
+        [self getDietFromDate:[matchObjects[matchObjects.count-2] valueForKey:@"diet"]];
     
         [self.dayChooser setItemList:self.days];
     
