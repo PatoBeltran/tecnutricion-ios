@@ -1929,27 +1929,32 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vegetables-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="t25-fZ-nds">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="t25-fZ-nds" secondAttribute="height" multiplier="37:40" id="eZ6-xV-9Y0"/>
                                                                     <constraint firstAttribute="height" constant="40" id="u2m-Fd-pxa"/>
                                                                     <constraint firstAttribute="width" constant="37" id="x2B-AY-MaA"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
+                                                                        <exclude reference="eZ6-xV-9Y0"/>
                                                                         <exclude reference="u2m-Fd-pxa"/>
                                                                         <exclude reference="x2B-AY-MaA"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="u2m-Fd-pxa"/>
-                                                                        <include reference="x2B-AY-MaA"/>
+                                                                        <include reference="eZ6-xV-9Y0"/>
+                                                                        <exclude reference="u2m-Fd-pxa"/>
+                                                                        <exclude reference="x2B-AY-MaA"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" secondItem="t25-fZ-nds" secondAttribute="height" multiplier="1.4285" id="3i1-U2-Tbf"/>
                                                             <constraint firstItem="t25-fZ-nds" firstAttribute="top" secondItem="Puq-Ap-h1T" secondAttribute="top" constant="8" id="Amz-rI-bg0"/>
                                                             <constraint firstAttribute="centerY" secondItem="Vkd-l3-jkN" secondAttribute="centerY" id="F8f-2a-YLO"/>
+                                                            <constraint firstAttribute="centerY" secondItem="t25-fZ-nds" secondAttribute="centerY" id="GHI-gt-97R"/>
                                                             <constraint firstItem="t25-fZ-nds" firstAttribute="leading" secondItem="Puq-Ap-h1T" secondAttribute="leading" constant="24" id="izk-Qa-oPX"/>
                                                             <constraint firstAttribute="centerX" secondItem="Vkd-l3-jkN" secondAttribute="centerX" constant="-34" id="zYx-3j-QLC"/>
                                                         </constraints>
@@ -1970,10 +1975,12 @@
                                                                 <exclude reference="t25-fZ-nds"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="3i1-U2-Tbf"/>
+                                                                <exclude reference="Amz-rI-bg0"/>
+                                                                <exclude reference="GHI-gt-97R"/>
+                                                                <exclude reference="izk-Qa-oPX"/>
                                                                 <exclude reference="F8f-2a-YLO"/>
                                                                 <exclude reference="zYx-3j-QLC"/>
-                                                                <exclude reference="Amz-rI-bg0"/>
-                                                                <exclude reference="izk-Qa-oPX"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -1982,17 +1989,19 @@
                                                                 <include reference="t25-fZ-nds"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="3i1-U2-Tbf"/>
+                                                                <exclude reference="Amz-rI-bg0"/>
+                                                                <include reference="GHI-gt-97R"/>
+                                                                <include reference="izk-Qa-oPX"/>
                                                                 <include reference="F8f-2a-YLO"/>
                                                                 <include reference="zYx-3j-QLC"/>
-                                                                <include reference="Amz-rI-bg0"/>
-                                                                <include reference="izk-Qa-oPX"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="InK-7Y-o19" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XK1-gD-pUv">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XK1-gD-pUv">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2101,18 +2110,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="PFL-8O-DjD"/>
+                                                                    <constraint firstAttribute="width" secondItem="pWg-Hr-g8q" secondAttribute="height" multiplier="23:40" id="QvV-s3-AvN"/>
                                                                     <constraint firstAttribute="width" constant="23" id="YIE-DZ-dZJ"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="PFL-8O-DjD"/>
+                                                                        <exclude reference="QvV-s3-AvN"/>
                                                                         <exclude reference="YIE-DZ-dZJ"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="PFL-8O-DjD"/>
-                                                                        <include reference="YIE-DZ-dZJ"/>
+                                                                        <exclude reference="PFL-8O-DjD"/>
+                                                                        <include reference="QvV-s3-AvN"/>
+                                                                        <exclude reference="YIE-DZ-dZJ"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2120,6 +2132,8 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="pWg-Hr-g8q" firstAttribute="top" secondItem="U4v-pN-TwM" secondAttribute="top" constant="8" id="1kq-Fe-Q92"/>
+                                                            <constraint firstAttribute="centerY" secondItem="pWg-Hr-g8q" secondAttribute="centerY" constant="-0.5" id="WOA-4y-yvQ"/>
+                                                            <constraint firstAttribute="height" secondItem="pWg-Hr-g8q" secondAttribute="height" multiplier="1.4285" id="sTC-wo-KWV"/>
                                                             <constraint firstAttribute="centerX" secondItem="dy1-He-OwR" secondAttribute="centerX" constant="-34" id="uZm-qi-ipZ"/>
                                                             <constraint firstItem="pWg-Hr-g8q" firstAttribute="leading" secondItem="U4v-pN-TwM" secondAttribute="leading" constant="28" id="v4k-6b-Qg7"/>
                                                             <constraint firstAttribute="centerY" secondItem="dy1-He-OwR" secondAttribute="centerY" id="vEj-d0-Qql"/>
@@ -2141,10 +2155,12 @@
                                                                 <exclude reference="pWg-Hr-g8q"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="1kq-Fe-Q92"/>
+                                                                <exclude reference="WOA-4y-yvQ"/>
+                                                                <exclude reference="sTC-wo-KWV"/>
+                                                                <exclude reference="v4k-6b-Qg7"/>
                                                                 <exclude reference="uZm-qi-ipZ"/>
                                                                 <exclude reference="vEj-d0-Qql"/>
-                                                                <exclude reference="1kq-Fe-Q92"/>
-                                                                <exclude reference="v4k-6b-Qg7"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2153,17 +2169,19 @@
                                                                 <include reference="pWg-Hr-g8q"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="1kq-Fe-Q92"/>
+                                                                <include reference="WOA-4y-yvQ"/>
+                                                                <include reference="sTC-wo-KWV"/>
+                                                                <include reference="v4k-6b-Qg7"/>
                                                                 <include reference="uZm-qi-ipZ"/>
                                                                 <include reference="vEj-d0-Qql"/>
-                                                                <include reference="1kq-Fe-Q92"/>
-                                                                <include reference="v4k-6b-Qg7"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDv-8D-0fT" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-qW-cbr">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-qW-cbr">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2266,18 +2284,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="PCd-Mq-cSP"/>
+                                                                    <constraint firstAttribute="width" secondItem="Tzw-4u-Egt" secondAttribute="height" multiplier="37:40" id="Vbu-Dw-Jkc"/>
                                                                     <constraint firstAttribute="width" constant="37" id="jiA-uN-dKS"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="PCd-Mq-cSP"/>
+                                                                        <exclude reference="Vbu-Dw-Jkc"/>
                                                                         <exclude reference="jiA-uN-dKS"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="PCd-Mq-cSP"/>
-                                                                        <include reference="jiA-uN-dKS"/>
+                                                                        <exclude reference="PCd-Mq-cSP"/>
+                                                                        <include reference="Vbu-Dw-Jkc"/>
+                                                                        <exclude reference="jiA-uN-dKS"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2287,7 +2308,9 @@
                                                             <constraint firstItem="Tzw-4u-Egt" firstAttribute="leading" secondItem="dbj-rF-uDN" secondAttribute="leading" constant="24" id="5Ge-yh-26K"/>
                                                             <constraint firstAttribute="centerX" secondItem="CMs-Ff-poc" secondAttribute="centerX" constant="-34" id="B1e-DZ-Hqd"/>
                                                             <constraint firstItem="Tzw-4u-Egt" firstAttribute="top" secondItem="dbj-rF-uDN" secondAttribute="top" constant="8" id="Jvc-rF-ubo"/>
+                                                            <constraint firstAttribute="centerY" secondItem="Tzw-4u-Egt" secondAttribute="centerY" constant="-0.5" id="ezw-TL-hDl"/>
                                                             <constraint firstAttribute="centerY" secondItem="CMs-Ff-poc" secondAttribute="centerY" id="wNQ-1u-3uQ"/>
+                                                            <constraint firstItem="Tzw-4u-Egt" firstAttribute="height" secondItem="dbj-rF-uDN" secondAttribute="height" multiplier="0.7" id="wsg-bJ-7cF"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2306,10 +2329,12 @@
                                                                 <exclude reference="Tzw-4u-Egt"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="B1e-DZ-Hqd"/>
-                                                                <exclude reference="wNQ-1u-3uQ"/>
                                                                 <exclude reference="5Ge-yh-26K"/>
                                                                 <exclude reference="Jvc-rF-ubo"/>
+                                                                <exclude reference="ezw-TL-hDl"/>
+                                                                <exclude reference="wsg-bJ-7cF"/>
+                                                                <exclude reference="B1e-DZ-Hqd"/>
+                                                                <exclude reference="wNQ-1u-3uQ"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2318,17 +2343,19 @@
                                                                 <include reference="Tzw-4u-Egt"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="5Ge-yh-26K"/>
+                                                                <exclude reference="Jvc-rF-ubo"/>
+                                                                <include reference="ezw-TL-hDl"/>
+                                                                <include reference="wsg-bJ-7cF"/>
                                                                 <include reference="B1e-DZ-Hqd"/>
                                                                 <include reference="wNQ-1u-3uQ"/>
-                                                                <include reference="5Ge-yh-26K"/>
-                                                                <include reference="Jvc-rF-ubo"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFd-dv-CZY" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mpw-Gb-gYt">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mpw-Gb-gYt">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2432,17 +2459,20 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="0cU-UM-tEs"/>
                                                                     <constraint firstAttribute="height" constant="40" id="Nkz-0m-Sd6"/>
+                                                                    <constraint firstAttribute="width" secondItem="eEQ-IC-qhf" secondAttribute="height" multiplier="3:4" id="OQe-Ew-Q6l"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="0cU-UM-tEs"/>
                                                                         <exclude reference="Nkz-0m-Sd6"/>
+                                                                        <exclude reference="OQe-Ew-Q6l"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="0cU-UM-tEs"/>
-                                                                        <include reference="Nkz-0m-Sd6"/>
+                                                                        <exclude reference="0cU-UM-tEs"/>
+                                                                        <exclude reference="Nkz-0m-Sd6"/>
+                                                                        <include reference="OQe-Ew-Q6l"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2451,7 +2481,9 @@
                                                         <constraints>
                                                             <constraint firstAttribute="centerY" secondItem="oHz-Em-OPX" secondAttribute="centerY" id="8IB-ey-fcF"/>
                                                             <constraint firstAttribute="centerX" secondItem="oHz-Em-OPX" secondAttribute="centerX" constant="-34" id="AH3-Ko-mMz"/>
+                                                            <constraint firstAttribute="height" secondItem="eEQ-IC-qhf" secondAttribute="height" multiplier="1.4285" id="P91-wF-dl0"/>
                                                             <constraint firstItem="eEQ-IC-qhf" firstAttribute="top" secondItem="zCG-BZ-TEt" secondAttribute="top" constant="8" id="Vbc-Bx-cIF"/>
+                                                            <constraint firstAttribute="centerY" secondItem="eEQ-IC-qhf" secondAttribute="centerY" constant="-0.5" id="nmw-Cx-FcR"/>
                                                             <constraint firstItem="eEQ-IC-qhf" firstAttribute="leading" secondItem="zCG-BZ-TEt" secondAttribute="leading" constant="26" id="r4S-mj-ZtR"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -2471,10 +2503,12 @@
                                                                 <exclude reference="eEQ-IC-qhf"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="P91-wF-dl0"/>
+                                                                <exclude reference="Vbc-Bx-cIF"/>
+                                                                <exclude reference="nmw-Cx-FcR"/>
+                                                                <exclude reference="r4S-mj-ZtR"/>
                                                                 <exclude reference="8IB-ey-fcF"/>
                                                                 <exclude reference="AH3-Ko-mMz"/>
-                                                                <exclude reference="Vbc-Bx-cIF"/>
-                                                                <exclude reference="r4S-mj-ZtR"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2483,17 +2517,19 @@
                                                                 <include reference="eEQ-IC-qhf"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="P91-wF-dl0"/>
+                                                                <exclude reference="Vbc-Bx-cIF"/>
+                                                                <include reference="nmw-Cx-FcR"/>
+                                                                <include reference="r4S-mj-ZtR"/>
                                                                 <include reference="8IB-ey-fcF"/>
                                                                 <include reference="AH3-Ko-mMz"/>
-                                                                <include reference="Vbc-Bx-cIF"/>
-                                                                <include reference="r4S-mj-ZtR"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYR-Fu-J8J" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NcT-e5-hMa">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NcT-e5-hMa">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2596,18 +2632,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="37" id="TdT-qh-Ke8"/>
+                                                                    <constraint firstAttribute="width" secondItem="hcR-NB-pDQ" secondAttribute="height" multiplier="37:40" id="m50-I8-Ojk"/>
                                                                     <constraint firstAttribute="height" constant="40" id="qfR-c0-taw"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="TdT-qh-Ke8"/>
+                                                                        <exclude reference="m50-I8-Ojk"/>
                                                                         <exclude reference="qfR-c0-taw"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="TdT-qh-Ke8"/>
-                                                                        <include reference="qfR-c0-taw"/>
+                                                                        <exclude reference="TdT-qh-Ke8"/>
+                                                                        <include reference="m50-I8-Ojk"/>
+                                                                        <exclude reference="qfR-c0-taw"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2616,8 +2655,10 @@
                                                         <constraints>
                                                             <constraint firstItem="hcR-NB-pDQ" firstAttribute="top" secondItem="ZNM-Hs-Slw" secondAttribute="top" constant="8" id="0PG-U9-LUL"/>
                                                             <constraint firstItem="hcR-NB-pDQ" firstAttribute="leading" secondItem="ZNM-Hs-Slw" secondAttribute="leading" constant="24" id="3rb-WO-Szw"/>
+                                                            <constraint firstAttribute="height" secondItem="hcR-NB-pDQ" secondAttribute="height" multiplier="1.4285" id="7bz-kh-ggT"/>
                                                             <constraint firstAttribute="centerX" secondItem="cW8-gX-b38" secondAttribute="centerX" constant="-34" id="SwZ-qd-Ta8"/>
                                                             <constraint firstAttribute="centerY" secondItem="cW8-gX-b38" secondAttribute="centerY" id="jA1-XN-kET"/>
+                                                            <constraint firstAttribute="centerY" secondItem="hcR-NB-pDQ" secondAttribute="centerY" constant="-0.5" id="yRl-Mi-DZ6"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2636,10 +2677,12 @@
                                                                 <exclude reference="hcR-NB-pDQ"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="SwZ-qd-Ta8"/>
-                                                                <exclude reference="jA1-XN-kET"/>
                                                                 <exclude reference="0PG-U9-LUL"/>
                                                                 <exclude reference="3rb-WO-Szw"/>
+                                                                <exclude reference="7bz-kh-ggT"/>
+                                                                <exclude reference="yRl-Mi-DZ6"/>
+                                                                <exclude reference="SwZ-qd-Ta8"/>
+                                                                <exclude reference="jA1-XN-kET"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2648,17 +2691,19 @@
                                                                 <include reference="hcR-NB-pDQ"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="0PG-U9-LUL"/>
+                                                                <include reference="3rb-WO-Szw"/>
+                                                                <include reference="7bz-kh-ggT"/>
+                                                                <include reference="yRl-Mi-DZ6"/>
                                                                 <include reference="SwZ-qd-Ta8"/>
                                                                 <include reference="jA1-XN-kET"/>
-                                                                <include reference="0PG-U9-LUL"/>
-                                                                <include reference="3rb-WO-Szw"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTl-DA-OWD" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tip-3B-B2u">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tip-3B-B2u">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2762,17 +2807,20 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="32" id="pwB-dM-tMj"/>
                                                                     <constraint firstAttribute="height" constant="40" id="qAj-1f-xVZ"/>
+                                                                    <constraint firstAttribute="width" secondItem="Fje-kl-IiM" secondAttribute="height" multiplier="4:5" id="t5S-Xz-dx5"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="pwB-dM-tMj"/>
                                                                         <exclude reference="qAj-1f-xVZ"/>
+                                                                        <exclude reference="t5S-Xz-dx5"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="pwB-dM-tMj"/>
-                                                                        <include reference="qAj-1f-xVZ"/>
+                                                                        <exclude reference="pwB-dM-tMj"/>
+                                                                        <exclude reference="qAj-1f-xVZ"/>
+                                                                        <include reference="t5S-Xz-dx5"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2783,6 +2831,8 @@
                                                             <constraint firstAttribute="centerX" secondItem="8i5-Ci-mEV" secondAttribute="centerX" constant="-34" id="6Ij-rh-mQk"/>
                                                             <constraint firstItem="Fje-kl-IiM" firstAttribute="top" secondItem="pjX-Uh-pZF" secondAttribute="top" constant="8" id="BUu-bP-kaq"/>
                                                             <constraint firstItem="Fje-kl-IiM" firstAttribute="leading" secondItem="pjX-Uh-pZF" secondAttribute="leading" constant="27" id="chZ-Sb-Zld"/>
+                                                            <constraint firstAttribute="centerY" secondItem="Fje-kl-IiM" secondAttribute="centerY" constant="-0.5" id="hPt-e3-p5U"/>
+                                                            <constraint firstItem="Fje-kl-IiM" firstAttribute="height" secondItem="pjX-Uh-pZF" secondAttribute="height" multiplier="0.7" id="z1p-Eg-oOL"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -2801,10 +2851,12 @@
                                                                 <exclude reference="Fje-kl-IiM"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="2ZC-yC-juL"/>
-                                                                <exclude reference="6Ij-rh-mQk"/>
                                                                 <exclude reference="BUu-bP-kaq"/>
                                                                 <exclude reference="chZ-Sb-Zld"/>
+                                                                <exclude reference="hPt-e3-p5U"/>
+                                                                <exclude reference="z1p-Eg-oOL"/>
+                                                                <exclude reference="2ZC-yC-juL"/>
+                                                                <exclude reference="6Ij-rh-mQk"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2813,17 +2865,19 @@
                                                                 <include reference="Fje-kl-IiM"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="BUu-bP-kaq"/>
+                                                                <include reference="chZ-Sb-Zld"/>
+                                                                <include reference="hPt-e3-p5U"/>
+                                                                <include reference="z1p-Eg-oOL"/>
                                                                 <include reference="2ZC-yC-juL"/>
                                                                 <include reference="6Ij-rh-mQk"/>
-                                                                <include reference="BUu-bP-kaq"/>
-                                                                <include reference="chZ-Sb-Zld"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMK-XG-gQA" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KJ1-wZ-EgA">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KJ1-wZ-EgA">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2930,23 +2984,28 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="34" id="3Ze-ui-OZJ"/>
                                                                     <constraint firstAttribute="height" constant="40" id="SOq-Uc-uxL"/>
+                                                                    <constraint firstAttribute="width" secondItem="IZ3-h3-qw0" secondAttribute="height" multiplier="17:20" id="iNd-f7-FpL"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="3Ze-ui-OZJ"/>
                                                                         <exclude reference="SOq-Uc-uxL"/>
+                                                                        <exclude reference="iNd-f7-FpL"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="3Ze-ui-OZJ"/>
-                                                                        <include reference="SOq-Uc-uxL"/>
+                                                                        <exclude reference="3Ze-ui-OZJ"/>
+                                                                        <exclude reference="SOq-Uc-uxL"/>
+                                                                        <include reference="iNd-f7-FpL"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="centerY" secondItem="IZ3-h3-qw0" secondAttribute="centerY" id="3RH-8G-2dS"/>
+                                                            <constraint firstAttribute="height" secondItem="IZ3-h3-qw0" secondAttribute="height" multiplier="1.4285" id="JHb-Hn-kzB"/>
                                                             <constraint firstAttribute="centerY" secondItem="2n2-GP-8fO" secondAttribute="centerY" id="aBa-tv-rLF"/>
                                                             <constraint firstItem="IZ3-h3-qw0" firstAttribute="top" secondItem="sJT-tO-Fyv" secondAttribute="top" constant="8" id="ppm-Hr-Dh0"/>
                                                             <constraint firstAttribute="centerX" secondItem="2n2-GP-8fO" secondAttribute="centerX" constant="-34" id="tGi-9x-fcx"/>
@@ -2969,10 +3028,12 @@
                                                                 <exclude reference="IZ3-h3-qw0"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="aBa-tv-rLF"/>
-                                                                <exclude reference="tGi-9x-fcx"/>
+                                                                <exclude reference="3RH-8G-2dS"/>
+                                                                <exclude reference="JHb-Hn-kzB"/>
                                                                 <exclude reference="ppm-Hr-Dh0"/>
                                                                 <exclude reference="zMU-Px-oO7"/>
+                                                                <exclude reference="aBa-tv-rLF"/>
+                                                                <exclude reference="tGi-9x-fcx"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2981,17 +3042,19 @@
                                                                 <include reference="IZ3-h3-qw0"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="3RH-8G-2dS"/>
+                                                                <include reference="JHb-Hn-kzB"/>
+                                                                <exclude reference="ppm-Hr-Dh0"/>
+                                                                <include reference="zMU-Px-oO7"/>
                                                                 <include reference="aBa-tv-rLF"/>
                                                                 <include reference="tGi-9x-fcx"/>
-                                                                <include reference="ppm-Hr-Dh0"/>
-                                                                <include reference="zMU-Px-oO7"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-xh-4P7" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4eT-Z6-bAV">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4eT-Z6-bAV">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -3094,18 +3157,21 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="29" id="6gf-Z4-0Dj"/>
+                                                                    <constraint firstAttribute="width" secondItem="Kq5-5g-Wi8" secondAttribute="height" multiplier="29:40" id="Ai9-rD-Ofa"/>
                                                                     <constraint firstAttribute="height" constant="40" id="w3O-oM-NkI"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="6gf-Z4-0Dj"/>
+                                                                        <exclude reference="Ai9-rD-Ofa"/>
                                                                         <exclude reference="w3O-oM-NkI"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="6gf-Z4-0Dj"/>
-                                                                        <include reference="w3O-oM-NkI"/>
+                                                                        <exclude reference="6gf-Z4-0Dj"/>
+                                                                        <include reference="Ai9-rD-Ofa"/>
+                                                                        <exclude reference="w3O-oM-NkI"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -3113,7 +3179,9 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="Kq5-5g-Wi8" firstAttribute="top" secondItem="WMZ-Kv-fx9" secondAttribute="top" constant="8" id="24R-bW-qwr"/>
+                                                            <constraint firstAttribute="height" secondItem="Kq5-5g-Wi8" secondAttribute="height" multiplier="1.4285" id="3dr-nd-HRy"/>
                                                             <constraint firstItem="Kq5-5g-Wi8" firstAttribute="leading" secondItem="WMZ-Kv-fx9" secondAttribute="leading" constant="28" id="5xD-0C-5Ey"/>
+                                                            <constraint firstAttribute="centerY" secondItem="Kq5-5g-Wi8" secondAttribute="centerY" constant="-0.5" id="K9i-Ft-y3m"/>
                                                             <constraint firstAttribute="centerY" secondItem="TCx-ua-7QK" secondAttribute="centerY" id="PV6-kS-vyr"/>
                                                             <constraint firstAttribute="centerX" secondItem="TCx-ua-7QK" secondAttribute="centerX" constant="-34" id="uOI-QW-cGj"/>
                                                         </constraints>
@@ -3134,10 +3202,12 @@
                                                                 <exclude reference="Kq5-5g-Wi8"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="24R-bW-qwr"/>
+                                                                <exclude reference="3dr-nd-HRy"/>
+                                                                <exclude reference="5xD-0C-5Ey"/>
+                                                                <exclude reference="K9i-Ft-y3m"/>
                                                                 <exclude reference="PV6-kS-vyr"/>
                                                                 <exclude reference="uOI-QW-cGj"/>
-                                                                <exclude reference="24R-bW-qwr"/>
-                                                                <exclude reference="5xD-0C-5Ey"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -3146,17 +3216,19 @@
                                                                 <include reference="Kq5-5g-Wi8"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="24R-bW-qwr"/>
+                                                                <include reference="3dr-nd-HRy"/>
+                                                                <include reference="5xD-0C-5Ey"/>
+                                                                <include reference="K9i-Ft-y3m"/>
                                                                 <include reference="PV6-kS-vyr"/>
                                                                 <include reference="uOI-QW-cGj"/>
-                                                                <include reference="24R-bW-qwr"/>
-                                                                <include reference="5xD-0C-5Ey"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USg-Rg-XD2" customClass="CCMBorderView">
                                                         <rect key="frame" x="297" y="20" width="68" height="55"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-q3-1Mu">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CWF-q3-1Mu">
                                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
