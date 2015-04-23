@@ -56,10 +56,21 @@
     
     [self getDietFromDB];
     
+    NSDate *sourceDate = [NSDate date];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval+3600*5 sinceDate:sourceDate];
+    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    self.currentDate = [dateFormat stringFromDate:[NSDate date]];
-     
+    self.currentDate = [dateFormat stringFromDate:destinationDate];
+    
     if (!self.diet) {
         self.noDietAlertView.hidden = NO;
         [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];

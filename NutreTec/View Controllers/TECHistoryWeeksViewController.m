@@ -28,7 +28,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (/* DISABLES CODE */ (NO)) {
+    //Generate drop list of past entries
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                              inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    
+    if (matchObjects.count < 7) {
         self.noWeeksAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
     }
