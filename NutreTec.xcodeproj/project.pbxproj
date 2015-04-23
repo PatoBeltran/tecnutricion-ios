@@ -20,6 +20,7 @@
 		233790231AC4792E0009FC2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233790211AC479010009FC2F /* Images.xcassets */; };
 		233B3B671AE598B600C2E7FF /* TECDietPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */; };
 		233B3B6A1AE598E000C2E7FF /* CCMPlayNDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */; };
+		235713921AE8B77200A5521A /* IQDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 235713911AE8B77200A5521A /* IQDropDownTextField.m */; };
 		2369F15A1AD21C9100DABCB2 /* TECReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */; };
 		2369F15C1AD2416900DABCB2 /* portions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2369F15B1AD2416900DABCB2 /* portions.plist */; };
 		2372E58B1AB8DD8600E696F5 /* ILLoaderProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2372E58A1AB8DD8600E696F5 /* ILLoaderProgressView.m */; };
@@ -84,6 +85,8 @@
 		233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECDietPopupViewController.m; sourceTree = "<group>"; };
 		233B3B681AE598E000C2E7FF /* CCMPlayNDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCMPlayNDropView.h; path = CCMPlayNDropView/CCMPlayNDropView.h; sourceTree = "<group>"; };
 		233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCMPlayNDropView.m; path = CCMPlayNDropView/CCMPlayNDropView.m; sourceTree = "<group>"; };
+		235713901AE8B77200A5521A /* IQDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQDropDownTextField.h; sourceTree = "<group>"; };
+		235713911AE8B77200A5521A /* IQDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQDropDownTextField.m; sourceTree = "<group>"; };
 		2369F1581AD21C9100DABCB2 /* TECReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceCell.h; sourceTree = "<group>"; };
 		2369F1591AD21C9100DABCB2 /* TECReferenceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceCell.m; sourceTree = "<group>"; };
 		2369F15B1AD2416900DABCB2 /* portions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = portions.plist; sourceTree = "<group>"; };
@@ -219,6 +222,15 @@
 				233B3B691AE598E000C2E7FF /* CCMPlayNDropView.m */,
 			);
 			name = CCMPlayNDropView;
+			sourceTree = "<group>";
+		};
+		2357138F1AE8B77200A5521A /* IQDropDownTextField */ = {
+			isa = PBXGroup;
+			children = (
+				235713901AE8B77200A5521A /* IQDropDownTextField.h */,
+				235713911AE8B77200A5521A /* IQDropDownTextField.m */,
+			);
+			path = IQDropDownTextField;
 			sourceTree = "<group>";
 		};
 		2372E5881AB8DD8600E696F5 /* ILLoaderProgress */ = {
@@ -371,6 +383,7 @@
 		237E573D1AB675D70052802F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				2357138F1AE8B77200A5521A /* IQDropDownTextField */,
 				237D13001AE8401E00DA70BF /* BTSpiderPlotterView */,
 				23082A621AE5C89100D0EEE3 /* SlidingContainerViewController */,
 				233B3B6B1AE598EC00C2E7FF /* CCMPlayNDropView */,
@@ -559,6 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				235713921AE8B77200A5521A /* IQDropDownTextField.m in Sources */,
 				237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */,
 				23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */,
 				23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */,

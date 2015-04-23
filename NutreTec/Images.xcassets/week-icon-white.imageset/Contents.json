@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "logo.png"
+      "filename" : "bar_chart_2_icon.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "logo@2x.png"
+      "filename" : "bar_chart_2_icon@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "logo@3x.png"
+      "filename" : "bar_chart_2_icon@3x.png"
     }
   ],
   "info" : {
