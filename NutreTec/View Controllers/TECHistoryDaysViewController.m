@@ -103,6 +103,7 @@
 #pragma mark - Progress modificators
 
 - (void)setProgress:(NSDate *) date{
+    //@TODO - you shouldn't get values of today
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
     [self getProgressFromDBForDate:[dateFormat stringFromDate:date]];
