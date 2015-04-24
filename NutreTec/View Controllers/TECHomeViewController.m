@@ -55,10 +55,10 @@
         [self showSendFeeback];
     }
     
-    //[self getDietFromDB];
+    [self getDietFromDB];
     
     //Use for generating database
-    [self genDB];
+    //[self genDB];
     
     NSDate *sourceDate = [NSDate date];
     
@@ -110,6 +110,7 @@
 }
 
 -(void) genDB {
+    /*
     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
     NSDate *today = [NSDate date];
@@ -131,10 +132,10 @@
     
     NSError *error;
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
-    
+    */
     [self getDietFromDB];
     
-    for(int i=10; i>0; i--) {
+    for(int i=1; i<10; i++) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];
@@ -146,7 +147,7 @@
         NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
         NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
         
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
         NSString *date = [dateFormat stringFromDate:destinationDate];
