@@ -29,13 +29,27 @@
 @property (nonatomic, strong) TECUserDiet *diet;
 @property (strong, nonatomic) TECDaySummary *dayProgress;
 @property (strong, nonatomic) NSMutableArray *days;
+@property (strong, nonatomic) NSDate *dayBefore;
+@property (nonatomic) BOOL canrun;
 @end
 
 @implementation TECHistoryDaysViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (/* DISABLES CODE */ (NO)) {
+    
+    //Generate drop list of past entries
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                              inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    self.canrun = true;
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    
+    if ([matchObjects count] <= 1) {
+        self.canrun = false;
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
     }
@@ -43,74 +57,37 @@
         self.noDaysAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         [self setupColorsForView];
-        [self setProgress: [NSDate date]];
         self.dayChooser.isOptionalDropDown = NO;
         self.dayChooser.delegate = self;
         self.days = [[NSMutableArray alloc] init];
         
-        //Generate drop list of past entries
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
-                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        
-        [request setEntity:entity];
-        
-        NSError *error;
-        NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-        
-        if([matchObjects count] == 0) {
-            //No diets found
+        NSManagedObject *matchRegister;
+        NSString *day;
+        for(long i=(matchObjects.count-2); i>=0; i--){
+            matchRegister = matchObjects[i];
+            day = [matchRegister valueForKey:@"day"];
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"dd/MM/yyyy"];
+            NSDate *myDate = [df dateFromString: day];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
+            day = [formatter stringFromDate:myDate];
+            [self.days addObject:day];
         }
-        else {
-            self.noDaysAlert.hidden = YES;
-            self.innerWrapperView.hidden = NO;
         
-            [self setupColorsForView];
-            [self setProgress: [NSDate date]];
-            self.dayChooser.isOptionalDropDown = NO;
-            self.dayChooser.delegate = self;
-            self.days = [[NSMutableArray alloc] init];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"dd/MM/yyyy"];
+        self.dayBefore = [df dateFromString: [matchObjects[matchObjects.count-2] valueForKey:@"day"]];
+        [self getDietFromDate:[matchObjects[matchObjects.count-2] valueForKey:@"diet"]];
+    
+        [self.dayChooser setItemList:self.days];
+    
+        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
         
-            //Generate drop list of past entries
-            NSFetchRequest *request = [[NSFetchRequest alloc]init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
-                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        
-            [request setEntity:entity];
-        
-            NSError *error;
-            NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-        
-            if([matchObjects count] == 0) {
-                //No diets found
-            }
-            else {
-                NSManagedObject *matchRegister;
-                NSString *day;
-                for(int i=0; i<matchObjects.count; i++){
-                    matchRegister = matchObjects[i];
-                    day = [matchRegister valueForKey:@"day"];
-                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                    [df setDateFormat:@"dd/MM/yyyy"];
-                    NSDate *myDate = [df dateFromString: day];
-                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    [formatter setDateFormat:@"EEEE, dd MMMM yyyy"];
-                    day = [formatter stringFromDate:myDate];
-                    [self.days addObject:day];
-                }
-            }
-        
-            self.diet = [TECUserDiet initFromLastDietInDatabase];
-        
-            [self.dayChooser setItemList:self.days];
-        
-            UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-            UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-            swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-            
-            [self.view addGestureRecognizer:tapBackground];
-            [self.view addGestureRecognizer:swipeDown];
-        }
+        [self.view addGestureRecognizer:tapBackground];
+        [self.view addGestureRecognizer:swipeDown];
     }
 }
 
@@ -120,18 +97,20 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    [self.vegetablesProgress setupProgressIndicator];
-    [self.milkProgress setupProgressIndicator];
-    [self.meatProgress setupProgressIndicator];
-    [self.sugarProgress setupProgressIndicator];
-    [self.peasProgress setupProgressIndicator];
-    [self.fruitProgress setupProgressIndicator];
-    [self.cerealProgress setupProgressIndicator];
-    [self.fatProgress setupProgressIndicator];
-    [self setupColorsForView];
-    [self setProgress:[NSDate date]];
+    if(self.canrun){
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+        [self.vegetablesProgress setupProgressIndicator];
+        [self.milkProgress setupProgressIndicator];
+        [self.meatProgress setupProgressIndicator];
+        [self.sugarProgress setupProgressIndicator];
+        [self.peasProgress setupProgressIndicator];
+        [self.fruitProgress setupProgressIndicator];
+        [self.cerealProgress setupProgressIndicator];
+        [self.fatProgress setupProgressIndicator];
+        [self setupColorsForView];
+        [self setProgress:self.dayBefore];
+    }
 }
 
 #pragma mark - Progress modificators
