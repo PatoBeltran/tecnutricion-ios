@@ -11,6 +11,8 @@
 #import "DSBarChart.h"
 #import "BTSpiderPlotterView.h"
 #import "TECNutreTecCore.h"
+#import "TECUserDiet.h"
+#import "TECDaySummary.h"
 
 @interface TECHistoryMonthsViewController () <IQDropDownTextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *innerWrapperView;
@@ -21,6 +23,12 @@
 @property (strong, nonatomic) BTSpiderPlotterView *spiderPlot;
 @property (strong, nonatomic) DSBarChart *barChart;
 @property (strong, nonatomic) NSArray *monthAmount;
+@property (strong, nonatomic) NSMutableArray *days;
+@property (strong, nonatomic) NSMutableArray *weeks;
+@property (strong, nonatomic) TECUserDiet *diet;
+@property (strong, nonatomic) TECDaySummary *progress;
+@property (nonatomic) NSInteger firstMonday;
+@property (nonatomic) BOOL canrun;
 @end
 
 @implementation TECHistoryMonthsViewController
