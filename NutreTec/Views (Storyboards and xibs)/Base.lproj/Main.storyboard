@@ -2251,17 +2251,19 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meat-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-4u-Egt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="Tzw-4u-Egt" secondAttribute="height" multiplier="43:44" id="eWJ-zi-2gD"/>
                                                                     <constraint firstAttribute="width" secondItem="Tzw-4u-Egt" secondAttribute="height" multiplier="18:19" id="oEk-YZ-oC1"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
+                                                                        <exclude reference="eWJ-zi-2gD"/>
                                                                         <exclude reference="oEk-YZ-oC1"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="25" y="6" width="43" height="44"/>
+                                                                <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="oEk-YZ-oC1"/>
+                                                                        <include reference="eWJ-zi-2gD"/>
+                                                                        <exclude reference="oEk-YZ-oC1"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2614,20 +2616,22 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cereal-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="hcR-NB-pDQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="hcR-NB-pDQ" secondAttribute="height" multiplier="8:9" id="2v3-v0-LVy"/>
                                                                     <constraint firstAttribute="width" secondItem="hcR-NB-pDQ" secondAttribute="height" multiplier="18:19" id="3QP-iM-XUZ"/>
                                                                     <constraint firstAttribute="width" secondItem="hcR-NB-pDQ" secondAttribute="height" multiplier="37:42" id="GPG-qo-BEx"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
+                                                                        <exclude reference="2v3-v0-LVy"/>
                                                                         <exclude reference="3QP-iM-XUZ"/>
                                                                         <exclude reference="GPG-qo-BEx"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="26" y="6" width="39" height="44"/>
+                                                                <variation key="widthClass=compact">
                                                                     <mask key="constraints">
+                                                                        <include reference="2v3-v0-LVy"/>
                                                                         <exclude reference="3QP-iM-XUZ"/>
-                                                                        <include reference="GPG-qo-BEx"/>
+                                                                        <exclude reference="GPG-qo-BEx"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -3161,17 +3165,19 @@
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fat-color-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-5g-Wi8">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="Kq5-5g-Wi8" secondAttribute="height" multiplier="3:4" id="0Gv-EE-41A"/>
                                                                     <constraint firstAttribute="width" secondItem="Kq5-5g-Wi8" secondAttribute="height" multiplier="31:38" id="YDV-q9-Ac7"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
+                                                                        <exclude reference="0Gv-EE-41A"/>
                                                                         <exclude reference="YDV-q9-Ac7"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="30" y="6" width="36" height="44"/>
+                                                                <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <include reference="YDV-q9-Ac7"/>
+                                                                        <include reference="0Gv-EE-41A"/>
+                                                                        <exclude reference="YDV-q9-Ac7"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
