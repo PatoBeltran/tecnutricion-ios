@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Day" syncable="YES">
         <attribute name="cereal" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,7 +10,6 @@
         <attribute name="pea" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sugar" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="vegetable" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="staticDiet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Diet" syncable="YES"/>
     </entity>
     <entity name="Diet" syncable="YES">
         <attribute name="cereal" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -25,7 +24,7 @@
         <attribute name="vegetable" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="9" positionY="126" width="128" height="195"/>
+        <element name="Day" positionX="9" positionY="126" width="128" height="180"/>
         <element name="Diet" positionX="-263" positionY="84" width="128" height="195"/>
     </elements>
 </model>
