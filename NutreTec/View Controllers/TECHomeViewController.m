@@ -181,6 +181,7 @@
     [self.fruitProgress setupProgressIndicator];
     [self.cerealProgress setupProgressIndicator];
     [self.fatProgress setupProgressIndicator];
+    [self setupGesturesForView];
     [self setupColorsForView];
     [self setProgress];
 }
@@ -197,6 +198,48 @@
     [self.fruitProgress setProgressValue:self.todaysProgress.fruit.consumed forAmount:self.diet.fruitAmount];
     [self.cerealProgress setProgressValue:self.todaysProgress.cereal.consumed forAmount:self.diet.cerealAmount];
     [self.fatProgress setProgressValue:self.todaysProgress.fat.consumed forAmount:self.diet.fatAmount];
+}
+
+- (void)setupGesturesForView {
+    UILongPressGestureRecognizer *veggieGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressVegetables)];
+    veggieGesture.minimumPressDuration = 0.5;
+    veggieGesture.allowableMovement = 600;
+    [self.vegetableProgress addGestureRecognizer:veggieGesture];
+    
+    UILongPressGestureRecognizer *milkGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressMilk)];
+    milkGesture.minimumPressDuration = 0.5;
+    milkGesture.allowableMovement = 600;
+    [self.milkProgress addGestureRecognizer:milkGesture];
+    
+    UILongPressGestureRecognizer *meatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressMeat)];
+    meatGesture.minimumPressDuration = 0.5;
+    meatGesture.allowableMovement = 600;
+    [self.meatProgress addGestureRecognizer:meatGesture];
+    
+    UILongPressGestureRecognizer *sugarGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressSugar)];
+    sugarGesture.minimumPressDuration = 0.5;
+    sugarGesture.allowableMovement = 600;
+    [self.sugarProgress addGestureRecognizer:sugarGesture];
+    
+    UILongPressGestureRecognizer *peaGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressPea)];
+    peaGesture.minimumPressDuration = 0.5;
+    peaGesture.allowableMovement = 600;
+    [self.peaProgress addGestureRecognizer:peaGesture];
+    
+    UILongPressGestureRecognizer *fruitGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressFruit)];
+    fruitGesture.minimumPressDuration = 0.5;
+    fruitGesture.allowableMovement = 600;
+    [self.fruitProgress addGestureRecognizer:fruitGesture];
+    
+    UILongPressGestureRecognizer *cerealGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressCereal)];
+    cerealGesture.minimumPressDuration = 0.5;
+    cerealGesture.allowableMovement = 600;
+    [self.cerealProgress addGestureRecognizer:cerealGesture];
+    
+    UILongPressGestureRecognizer *fatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressFat)];
+    fatGesture.minimumPressDuration = 0.5;
+    fatGesture.allowableMovement = 600;
+    [self.fatProgress addGestureRecognizer:fatGesture];
 }
 
 - (void)setupColorsForView {
@@ -417,6 +460,86 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self setProgress];
     }];
+}
+
+#pragma mark - Handle Descress
+
+- (void)descressPortionForType:(TECPortionType)portionType {
+    switch (portionType) {
+        case TECPortionTypeVegetables:
+            if (self.todaysProgress.vegetable.consumed > 0) {
+                self.todaysProgress.vegetable.consumed--;
+            }
+            break;
+        case TECPortionTypeMilk:
+            if (self.todaysProgress.milk.consumed > 0) {
+                self.todaysProgress.milk.consumed--;
+            }
+            break;
+        case TECPortionTypeMeat:
+            if (self.todaysProgress.meat.consumed > 0) {
+                self.todaysProgress.meat.consumed--;
+            }
+            break;
+        case TECPortionTypeSugar:
+            if (self.todaysProgress.sugar.consumed > 0) {
+                self.todaysProgress.sugar.consumed--;
+            }
+            break;
+        case TECPortionTypePea:
+            if (self.todaysProgress.pea.consumed > 0) {
+                self.todaysProgress.pea.consumed--;
+            }
+            break;
+        case TECPortionTypeFruit:
+            if (self.todaysProgress.fruit.consumed > 0) {
+                self.todaysProgress.fruit.consumed--;
+            }
+            break;
+        case TECPortionTypeCereal:
+            if (self.todaysProgress.cereal.consumed > 0) {
+                self.todaysProgress.cereal.consumed--;
+            }
+            break;
+        case TECPortionTypeFat:
+            if (self.todaysProgress.fat.consumed > 0) {
+                self.todaysProgress.fat.consumed--;
+            }
+            break;
+    }
+    [self updateProgressForView];
+}
+
+- (void)decressVegetables {
+    [self descressPortionForType:TECPortionTypeVegetables];
+}
+
+- (void)decressMilk {
+    [self descressPortionForType:TECPortionTypeMilk];
+}
+
+- (void)decressMeat {
+    [self descressPortionForType:TECPortionTypeMeat];
+}
+
+- (void)decressSugar {
+    [self descressPortionForType:TECPortionTypeSugar];
+}
+
+- (void)decressPea {
+    [self descressPortionForType:TECPortionTypePea];
+}
+
+- (void)decressFruit {
+    [self descressPortionForType:TECPortionTypeFruit];
+}
+
+- (void)decressCereal {
+    [self descressPortionForType:TECPortionTypeCereal];
+}
+
+- (void)decressFat {
+    [self descressPortionForType:TECPortionTypeFat];
 }
 
 @end

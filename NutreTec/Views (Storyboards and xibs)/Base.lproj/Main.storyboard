@@ -3798,9 +3798,6 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3838,9 +3835,6 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3878,9 +3872,6 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3918,9 +3909,6 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3965,9 +3953,6 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
