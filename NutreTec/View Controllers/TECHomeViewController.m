@@ -136,7 +136,7 @@
     [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fat"];
     [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fruit"];
     [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"pea"];
-    [newDiet setValue:self.currentDate forKey:@"fecha"];
+    [newDiet setValue:self.currentDate forKey:@"date"];
     [newDiet setValue:@"static" forKey:@"type"];
     
     NSError *error;

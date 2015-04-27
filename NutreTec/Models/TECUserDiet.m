@@ -57,7 +57,7 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
                                                  fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
                                                 cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
                                                    fat:[[matchRegister valueForKey:@"fat"] integerValue]
-                                                dietId:[matchRegister valueForKey:@"fecha"]];
+                                                dietId:[matchRegister valueForKey:@"date"]];
     }
 }
 
@@ -66,7 +66,7 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
                                                   inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"fecha like %@", date];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date like %@", date];
     [fetchRequest setPredicate:predicate];
     [fetchRequest setEntity:entityDiet];
     
@@ -86,7 +86,7 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
                                                  fruit:[[matchRegister valueForKey:@"fruit"] integerValue]
                                                 cereal:[[matchRegister valueForKey:@"cereal"] integerValue]
                                                    fat:[[matchRegister valueForKey:@"fat"] integerValue]
-                                                dietId:[matchRegister valueForKey:@"fecha"]];
+                                                dietId:[matchRegister valueForKey:@"date"]];
     }
 }
 
@@ -108,7 +108,7 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
     [newDiet setValue:[NSNumber numberWithInteger:fat] forKey:@"fat"];
     [newDiet setValue:[NSNumber numberWithInteger:cereal] forKey:@"cereal"];
      
-    [newDiet setValue:currentDate forKey:@"fecha"];
+    [newDiet setValue:currentDate forKey:@"date"];
     [newDiet setValue:@"static" forKey:@"type"];
     
     NSError *error;

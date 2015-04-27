@@ -177,7 +177,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     if([matchObjects count] != 0) {
         NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
         NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        NSPredicate *predicateDiet = [NSPredicate predicateWithFormat:@"fecha like %@", [matchObjects[0] valueForKey:@"diet"]];
+        NSPredicate *predicateDiet = [NSPredicate predicateWithFormat:@"date like %@", [matchObjects[0] valueForKey:@"diet"]];
         
         [requestDiet setEntity:entityDiet];
         [requestDiet setPredicate:predicateDiet];
