@@ -1,0 +1,117 @@
+
+/* Class = "UILabel"; text = "AZÚCARES"; ObjectID = "03I-rb-8Oj"; */
+"03I-rb-8Oj.text" = "AZÚCARES";
+
+/* Class = "UILabel"; text = "FEEDBACK"; ObjectID = "0Rs-zd-B8p"; */
+"0Rs-zd-B8p.text" = "FEEDBACK";
+
+/* Class = "UILabel"; text = "LEGUMINOSAS"; ObjectID = "0SE-zT-dxi"; */
+"0SE-zT-dxi.text" = "LEGUMINOSAS";
+
+/* Class = "UIButton"; normalTitle = "Guardar"; ObjectID = "197-IY-HRC"; */
+"197-IY-HRC.normalTitle" = "Guardar";
+
+/* Class = "UILabel"; text = "REFERENCIA"; ObjectID = "1eD-Ib-wP8"; */
+"1eD-Ib-wP8.text" = "REFERENCIA";
+
+/* Class = "UILabel"; text = "LECHE"; ObjectID = "2hy-in-B21"; */
+"2hy-in-B21.text" = "LECHE";
+
+/* Class = "UILabel"; text = "FRUTAS"; ObjectID = "2n2-GP-8fO"; */
+"2n2-GP-8fO.text" = "FRUTAS";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "4eT-Z6-bAV"; */
+"4eT-Z6-bAV.placeholder" = "00";
+
+/* Class = "UILabel"; text = "Una ración es igual a:"; ObjectID = "842-GF-7zM"; */
+"842-GF-7zM.text" = "Una ración es igual a:";
+
+/* Class = "UILabel"; text = "DIETA"; ObjectID = "8PY-Vv-7dZ"; */
+"8PY-Vv-7dZ.text" = "DIETA";
+
+/* Class = "UILabel"; text = "LEGUMINOSAS"; ObjectID = "8i5-Ci-mEV"; */
+"8i5-Ci-mEV.text" = "LEGUMINOSAS";
+
+/* Class = "UILabel"; text = "CARNES"; ObjectID = "CMs-Ff-poc"; */
+"CMs-Ff-poc.text" = "CARNES";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "CWF-q3-1Mu"; */
+"CWF-q3-1Mu.placeholder" = "00";
+
+/* Class = "UILabel"; text = "¿CÓMO VOY?"; ObjectID = "EhZ-ER-XVY"; */
+"EhZ-ER-XVY.text" = "¿CÓMO VOY?";
+
+/* Class = "UILabel"; text = "VEGETALES"; ObjectID = "FYM-bm-ttG"; */
+"FYM-bm-ttG.text" = "VEGETALES";
+
+/* Class = "UILabel"; text = "GRASAS"; ObjectID = "HAB-GJ-do7"; */
+"HAB-GJ-do7.text" = "GRASAS";
+
+/* Class = "UILabel"; text = "CEREALES"; ObjectID = "J5P-iQ-Tfv"; */
+"J5P-iQ-Tfv.text" = "CEREALES";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "KJ1-wZ-EgA"; */
+"KJ1-wZ-EgA.placeholder" = "00";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "NcT-e5-hMa"; */
+"NcT-e5-hMa.placeholder" = "00";
+
+/* Class = "UILabel"; text = "INICIO"; ObjectID = "OsR-5m-LRw"; */
+"OsR-5m-LRw.text" = "INICIO";
+
+/* Class = "UILabel"; text = "¡Todavia no tienes dieta!"; ObjectID = "T2w-at-0bh"; */
+"T2w-at-0bh.text" = "¡Todavia no tienes dieta!";
+
+/* Class = "UILabel"; text = "GRASAS"; ObjectID = "TCx-ua-7QK"; */
+"TCx-ua-7QK.text" = "GRASAS";
+
+/* Class = "UILabel"; text = "¿CÓMO VOY?"; ObjectID = "UvH-My-LUL"; */
+"UvH-My-LUL.text" = "¿CÓMO VOY?";
+
+/* Class = "UILabel"; text = "VEGETALES"; ObjectID = "Vkd-l3-jkN"; */
+"Vkd-l3-jkN.text" = "VEGETALES";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "XK1-gD-pUv"; */
+"XK1-gD-pUv.placeholder" = "00";
+
+/* Class = "UILabel"; text = "¡Necesitas mínimo un día para ver tu historial!"; ObjectID = "YWv-SJ-jHM"; */
+"YWv-SJ-jHM.text" = "¡Necesitas mínimo un día para ver tu historial!";
+
+/* Class = "UILabel"; text = "TU DÍA"; ObjectID = "agd-mb-8Xx"; */
+"agd-mb-8Xx.text" = "TU DÍA";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "b8w-qW-cbr"; */
+"b8w-qW-cbr.placeholder" = "00";
+
+/* Class = "UILabel"; text = "CEREALES"; ObjectID = "cW8-gX-b38"; */
+"cW8-gX-b38.text" = "CEREALES";
+
+/* Class = "UILabel"; text = "LECHE"; ObjectID = "dy1-He-OwR"; */
+"dy1-He-OwR.text" = "LECHE";
+
+/* Class = "UILabel"; text = "CARNES"; ObjectID = "l35-Od-K8H"; */
+"l35-Od-K8H.text" = "CARNES";
+
+/* Class = "UILabel"; text = "REFERENCIA"; ObjectID = "lRJ-eT-dVG"; */
+"lRJ-eT-dVG.text" = "REFERENCIA";
+
+/* Class = "UILabel"; text = "DIETA"; ObjectID = "lXk-hU-HqM"; */
+"lXk-hU-HqM.text" = "DIETA";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "mpw-Gb-gYt"; */
+"mpw-Gb-gYt.placeholder" = "00";
+
+/* Class = "UILabel"; text = "Ingresala en la sección de dieta."; ObjectID = "n4t-vD-Yqe"; */
+"n4t-vD-Yqe.text" = "Ingresala en la sección de dieta.";
+
+/* Class = "UILabel"; text = "AZÚCARES"; ObjectID = "oHz-Em-OPX"; */
+"oHz-Em-OPX.text" = "AZÚCARES";
+
+/* Class = "UILabel"; text = "FRUTAS"; ObjectID = "ozj-Xd-FVX"; */
+"ozj-Xd-FVX.text" = "FRUTAS";
+
+/* Class = "UITextField"; placeholder = "00"; ObjectID = "tip-3B-B2u"; */
+"tip-3B-B2u.placeholder" = "00";
+
+/* Class = "UILabel"; text = "Ingresa las porciones de tu dieta."; ObjectID = "yRD-pa-kUg"; */
+"yRD-pa-kUg.text" = "Ingresa las porciones de tu dieta.";

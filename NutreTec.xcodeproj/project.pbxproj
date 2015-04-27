@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		193446151AEDA2D900D1168B /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193446071AEDA2D900D1168B /* CLWeeklyCalendarView.m */; };
+		193446161AEDA2D900D1168B /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193446091AEDA2D900D1168B /* DailyCalendarView.m */; };
+		193446171AEDA2D900D1168B /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1934460B1AEDA2D900D1168B /* DayTitleLabel.m */; };
+		193446181AEDA2D900D1168B /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1934460E1AEDA2D900D1168B /* NSDate+CL.m */; };
+		193446191AEDA2D900D1168B /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 193446101AEDA2D900D1168B /* NSDictionary+CL.m */; };
+		1934461A1AEDA2D900D1168B /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 193446121AEDA2D900D1168B /* UIColor+CL.m */; };
+		1934461B1AEDA2D900D1168B /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 193446141AEDA2D900D1168B /* UIImage+CL.m */; };
+		1934461E1AEDA97100D1168B /* TECHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1934461D1AEDA97100D1168B /* TECHistoryViewController.m */; };
 		230627F01AD0B3E70055BFBB /* TECPortionMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 230627EF1AD0B3E70055BFBB /* TECPortionMenuItem.m */; };
 		230627F31AD0BACD0055BFBB /* TECAddPortionMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 230627F21AD0BACD0055BFBB /* TECAddPortionMenu.m */; };
 		230DF8F11AE5D1D3003B813C /* SlidingContainerSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230DF8EF1AE5D1D3003B813C /* SlidingContainerSliderView.swift */; };
@@ -61,6 +69,24 @@
 
 /* Begin PBXFileReference section */
 		01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.debug.xcconfig"; sourceTree = "<group>"; };
+		193446061AEDA2D900D1168B /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
+		193446071AEDA2D900D1168B /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
+		193446081AEDA2D900D1168B /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
+		193446091AEDA2D900D1168B /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
+		1934460A1AEDA2D900D1168B /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
+		1934460B1AEDA2D900D1168B /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
+		1934460D1AEDA2D900D1168B /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
+		1934460E1AEDA2D900D1168B /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
+		1934460F1AEDA2D900D1168B /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
+		193446101AEDA2D900D1168B /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
+		193446111AEDA2D900D1168B /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
+		193446121AEDA2D900D1168B /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
+		193446131AEDA2D900D1168B /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
+		193446141AEDA2D900D1168B /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		1934461C1AEDA97100D1168B /* TECHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECHistoryViewController.h; sourceTree = "<group>"; };
+		1934461D1AEDA97100D1168B /* TECHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECHistoryViewController.m; sourceTree = "<group>"; };
+		1934461F1AEE0F6000D1168B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		193446201AEE0F6000D1168B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		230627EE1AD0B3E70055BFBB /* TECPortionMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECPortionMenuItem.h; sourceTree = "<group>"; };
 		230627EF1AD0B3E70055BFBB /* TECPortionMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECPortionMenuItem.m; sourceTree = "<group>"; };
 		230627F11AD0BACD0055BFBB /* TECAddPortionMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECAddPortionMenu.h; sourceTree = "<group>"; };
@@ -182,6 +208,35 @@
 				66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		193446051AEDA2D900D1168B /* CLWeeklyCalendarViewSourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				193446061AEDA2D900D1168B /* CLWeeklyCalendarView.h */,
+				193446071AEDA2D900D1168B /* CLWeeklyCalendarView.m */,
+				193446081AEDA2D900D1168B /* DailyCalendarView.h */,
+				193446091AEDA2D900D1168B /* DailyCalendarView.m */,
+				1934460A1AEDA2D900D1168B /* DayTitleLabel.h */,
+				1934460B1AEDA2D900D1168B /* DayTitleLabel.m */,
+				1934460C1AEDA2D900D1168B /* Misc */,
+			);
+			path = CLWeeklyCalendarViewSourceCode;
+			sourceTree = "<group>";
+		};
+		1934460C1AEDA2D900D1168B /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				1934460D1AEDA2D900D1168B /* NSDate+CL.h */,
+				1934460E1AEDA2D900D1168B /* NSDate+CL.m */,
+				1934460F1AEDA2D900D1168B /* NSDictionary+CL.h */,
+				193446101AEDA2D900D1168B /* NSDictionary+CL.m */,
+				193446111AEDA2D900D1168B /* UIColor+CL.h */,
+				193446121AEDA2D900D1168B /* UIColor+CL.m */,
+				193446131AEDA2D900D1168B /* UIImage+CL.h */,
+				193446141AEDA2D900D1168B /* UIImage+CL.m */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		23082A621AE5C89100D0EEE3 /* SlidingContainerViewController */ = {
@@ -339,6 +394,8 @@
 				23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */,
 				233498711AE57AE300A8D9E8 /* TECDietViewController.h */,
 				233498721AE57AE300A8D9E8 /* TECDietViewController.m */,
+				1934461C1AEDA97100D1168B /* TECHistoryViewController.h */,
+				1934461D1AEDA97100D1168B /* TECHistoryViewController.m */,
 				233B3B651AE598B600C2E7FF /* TECDietPopupViewController.h */,
 				233B3B661AE598B600C2E7FF /* TECDietPopupViewController.m */,
 				23840F331AE5B701008BCAD3 /* TECHistoryDaysViewController.h */,
@@ -384,6 +441,7 @@
 		237E573D1AB675D70052802F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				193446051AEDA2D900D1168B /* CLWeeklyCalendarViewSourceCode */,
 				2357138F1AE8B77200A5521A /* IQDropDownTextField */,
 				237D13001AE8401E00DA70BF /* BTSpiderPlotterView */,
 				23082A621AE5C89100D0EEE3 /* SlidingContainerViewController */,
@@ -499,7 +557,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 237E56FE1AB3BA7B0052802F;
@@ -577,10 +634,14 @@
 				237E57131AB3BA7B0052802F /* TECMenuViewController.m in Sources */,
 				23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */,
 				23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */,
+				1934461B1AEDA2D900D1168B /* UIImage+CL.m in Sources */,
+				193446171AEDA2D900D1168B /* DayTitleLabel.m in Sources */,
 				237E574C1AB6962D0052802F /* XDKAirMenuController.m in Sources */,
 				239306381AD2E757007E6E3B /* TECReferencePortionInnerCell.m in Sources */,
+				193446181AEDA2D900D1168B /* NSDate+CL.m in Sources */,
 				233B3B6A1AE598E000C2E7FF /* CCMPlayNDropView.m in Sources */,
 				232F292A1AE5CF9600D3E25F /* TECHistoryWrapperViewController.m in Sources */,
+				1934461A1AEDA2D900D1168B /* UIColor+CL.m in Sources */,
 				232833811ACDD47B00449B25 /* TECFoodPortion.m in Sources */,
 				23840F3B1AE5B721008BCAD3 /* TECHistoryMonthsViewController.m in Sources */,
 				237D13061AE868AC00DA70BF /* DSBarChart.m in Sources */,
@@ -593,8 +654,11 @@
 				23840F351AE5B701008BCAD3 /* TECHistoryDaysViewController.m in Sources */,
 				237D13031AE8401E00DA70BF /* BTSpiderPlotterView.m in Sources */,
 				230DF8F21AE5D1D3003B813C /* SlidingContainerViewController.swift in Sources */,
+				193446161AEDA2D900D1168B /* DailyCalendarView.m in Sources */,
 				232833841ACDD57300449B25 /* TECUserDiet.m in Sources */,
+				1934461E1AEDA97100D1168B /* TECHistoryViewController.m in Sources */,
 				233B3B671AE598B600C2E7FF /* TECDietPopupViewController.m in Sources */,
+				193446151AEDA2D900D1168B /* CLWeeklyCalendarView.m in Sources */,
 				7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */,
 				237E57101AB3BA7B0052802F /* AppDelegate.m in Sources */,
 				233790201AC473BA0009FC2F /* CCMBorderView.m in Sources */,
@@ -603,6 +667,7 @@
 				230627F01AD0B3E70055BFBB /* TECPortionMenuItem.m in Sources */,
 				237E57431AB67BD20052802F /* TECHomeViewController.m in Sources */,
 				2328337D1ACDD17900449B25 /* TECNutreTecCore.m in Sources */,
+				193446191AEDA2D900D1168B /* NSDictionary+CL.m in Sources */,
 				2372E5921AB8DF6100E696F5 /* RMDisplayLabel.m in Sources */,
 				237E570D1AB3BA7B0052802F /* main.m in Sources */,
 			);
@@ -631,6 +696,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				237E57151AB3BA7B0052802F /* Base */,
+				1934461F1AEE0F6000D1168B /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -639,6 +705,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				237E571A1AB3BA7B0052802F /* Base */,
+				193446201AEE0F6000D1168B /* es */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

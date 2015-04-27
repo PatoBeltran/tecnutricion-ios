@@ -13,15 +13,13 @@
 #import "TECNutreTecCore.h"
 #import "TECDaySummary.h"
 #import "TECUserDiet.h"
+#import "CLWeeklyCalendarView.h"
+
+static CGFloat CALENDER_VIEW_HEIGHT = 150.f;
 
 @interface TECHistoryWeeksViewController () <IQDropDownTextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *innerWrapperView;
 @property (weak, nonatomic) IBOutlet UIView *noWeeksAlert;
-@property (weak, nonatomic) IBOutlet IQDropDownTextField *weekChooser;
-@property (weak, nonatomic) IBOutlet UIView *tabGraphWrapper;
-@property (weak, nonatomic) IBOutlet UIView *spiderPlotWrapper;
-@property (strong, nonatomic) BTSpiderPlotterView *spiderPlot;
-@property (strong, nonatomic) DSBarChart *barChart;
 @property (strong, nonatomic) NSArray *weekAmount;
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSMutableArray *weeks;
@@ -29,6 +27,7 @@
 @property (strong, nonatomic) TECDaySummary *progress;
 @property (nonatomic) NSInteger firstMonday;
 @property (nonatomic) BOOL canrun;
+@property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
 @end
 
 @implementation TECHistoryWeeksViewController
@@ -88,11 +87,11 @@
         [self.days addObject:day];
     }
     
-    if (!self.canrun && matchObjects.count == 0) {
-        self.noWeeksAlert.hidden = NO;
-        self.innerWrapperView.hidden = YES;
-    }
-    else {
+//    if (!self.canrun && matchObjects.count == 0) {
+//        self.noWeeksAlert.hidden = NO;
+//        self.innerWrapperView.hidden = YES;
+//    }
+//    else {
         self.noWeeksAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         
@@ -223,121 +222,121 @@
             [self.weeks addObject:week];
         }
         
-        //Spider Plot
-        self.spiderPlot = [[BTSpiderPlotterView alloc] initWithFrame:CGRectMake(self.spiderPlotWrapper.frame.origin.x + 25, self.spiderPlotWrapper.frame.origin.y + 25, self.spiderPlotWrapper.frame.size.width - 50, self.spiderPlotWrapper.frame.size.height - 50)
-                                                     valueDictionary:@{ @"vegetables-color-icon-mini" : [matchObjectsWeeks.lastObject valueForKey:@"vegetable"],
-                                                                        @"milk-color-icon-mini"       : [matchObjectsWeeks.lastObject valueForKey:@"milk"],
-                                                                        @"meat-color-icon-mini"       : [matchObjectsWeeks.lastObject valueForKey:@"meat"],
-                                                                        @"sugar-color-icon-mini"      : [matchObjectsWeeks.lastObject valueForKey:@"sugar"],
-                                                                        @"pea-color-icon-mini"        : [matchObjectsWeeks.lastObject valueForKey:@"pea"],
-                                                                        @"fruit-color-icon-mini"      : [matchObjectsWeeks.lastObject valueForKey:@"fruit"],
-                                                                        @"cereal-color-icon-mini"     : [matchObjectsWeeks.lastObject valueForKey:@"cereal"],
-                                                                        @"fat-color-icon-mini"        : [matchObjectsWeeks.lastObject valueForKey:@"fat"]}];
+//        //Spider Plot
+//        self.spiderPlot = [[BTSpiderPlotterView alloc] initWithFrame:CGRectMake(self.spiderPlotWrapper.frame.origin.x + 25, self.spiderPlotWrapper.frame.origin.y + 25, self.spiderPlotWrapper.frame.size.width - 50, self.spiderPlotWrapper.frame.size.height - 50)
+//                                                     valueDictionary:@{ @"vegetables-color-icon-mini" : [matchObjectsWeeks.lastObject valueForKey:@"vegetable"],
+//                                                                        @"milk-color-icon-mini"       : [matchObjectsWeeks.lastObject valueForKey:@"milk"],
+//                                                                        @"meat-color-icon-mini"       : [matchObjectsWeeks.lastObject valueForKey:@"meat"],
+//                                                                        @"sugar-color-icon-mini"      : [matchObjectsWeeks.lastObject valueForKey:@"sugar"],
+//                                                                        @"pea-color-icon-mini"        : [matchObjectsWeeks.lastObject valueForKey:@"pea"],
+//                                                                        @"fruit-color-icon-mini"      : [matchObjectsWeeks.lastObject valueForKey:@"fruit"],
+//                                                                        @"cereal-color-icon-mini"     : [matchObjectsWeeks.lastObject valueForKey:@"cereal"],
+//                                                                        @"fat-color-icon-mini"        : [matchObjectsWeeks.lastObject valueForKey:@"fat"]}];
+//        
+//        self.spiderPlot.plotColor = [UIColor colorWithRed:82./255 green:192./255 blue:202./255 alpha:0.7];
+//        self.spiderPlot.drawboardColor = [UIColor colorWithRed:185./255 green:185./255 blue:185./255 alpha:1.0];
+//        [self.spiderPlotWrapper addSubview:self.spiderPlot];
         
-        self.spiderPlot.plotColor = [UIColor colorWithRed:82./255 green:192./255 blue:202./255 alpha:0.7];
-        self.spiderPlot.drawboardColor = [UIColor colorWithRed:185./255 green:185./255 blue:185./255 alpha:1.0];
-        [self.spiderPlotWrapper addSubview:self.spiderPlot];
-        
-        //Week Chooser
-        self.weekChooser.isOptionalDropDown = NO;
-        self.weekChooser.delegate = self;
-        [self.weekChooser setItemList:self.weeks];
-        
-        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
-        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
-        
-        [self.view addGestureRecognizer:tapBackground];
-        [self.view addGestureRecognizer:swipeDown];
-        
+//        //Week Chooser
+//        self.weekChooser.isOptionalDropDown = NO;
+//        self.weekChooser.delegate = self;
+//        [self.weekChooser setItemList:self.weeks];
+//        
+//        UITapGestureRecognizer *tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+//        UISwipeGestureRecognizer *swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)];
+//        swipeDown.direction = UISwipeGestureRecognizerDirectionDown|UISwipeGestureRecognizerDirectionUp;
+//        
+//        [self.view addGestureRecognizer:tapBackground];
+//        [self.view addGestureRecognizer:swipeDown];
+    
         //@TODO - Give first of list
         //[self updateSpiderPlotForItem:@""];
         
         
         //Bar Chart
-        
-        self.weekAmount = [NSArray arrayWithObjects:
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"vegetable"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"milk"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"meat"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"sugar"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"pea"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"fruit"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"cereal"] integerValue]],
-                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"fat"] integerValue]],
-                           nil];
-        
-        self.barChart = [[DSBarChart alloc] initWithFrame:self.tabGraphWrapper.bounds
-                                                   values:self.weekAmount
-                                                   colors:@[TECVegetablesColor, TECMilkColor, TECMeatColor, TECSugarColor, TECPeaColor, TECFruitColor, TECCerealColor, TECFatColor]];
-        
-        
-        self.barChart.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        self.barChart.bounds = self.tabGraphWrapper.bounds;
-        self.barChart.backgroundColor = [UIColor clearColor];
-        [self.tabGraphWrapper addSubview:self.barChart];
-    }
+//        
+//        self.weekAmount = [NSArray arrayWithObjects:
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"vegetable"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"milk"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"meat"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"sugar"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"pea"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"fruit"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"cereal"] integerValue]],
+//                           [NSNumber numberWithInteger:[[matchObjectsWeeks.lastObject valueForKey:@"fat"] integerValue]],
+//                           nil];
+//        
+//        self.barChart = [[DSBarChart alloc] initWithFrame:self.tabGraphWrapper.bounds
+//                                                   values:self.weekAmount
+//                                                   colors:@[TECVegetablesColor, TECMilkColor, TECMeatColor, TECSugarColor, TECPeaColor, TECFruitColor, TECCerealColor, TECFatColor]];
+//        
+//        
+//        self.barChart.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//        self.barChart.bounds = self.tabGraphWrapper.bounds;
+//        self.barChart.backgroundColor = [UIColor clearColor];
+//        [self.tabGraphWrapper addSubview:self.barChart];
+//    }
 }
 
 - (void)hideKeyboard:(id)sender {
     [self.view endEditing:YES];
 }
 
-- (void)updateSpiderPlotForItem:(NSString *)item {
-    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Week"
-                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"end like %@", item];
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setEntity:entityDiet];
-    
-    NSError *error;
-    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-    NSManagedObject *matchRegister = matchObjectsDiet[0];
-    
-    [self.spiderPlot animateWithDuration:0.3 valueDictionary:@{@"vegetables-color-icon-mini" : [matchRegister valueForKey:@"vegetable"],
-                                                               @"milk-color-icon-mini"       : [matchRegister valueForKey:@"milk"],
-                                                               @"meat-color-icon-mini"       : [matchRegister valueForKey:@"meat"],
-                                                               @"sugar-color-icon-mini"      : [matchRegister valueForKey:@"sugar"],
-                                                               @"pea-color-icon-mini"        : [matchRegister valueForKey:@"pea"],
-                                                               @"fruit-color-icon-mini"      : [matchRegister valueForKey:@"fruit"],
-                                                               @"cereal-color-icon-mini"     : [matchRegister valueForKey:@"cereal"],
-                                                               @"fat-color-icon-mini"        : [matchRegister valueForKey:@"fat"]}];
-    
-}
+//- (void)updateSpiderPlotForItem:(NSString *)item {
+//    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Week"
+//                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+//    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"end like %@", item];
+//    [fetchRequest setPredicate:predicate];
+//    [fetchRequest setEntity:entityDiet];
+//    
+//    NSError *error;
+//    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+//    NSManagedObject *matchRegister = matchObjectsDiet[0];
+//    
+//    [self.spiderPlot animateWithDuration:0.3 valueDictionary:@{@"vegetables-color-icon-mini" : [matchRegister valueForKey:@"vegetable"],
+//                                                               @"milk-color-icon-mini"       : [matchRegister valueForKey:@"milk"],
+//                                                               @"meat-color-icon-mini"       : [matchRegister valueForKey:@"meat"],
+//                                                               @"sugar-color-icon-mini"      : [matchRegister valueForKey:@"sugar"],
+//                                                               @"pea-color-icon-mini"        : [matchRegister valueForKey:@"pea"],
+//                                                               @"fruit-color-icon-mini"      : [matchRegister valueForKey:@"fruit"],
+//                                                               @"cereal-color-icon-mini"     : [matchRegister valueForKey:@"cereal"],
+//                                                               @"fat-color-icon-mini"        : [matchRegister valueForKey:@"fat"]}];
+//    
+//}
 
 
-- (void)updateBarGraphForItem:(NSString *)item {
-    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Week"
-                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"end like %@", item];
-    [fetchRequest setPredicate:predicate];
-    [fetchRequest setEntity:entityDiet];
-    
-    NSError *error;
-    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-    NSManagedObject *matchRegister = matchObjectsDiet[0];
-
-    self.weekAmount = [NSArray arrayWithObjects:
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"vegetable"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"milk"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"meat"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"sugar"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"pea"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"fruit"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"cereal"] integerValue]],
-                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"fat"] integerValue]],
-                       nil];
-    
-    [self.barChart changeValues:self.weekAmount];
-}
+//- (void)updateBarGraphForItem:(NSString *)item {
+//    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Week"
+//                                                  inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+//    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"end like %@", item];
+//    [fetchRequest setPredicate:predicate];
+//    [fetchRequest setEntity:entityDiet];
+//    
+//    NSError *error;
+//    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+//    NSManagedObject *matchRegister = matchObjectsDiet[0];
+//
+//    self.weekAmount = [NSArray arrayWithObjects:
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"vegetable"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"milk"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"meat"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"sugar"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"pea"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"fruit"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"cereal"] integerValue]],
+//                       [NSNumber numberWithInteger:[[matchRegister valueForKey:@"fat"] integerValue]],
+//                       nil];
+//    
+//    [self.barChart changeValues:self.weekAmount];
+//}
 
 - (void)updateValuesForItem:(NSString *)string {
-    [self updateSpiderPlotForItem:string];
-    [self updateBarGraphForItem:string];
+//    [self updateSpiderPlotForItem:string];
+//    [self updateBarGraphForItem:string];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -351,5 +350,25 @@
     NSString *string = [formatter stringFromDate:myDate];
     [self updateValuesForItem:string];
 }
+
+//#pragma mark - CLWeeklyCalendarViewDelegate
+//
+//- (CLWeeklyCalendarView *)calendarView {
+//    if(!_calendarView){
+//        _calendarView = [[CLWeeklyCalendarView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, CALENDER_VIEW_HEIGHT)];
+//        _calendarView.delegate = self;
+//    }
+//    return _calendarView;
+//}
+//
+//- (NSDictionary *)CLCalendarBehaviorAttributes {
+//    return @{ CLCalendarWeekStartDay : @1 };
+//}
+//
+//- (void)dailyCalendarViewDidSelect:(NSDate *)date {
+//    //@TODO - refresh view
+//    //You can do any logic after the view select the date
+//}
+
 
 @end
