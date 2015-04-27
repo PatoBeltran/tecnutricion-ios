@@ -51,6 +51,7 @@
         self.canrun = NO;
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
+        self.noInfoOnDayAlert.hidden = YES;
     }
     else {
         self.canrun = YES;

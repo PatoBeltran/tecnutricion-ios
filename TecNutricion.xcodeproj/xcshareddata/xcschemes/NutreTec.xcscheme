@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "237E57061AB3BA7B0052802F"
-               BuildableName = "NutreTec.app"
-               BlueprintName = "NutreTec"
-               ReferencedContainer = "container:NutreTec.xcodeproj">
+               BuildableName = "TecNutricion.app"
+               BlueprintName = "TecNutricion"
+               ReferencedContainer = "container:TecNutricion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "237E571F1AB3BA7B0052802F"
-               BuildableName = "NutreTecTests.xctest"
-               BlueprintName = "NutreTecTests"
-               ReferencedContainer = "container:NutreTec.xcodeproj">
+               BuildableName = "TecNutricionTests.xctest"
+               BlueprintName = "TecNutricionTests"
+               ReferencedContainer = "container:TecNutricion.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "62153CB68EA6420EB5605DC9"
+               BlueprintIdentifier = "015BB1794196023304744554"
                BuildableName = "libPods-NutreTec.a"
                BlueprintName = "Pods-NutreTec"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "237E571F1AB3BA7B0052802F"
-               BuildableName = "NutreTecTests.xctest"
-               BlueprintName = "NutreTecTests"
-               ReferencedContainer = "container:NutreTec.xcodeproj">
+               BuildableName = "TecNutricionTests.xctest"
+               BlueprintName = "TecNutricionTests"
+               ReferencedContainer = "container:TecNutricion.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "237E57061AB3BA7B0052802F"
-            BuildableName = "NutreTec.app"
-            BlueprintName = "NutreTec"
-            ReferencedContainer = "container:NutreTec.xcodeproj">
+            BuildableName = "TecNutricion.app"
+            BlueprintName = "TecNutricion"
+            ReferencedContainer = "container:TecNutricion.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -91,9 +91,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "237E57061AB3BA7B0052802F"
-            BuildableName = "NutreTec.app"
-            BlueprintName = "NutreTec"
-            ReferencedContainer = "container:NutreTec.xcodeproj">
+            BuildableName = "TecNutricion.app"
+            BlueprintName = "TecNutricion"
+            ReferencedContainer = "container:TecNutricion.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -110,9 +110,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "237E57061AB3BA7B0052802F"
-            BuildableName = "NutreTec.app"
-            BlueprintName = "NutreTec"
-            ReferencedContainer = "container:NutreTec.xcodeproj">
+            BuildableName = "TecNutricion.app"
+            BlueprintName = "TecNutricion"
+            ReferencedContainer = "container:TecNutricion.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

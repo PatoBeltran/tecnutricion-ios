@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "TecLogo.png"
+      "filename" : "logo.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "TecLogo@2x.png"
+      "filename" : "logo@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "TecLogo@3x.png"
+      "filename" : "logo@3x.png"
     }
   ],
   "info" : {

@@ -183,12 +183,11 @@
     [_animatingLayer addAnimation:pathAnimation forKey:@"path"];
     
     if (ratio == 1) {
-        [self.displayLabel setTextColor:[UIColor colorWithRed:228./255 green:7./255 blue:7./255 alpha:1.0]];
+        [self.displayLabel setTextColor:[UIColor colorWithRed:46./255 green:204./255 blue:113./255 alpha:1.0]];
     }
     else {
         [self.displayLabel setTextColor:[UIColor colorWithRed:65./255 green:65./255 blue:65./255 alpha:1.0]];
     }
-    
     [self.displayLabel updateValue:finished];
 }
 

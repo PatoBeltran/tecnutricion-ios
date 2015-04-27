@@ -3666,13 +3666,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Tec Logo" translatesAutoresizingMaskIntoConstraints="NO" id="clH-u5-K9E">
                                         <rect key="frame" x="130" y="39" width="71" height="71"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="15l-In-bQD"/>
-                                            <constraint firstAttribute="width" constant="158" id="LhM-d1-767"/>
+                                            <constraint firstAttribute="height" constant="65" id="15l-In-bQD"/>
+                                            <constraint firstAttribute="width" constant="65" id="LhM-d1-767"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="15l-In-bQD"/>
-                                                <exclude reference="LhM-d1-767"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -3682,37 +3681,68 @@
                                             </mask>
                                         </variation>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nutricion Logo" translatesAutoresizingMaskIntoConstraints="NO" id="lGb-SY-mbA">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="95" id="AXn-QW-wyj"/>
+                                            <constraint firstAttribute="height" constant="35" id="XsK-Yi-rRY"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="AXn-QW-wyj"/>
+                                                <exclude reference="XsK-Yi-rRY"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="AXn-QW-wyj"/>
+                                                <include reference="XsK-Yi-rRY"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="clH-u5-K9E" secondAttribute="centerX" constant="-38" id="HJT-Ig-dIc"/>
+                                    <constraint firstAttribute="centerX" secondItem="clH-u5-K9E" secondAttribute="centerX" constant="-20" id="HJT-Ig-dIc"/>
                                     <constraint firstAttribute="bottom" secondItem="nKz-bZ-Mg3" secondAttribute="bottom" constant="25" id="W2W-1L-1Hj"/>
                                     <constraint firstItem="nKz-bZ-Mg3" firstAttribute="top" secondItem="clH-u5-K9E" secondAttribute="bottom" constant="25" id="ZnN-qc-2R1"/>
                                     <constraint firstItem="clH-u5-K9E" firstAttribute="top" secondItem="gzJ-CK-OlP" secondAttribute="top" constant="60" id="a7W-HQ-RSZ"/>
                                     <constraint firstItem="nKz-bZ-Mg3" firstAttribute="leading" secondItem="gzJ-CK-OlP" secondAttribute="leading" constant="40" id="kx0-zs-KTc"/>
-                                    <constraint firstAttribute="trailing" secondItem="nKz-bZ-Mg3" secondAttribute="trailing" constant="40" id="pbv-W8-mwR"/>
+                                    <constraint firstAttribute="bottom" secondItem="lGb-SY-mbA" secondAttribute="bottom" constant="10" id="nFn-X0-FTV"/>
+                                    <constraint firstAttribute="trailing" secondItem="nKz-bZ-Mg3" secondAttribute="trailing" constant="110" id="pbv-W8-mwR"/>
                                     <constraint firstItem="nKz-bZ-Mg3" firstAttribute="top" secondItem="clH-u5-K9E" secondAttribute="bottom" constant="25" id="qwW-DD-QTm"/>
+                                    <constraint firstAttribute="trailing" secondItem="lGb-SY-mbA" secondAttribute="trailing" id="rWa-qP-La5"/>
                                 </constraints>
                                 <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="lGb-SY-mbA"/>
+                                    </mask>
                                     <mask key="constraints">
-                                        <exclude reference="HJT-Ig-dIc"/>
-                                        <exclude reference="a7W-HQ-RSZ"/>
                                         <exclude reference="W2W-1L-1Hj"/>
                                         <exclude reference="ZnN-qc-2R1"/>
                                         <exclude reference="kx0-zs-KTc"/>
                                         <exclude reference="pbv-W8-mwR"/>
                                         <exclude reference="qwW-DD-QTm"/>
+                                        <exclude reference="HJT-Ig-dIc"/>
+                                        <exclude reference="a7W-HQ-RSZ"/>
+                                        <exclude reference="nFn-X0-FTV"/>
+                                        <exclude reference="rWa-qP-La5"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="lGb-SY-mbA"/>
+                                    </mask>
                                     <mask key="constraints">
-                                        <include reference="HJT-Ig-dIc"/>
-                                        <include reference="a7W-HQ-RSZ"/>
                                         <include reference="W2W-1L-1Hj"/>
                                         <include reference="ZnN-qc-2R1"/>
                                         <include reference="kx0-zs-KTc"/>
                                         <include reference="pbv-W8-mwR"/>
                                         <include reference="qwW-DD-QTm"/>
+                                        <include reference="HJT-Ig-dIc"/>
+                                        <include reference="a7W-HQ-RSZ"/>
+                                        <include reference="nFn-X0-FTV"/>
+                                        <include reference="rWa-qP-La5"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -3720,7 +3750,7 @@
                         <color key="backgroundColor" red="0.32156862745098042" green="0.75294117647058822" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gzJ-CK-OlP" firstAttribute="leading" secondItem="SU6-5l-11G" secondAttribute="leadingMargin" id="0Vf-aF-06S"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gzJ-CK-OlP" secondAttribute="trailing" constant="80" id="5B6-aQ-uGt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gzJ-CK-OlP" secondAttribute="trailing" id="5B6-aQ-uGt"/>
                             <constraint firstItem="gzJ-CK-OlP" firstAttribute="top" secondItem="SU6-5l-11G" secondAttribute="topMargin" id="9P5-IR-4ab"/>
                             <constraint firstItem="YdQ-Ft-v6R" firstAttribute="top" secondItem="gzJ-CK-OlP" secondAttribute="bottom" id="Qau-BC-OKL"/>
                         </constraints>
@@ -3768,6 +3798,9 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3805,6 +3838,9 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3842,6 +3878,9 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3879,6 +3918,9 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -3923,6 +3965,9 @@
                                                     <fontDescription key="fontDescription" name="OpenSans-Extrabold" family="Open Sans" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="192" height="50"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -5851,7 +5896,8 @@
         <image name="Add portion - check" width="151" height="151"/>
         <image name="Add portion - plus" width="151" height="151"/>
         <image name="Menu" width="31" height="26"/>
-        <image name="Tec Logo" width="315" height="110"/>
+        <image name="Nutricion Logo" width="315" height="110"/>
+        <image name="Tec Logo" width="113" height="112"/>
         <image name="apple-icon" width="57" height="70"/>
         <image name="avocado-icon" width="50" height="83"/>
         <image name="candy-icon" width="56" height="83"/>

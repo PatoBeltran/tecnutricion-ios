@@ -120,7 +120,7 @@
 		237D13021AE8401E00DA70BF /* BTSpiderPlotterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTSpiderPlotterView.m; sourceTree = "<group>"; };
 		237D13041AE868AC00DA70BF /* DSBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBarChart.h; sourceTree = "<group>"; };
 		237D13051AE868AC00DA70BF /* DSBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBarChart.m; sourceTree = "<group>"; };
-		237E57071AB3BA7B0052802F /* NutreTec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NutreTec.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		237E57071AB3BA7B0052802F /* TecNutricion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TecNutricion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E570B1AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E570C1AB3BA7B0052802F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		237E570E1AB3BA7B0052802F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		237E57121AB3BA7B0052802F /* TECMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TECMenuViewController.m; sourceTree = "<group>"; };
 		237E57151AB3BA7B0052802F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		237E571A1AB3BA7B0052802F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		237E57201AB3BA7B0052802F /* NutreTecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NutreTecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		237E57201AB3BA7B0052802F /* TecNutricionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TecNutricionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		237E57251AB3BA7B0052802F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		237E57261AB3BA7B0052802F /* NutreTecTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NutreTecTests.m; sourceTree = "<group>"; };
 		237E57331AB3CD6B0052802F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -320,8 +320,8 @@
 		237E57081AB3BA7B0052802F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				237E57071AB3BA7B0052802F /* NutreTec.app */,
-				237E57201AB3BA7B0052802F /* NutreTecTests.xctest */,
+				237E57071AB3BA7B0052802F /* TecNutricion.app */,
+				237E57201AB3BA7B0052802F /* TecNutricionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,9 +476,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		237E57061AB3BA7B0052802F /* NutreTec */ = {
+		237E57061AB3BA7B0052802F /* TecNutricion */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTec" */;
+			buildConfigurationList = 237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "TecNutricion" */;
 			buildPhases = (
 				32AA7D6FA8A2540795FD1DAB /* Check Pods Manifest.lock */,
 				237E57031AB3BA7B0052802F /* Sources */,
@@ -490,14 +490,14 @@
 			);
 			dependencies = (
 			);
-			name = NutreTec;
+			name = TecNutricion;
 			productName = NutreTec;
-			productReference = 237E57071AB3BA7B0052802F /* NutreTec.app */;
+			productReference = 237E57071AB3BA7B0052802F /* TecNutricion.app */;
 			productType = "com.apple.product-type.application";
 		};
-		237E571F1AB3BA7B0052802F /* NutreTecTests */ = {
+		237E571F1AB3BA7B0052802F /* TecNutricionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 237E572D1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTecTests" */;
+			buildConfigurationList = 237E572D1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "TecNutricionTests" */;
 			buildPhases = (
 				237E571C1AB3BA7B0052802F /* Sources */,
 				237E571D1AB3BA7B0052802F /* Frameworks */,
@@ -508,9 +508,9 @@
 			dependencies = (
 				237E57221AB3BA7B0052802F /* PBXTargetDependency */,
 			);
-			name = NutreTecTests;
+			name = TecNutricionTests;
 			productName = NutreTecTests;
-			productReference = 237E57201AB3BA7B0052802F /* NutreTecTests.xctest */;
+			productReference = 237E57201AB3BA7B0052802F /* TecNutricionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -532,7 +532,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 237E57021AB3BA7B0052802F /* Build configuration list for PBXProject "NutreTec" */;
+			buildConfigurationList = 237E57021AB3BA7B0052802F /* Build configuration list for PBXProject "TecNutricion" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -544,8 +544,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				237E57061AB3BA7B0052802F /* NutreTec */,
-				237E571F1AB3BA7B0052802F /* NutreTecTests */,
+				237E57061AB3BA7B0052802F /* TecNutricion */,
+				237E571F1AB3BA7B0052802F /* TecNutricionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -662,7 +662,7 @@
 /* Begin PBXTargetDependency section */
 		237E57221AB3BA7B0052802F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 237E57061AB3BA7B0052802F /* NutreTec */;
+			target = 237E57061AB3BA7B0052802F /* TecNutricion */;
 			targetProxy = 237E57211AB3BA7B0052802F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -787,7 +787,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TecNutricion;
 				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -815,7 +815,7 @@
 					"-framework",
 					"\"UIKit\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TecNutricion;
 				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 			};
 			name = Release;
@@ -834,7 +834,7 @@
 				);
 				INFOPLIST_FILE = NutreTecTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TecNutricionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutreTec.app/NutreTec";
 			};
 			name = Debug;
@@ -849,7 +849,7 @@
 				);
 				INFOPLIST_FILE = NutreTecTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TecNutricionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutreTec.app/NutreTec";
 			};
 			name = Release;
@@ -857,7 +857,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		237E57021AB3BA7B0052802F /* Build configuration list for PBXProject "NutreTec" */ = {
+		237E57021AB3BA7B0052802F /* Build configuration list for PBXProject "TecNutricion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				237E57281AB3BA7B0052802F /* Debug */,
@@ -866,7 +866,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTec" */ = {
+		237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "TecNutricion" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				237E572B1AB3BA7B0052802F /* Debug */,
@@ -875,7 +875,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		237E572D1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "NutreTecTests" */ = {
+		237E572D1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "TecNutricionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				237E572E1AB3BA7B0052802F /* Debug */,
