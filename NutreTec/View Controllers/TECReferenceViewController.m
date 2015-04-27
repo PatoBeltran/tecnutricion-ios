@@ -15,7 +15,6 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
 @interface TECReferenceViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *referenceTable;
 @property (nonatomic, strong) NSIndexPath *selectedRowIndex;
-@property (nonatomic, assign) CGFloat widthOfCell;
 @end
 
 @implementation TECReferenceViewController
@@ -24,7 +23,6 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
     [super viewDidLoad];
     self.referenceTable.dataSource = self;
     self.referenceTable.delegate = self;
-    self.widthOfCell = -1;
 }
 
 #pragma mark - UITableView
@@ -36,23 +34,6 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
     if (!cell) {
         cell = [[TECReferenceCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:TecReferenceCellIdentifier];
-    }
-    
-    if (self.widthOfCell != -1) {
-        CGRect frame = cell.contentWrapper.frame;
-        frame.size.width = self.widthOfCell;
-        cell.contentWrapper.frame = frame;
-        if (!cell.hasUpdatedWidth) {
-            [cell.contentWrapper addConstraint:[NSLayoutConstraint constraintWithItem:cell.contentWrapper
-                                                                            attribute:NSLayoutAttributeWidth
-                                                                            relatedBy:NSLayoutRelationEqual
-                                                                               toItem:nil
-                                                                            attribute:NSLayoutAttributeNotAnAttribute
-                                                                           multiplier:1.0
-                                                                             constant:self.widthOfCell]];
-            [cell updateConstraints];
-            cell.hasUpdatedWidth = YES;
-        }
     }
     
     NSString *titleText;
@@ -131,6 +112,7 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
     else {
         self.selectedRowIndex = indexPath;
     }
+    
     [tableView beginUpdates];
     [tableView endUpdates];
     [tableView scrollToRowAtIndexPath:indexPath
@@ -160,13 +142,6 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
         return self.view.bounds.size.height - 85.0;
     }
     return 70;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.widthOfCell == -1) {
-        self.widthOfCell = cell.frame.size.width;
-        [tableView reloadData];
-    }
 }
 
 - (void)updateCellToChangeLayoutWithIndexPath:(NSIndexPath *)indexPath open:(BOOL)openCell {
@@ -200,7 +175,7 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
     }
     if (openCell) {
         if(!cell.portionsTable) {
-            cell.portionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, cell.contentWrapper.frame.size.height, self.widthOfCell, self.view.frame.size.height - (cell.contentWrapper.frame.size.height + 85))
+            cell.portionsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, cell.contentWrapper.frame.size.height, self.view.bounds.size.width, self.view.frame.size.height - (cell.contentWrapper.frame.size.height + 85))
                                                               style:UITableViewStylePlain];
         }
         [cell initTable];

@@ -51,6 +51,7 @@
     [super viewDidLoad];
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
+    
     if (self.isFromFeedback) {
         [self showSendFeeback];
     }
@@ -58,7 +59,7 @@
     [self getDietFromDB];
     
     //Use for generating database
-    //[self genDB];
+//    [self genDB];
     
     NSDate *sourceDate = [NSDate date];
     
@@ -89,7 +90,6 @@
             self.todaysProgress = [TECDaySummary createNewDayWithDate:self.currentDate dietId:self.diet.dietId];
         }
         else {
-            //Verify if diet has change
             if(![self.diet.dietId isEqualToString:self.todaysProgress.dietId]) {
                 [self.todaysProgress dietChanged:self.todaysProgress.date dietId:self.diet.dietId];
             }
@@ -338,6 +338,7 @@
     
     [self.addPortionMenu expandMenuItems];
 }
+
 - (IBAction)addCheckDidClicked {
     for (TECPortionMenuItem *item in self.addPortionMenu.menuItems) {
         if (item.selected) {
@@ -412,7 +413,7 @@
     }
     
     self.mailComposer = nil;
-    // Close the Mail Interface
+
     [self dismissViewControllerAnimated:YES completion:^{
         [self setProgress];
     }];

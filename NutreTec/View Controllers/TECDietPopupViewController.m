@@ -10,10 +10,6 @@
 #import "UIViewController+MaryPopin.h"
 #import "TECNutreTecCore.h"
 
-@interface TECDietPopupViewController ()
-
-@end
-
 @implementation TECDietPopupViewController
 
 - (void)CCMPlayNDropViewDidFinishDismissAnimationWithDynamics:(CCMPlayNDropView *)view {

@@ -10,5 +10,4 @@
 #import "CCMPlayNDropView.h"
 
 @interface TECDietPopupViewController : UIViewController <CCMPlayNDropViewDelegate>
-
 @end

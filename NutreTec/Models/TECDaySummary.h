@@ -35,6 +35,6 @@
 + (instancetype)initFromDatabaseWithDate:(NSString *)date;
 + (instancetype)createNewDayWithDate:(NSString *)date dietId:(NSString *)dietId;
 - (void)saveWithDate:(NSString *)date;
-- (BOOL)checkIfDietWasMade:(NSString *) date;
+- (BOOL)checkIfDietWasMade;
 - (void)dietChanged:(NSString *)date dietId:(NSString *) dietId;
 @end

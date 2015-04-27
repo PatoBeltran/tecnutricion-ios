@@ -237,9 +237,6 @@
         [self.view addSubview:self.currentViewController.view];
         [self addChildViewController:self.currentViewController];
         
-        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
-        [self.view addGestureRecognizer:panGesture];
-        
         if (!firstTime)
             [self openingAnimation];
     }

@@ -24,8 +24,9 @@
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *fruitProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *cerealProgress;
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *fatProgress;
-@property (nonatomic, assign) BOOL canrun;
+@property (weak, nonatomic) IBOutlet UIView *noInfoOnDayAlert;
 
+@property (nonatomic, assign) BOOL canrun;
 @property (nonatomic, strong) TECUserDiet *diet;
 @property (strong, nonatomic) TECDaySummary *dayProgress;
 @property (strong, nonatomic) NSDate *dayBefore;
@@ -58,6 +59,7 @@
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         [df setDateFormat:@"dd/MM/yyyy"];
         self.dayBefore = [df dateFromString: [matchObjects[matchObjects.count-2] valueForKey:@"day"]];
+    
         [self.view addSubview:self.calendarView];
     }
 }
@@ -97,25 +99,26 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
     [self getProgressFromDBForDate:[dateFormat stringFromDate:date]];
-    [self getDietFromDate:self.dayProgress.dietId];
     
-    [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
-    [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
-    [self.meatProgress setProgressValue:self.dayProgress.meat.consumed forAmount:self.diet.meatAmount];
-    [self.sugarProgress setProgressValue:self.dayProgress.sugar.consumed forAmount:self.diet.sugarAmount];
-    [self.peasProgress setProgressValue:self.dayProgress.pea.consumed forAmount:self.diet.peaAmount];
-    [self.fruitProgress setProgressValue:self.dayProgress.fruit.consumed forAmount:self.diet.fruitAmount];
-    [self.cerealProgress setProgressValue:self.dayProgress.cereal.consumed forAmount:self.diet.cerealAmount];
-    [self.fatProgress setProgressValue:self.dayProgress.fat.consumed forAmount:self.diet.fatAmount];
-    
-//    [self.vegetablesProgress setProgressValue:1 forAmount:4];
-//    [self.milkProgress setProgressValue:5 forAmount:8];
-//    [self.meatProgress setProgressValue:3 forAmount:4];
-//    [self.sugarProgress setProgressValue:5 forAmount:2];
-//    [self.peasProgress setProgressValue:5 forAmount:6];
-//    [self.fruitProgress setProgressValue:3 forAmount:7];
-//    [self.cerealProgress setProgressValue:2 forAmount:4];
-//    [self.fatProgress setProgressValue:2 forAmount:5];
+    if (self.dayProgress) {
+        self.noInfoOnDayAlert.hidden = YES;
+        self.innerWrapperView.hidden = NO;
+        
+        [self getDietFromDate:self.dayProgress.dietId];
+        
+        [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
+        [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
+        [self.meatProgress setProgressValue:self.dayProgress.meat.consumed forAmount:self.diet.meatAmount];
+        [self.sugarProgress setProgressValue:self.dayProgress.sugar.consumed forAmount:self.diet.sugarAmount];
+        [self.peasProgress setProgressValue:self.dayProgress.pea.consumed forAmount:self.diet.peaAmount];
+        [self.fruitProgress setProgressValue:self.dayProgress.fruit.consumed forAmount:self.diet.fruitAmount];
+        [self.cerealProgress setProgressValue:self.dayProgress.cereal.consumed forAmount:self.diet.cerealAmount];
+        [self.fatProgress setProgressValue:self.dayProgress.fat.consumed forAmount:self.diet.fatAmount];
+    }
+    else {
+        self.noInfoOnDayAlert.hidden = NO;
+        self.innerWrapperView.hidden = YES;
+    }
 }
 
 #pragma mark - Database Interaction
@@ -129,9 +132,7 @@
 }
 
 - (void)updateValuesForItem:(NSDate *)date {
-    [self setProgress: date];
-//    [self setProgress:nil];
-
+    [self setProgress:date];
 }
 
 #pragma mark - CLWeeklyCalendarViewDelegate
@@ -153,10 +154,17 @@
 }
 
 - (UIImage *)infoImageForDay:(NSDate *)date {
-    if ([self.dayProgress checkIfDietWasMade:self.dayProgress.date]) {
-        //@TODO return checkmark
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    TECDaySummary *infoDay = [TECDaySummary initFromDatabaseWithDate:[dateFormat stringFromDate:date]];
+    
+    if (infoDay) {
+        if ([infoDay checkIfDietWasMade]) {
+           return [UIImage imageNamed:@"daily-check"];
+        }
+        return [UIImage imageNamed:@"daily-cross"];
     }
-    return [UIImage imageNamed:@"daily-cross"];
+    return nil;
 }
 
 @end

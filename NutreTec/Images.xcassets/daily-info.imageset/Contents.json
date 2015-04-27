@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "daily-cross.png"
+      "filename" : "daily-info.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "daily-cross@2x.png"
+      "filename" : "daily-info@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "daily-cross@3x.png"
+      "filename" : "daily-info@3x.png"
     }
   ],
   "info" : {
