@@ -55,25 +55,15 @@
         [self showSendFeeback];
     }
     
-    //[self getDietFromDB];
+    //(Only run once) Generate a diet for testing with certain quantity
+    [self genTestDiet:4];
     
-    //Use for generating database
-    [self genDB];
+    [self getDietFromDB];
     
-    NSDate *sourceDate = [NSDate date];
+    //(Only run once) Use to generate dummy entries before today's date with random values
+    [self genEntriesBefore:10];
     
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    
-    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval+3600*5 sinceDate:sourceDate];
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    self.currentDate = [dateFormat stringFromDate:destinationDate];
+    self.currentDate = [self getTodayDateWithTimeZoneCompensation];
     
     if (!self.diet) {
         self.noDietAlertView.hidden = NO;
@@ -95,10 +85,44 @@
             }
         }
     }
+    
+    //(Only run once) Use to generate dummy entries after today's date with random values
+    [self genEntriesAfter:10];
 }
 
--(void) genDB {
-    
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.todaysProgress saveWithDate:self.currentDate];
+}
+
+#pragma mark - Database Interaction
+
+- (void)getDietFromDB {
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
+}
+
+- (void)getPortionsFromDB {
+    self.todaysProgress = [TECDaySummary initFromDatabaseWithDate:self.currentDate];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
+    [self.vegetableProgress setupProgressIndicator];
+    [self.milkProgress setupProgressIndicator];
+    [self.meatProgress setupProgressIndicator];
+    [self.sugarProgress setupProgressIndicator];
+    [self.peaProgress setupProgressIndicator];
+    [self.fruitProgress setupProgressIndicator];
+    [self.cerealProgress setupProgressIndicator];
+    [self.fatProgress setupProgressIndicator];
+    [self setupColorsForView];
+    [self setProgress];
+}
+
+#pragma mark - Testing
+
+-(void) genTestDiet:(int)quantity {
     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
     NSDate *today = [NSDate date];
@@ -107,23 +131,23 @@
     
     self.currentDate = [dateFormatter stringFromDate:today];
     
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"vegetable"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"milk"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"meat"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"cereal"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"sugar"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fat"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fruit"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"pea"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"vegetable"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"milk"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"meat"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"cereal"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"sugar"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fat"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fruit"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"pea"];
     [newDiet setValue:self.currentDate forKey:@"fecha"];
     [newDiet setValue:@"static" forKey:@"type"];
     
     NSError *error;
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
-    
-    [self getDietFromDB];
-    
-    for(int i=3; i>0; i--) {
+}
+
+-(void) genEntriesBefore:(int)numberOfDays {
+    for(int i=numberOfDays; i>0; i--) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];
@@ -155,34 +179,37 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.todaysProgress saveWithDate:self.currentDate];
-}
-
-#pragma mark - Database Interaction
-
-- (void)getDietFromDB {
-    self.diet = [TECUserDiet initFromLastDietInDatabase];
-}
-
-- (void)getPortionsFromDB {
-    self.todaysProgress = [TECDaySummary initFromDatabaseWithDate:self.currentDate];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    [self.vegetableProgress setupProgressIndicator];
-    [self.milkProgress setupProgressIndicator];
-    [self.meatProgress setupProgressIndicator];
-    [self.sugarProgress setupProgressIndicator];
-    [self.peaProgress setupProgressIndicator];
-    [self.fruitProgress setupProgressIndicator];
-    [self.cerealProgress setupProgressIndicator];
-    [self.fatProgress setupProgressIndicator];
-    [self setupColorsForView];
-    [self setProgress];
+-(void) genEntriesAfter:(int)numberOfDays {
+    for(int i=1; i<=numberOfDays; i++) {
+        NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+                                                                inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        NSDate *sourceDate = [NSDate date];
+        
+        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+        
+        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+        
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+        NSString *date = [dateFormat stringFromDate:destinationDate];
+        
+        [newDay setValue:date forKey:@"day"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fruit"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"cereal"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"sugar"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"pea"];
+        [newDay setValue:self.diet.dietId forKey:@"diet"];
+        NSError *error;
+        [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
+    }
 }
 
 #pragma mark - Progress modificators
@@ -416,6 +443,25 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self setProgress];
     }];
+}
+
+#pragma mark - Helpers
+
+- (NSString *)getTodayDateWithTimeZoneCompensation {
+    NSDate *sourceDate = [NSDate date];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval+3600*5 sinceDate:sourceDate];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    return [dateFormat stringFromDate:destinationDate];
 }
 
 @end
