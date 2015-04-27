@@ -7,7 +7,6 @@
 //
 
 #import "TECNutreTecCore.h"
-#import "TecNutricion-Swift.h"
 
 static TECNutreTecCore *sharedInstance;
 
