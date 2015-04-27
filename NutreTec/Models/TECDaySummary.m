@@ -163,4 +163,57 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     }
 }
 
+- (BOOL)checkIfDietWasMade:(NSString *)date {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
+    
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    
+    if([matchObjects count] != 0) {
+        NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        NSPredicate *predicateDiet = [NSPredicate predicateWithFormat:@"fecha like %@", [matchObjects[0] valueForKey:@"diet"]];
+        
+        [requestDiet setEntity:entityDiet];
+        [requestDiet setPredicate:predicateDiet];
+        
+        NSError *errorDiet;
+        NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:requestDiet error:&errorDiet];
+        
+        if([[matchObjects[0] valueForKey:@"vegetable"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"vegetable"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"meat"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"meat"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"milk"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"milk"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"pea"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"pea"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"sugar"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"sugar"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"fruit"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"fruit"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"fat"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"fat"] integerValue] &&
+           [[matchObjects[0] valueForKey:@"cereal"] integerValue] == [[matchObjectsDiet[0] valueForKey:@"cereal"] integerValue]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+-(void) dietChanged:(NSString *)date dietId:(NSString *) dietId{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    
+    NSManagedObject *modDiet = matchObjects[0];
+    [modDiet setValue:dietId forKey:@"diet"];
+    
+    [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
+
+}
+
 @end

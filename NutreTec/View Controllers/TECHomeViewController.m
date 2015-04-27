@@ -88,29 +88,17 @@
         if(!self.todaysProgress) {
             self.todaysProgress = [TECDaySummary createNewDayWithDate:self.currentDate dietId:self.diet.dietId];
         }
-//        else {
-//            //Verify if diet has change
-//            if([self.diet.dietId isEqualToString:self.currentDate]) {
-//                printf("Diet has changed.\n");
-//                NSFetchRequest *request = [[NSFetchRequest alloc] init];
-//                [request setEntity:entity];
-//                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", self.currentDate];
-//                [request setPredicate:predicate];
-//                
-//                NSError *error;
-//                NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-//                
-//                NSManagedObject *modDiet = matchObjects[0];
-//                [modDiet setValue:[matchRegisterDiet valueForKey:@"fecha"] forKey:@"diet"];
-//                
-//                [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
-//            }
-//        }
+        else {
+            //Verify if diet has change
+            if(![self.diet.dietId isEqualToString:self.todaysProgress.dietId]) {
+                [self.todaysProgress dietChanged:self.todaysProgress.date dietId:self.diet.dietId];
+            }
+        }
     }
 }
 
 -(void) genDB {
-    /*
+    
     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
     NSDate *today = [NSDate date];
@@ -132,10 +120,10 @@
     
     NSError *error;
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
-    */
+    
     [self getDietFromDB];
     
-    for(int i=1; i<10; i++) {
+    for(int i=10; i>0; i--) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];
@@ -147,7 +135,7 @@
         NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
         NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
         
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
         NSString *date = [dateFormat stringFromDate:destinationDate];
