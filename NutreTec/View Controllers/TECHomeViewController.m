@@ -85,9 +85,6 @@
             }
         }
     }
-    
-    //(Only run once) Use to generate dummy entries after today's date with random values
-    //[self genEntriesAfter:10];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -160,39 +157,6 @@
         NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
         
         NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSString *date = [dateFormat stringFromDate:destinationDate];
-        
-        [newDay setValue:date forKey:@"day"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fruit"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fat"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"cereal"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"sugar"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"pea"];
-        [newDay setValue:self.diet.dietId forKey:@"diet"];
-        NSError *error;
-        [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
-    }
-}
-
--(void) genEntriesAfter:(int)numberOfDays {
-    for(int i=1; i<=numberOfDays; i++) {
-        NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
-                                                                inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        NSDate *sourceDate = [NSDate date];
-        
-        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-        
-        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-        
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:(interval+3600*24*i) sinceDate:sourceDate];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
         NSString *date = [dateFormat stringFromDate:destinationDate];
