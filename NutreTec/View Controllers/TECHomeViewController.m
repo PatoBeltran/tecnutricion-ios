@@ -56,12 +56,12 @@
     }
     
     //(Only run once) Generate a diet for testing with certain quantity
-    [self genTestDiet:4];
+    //[self genTestDiet:4];
     
     [self getDietFromDB];
     
     //(Only run once) Use to generate dummy entries before today's date with random values
-    [self genEntriesBefore:10];
+    //[self genEntriesBefore:10];
     
     self.currentDate = [self getTodayDateWithTimeZoneCompensation];
     
@@ -87,7 +87,7 @@
     }
     
     //(Only run once) Use to generate dummy entries after today's date with random values
-    [self genEntriesAfter:10];
+    //[self genEntriesAfter:10];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -90,4 +90,31 @@ static NSString * const TECDietCoreDataEntityName = @"Diet";
     }
 }
 
++(instancetype) saveNewDiet:(NSInteger)vegetable meat:(NSInteger)meat milk:(NSInteger)milk cereal:(NSInteger)cereal fat:(NSInteger)fat fruit:(NSInteger)fruit sugar:(NSInteger)sugar pea:(NSInteger)pea {
+    NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    NSString *currentDate = [dateFormatter stringFromDate:today];
+    
+    [newDiet setValue:[NSNumber numberWithInteger:milk] forKey:@"milk"];
+    [newDiet setValue:[NSNumber numberWithInteger:meat] forKey:@"meat"];
+    [newDiet setValue:[NSNumber numberWithInteger:vegetable] forKey:@"vegetable"];
+    [newDiet setValue:[NSNumber numberWithInteger:sugar] forKey:@"sugar"];
+    [newDiet setValue:[NSNumber numberWithInteger:pea] forKey:@"pea"];
+    [newDiet setValue:[NSNumber numberWithInteger:fruit] forKey:@"fruit"];
+    [newDiet setValue:[NSNumber numberWithInteger:fat] forKey:@"fat"];
+    [newDiet setValue:[NSNumber numberWithInteger:cereal] forKey:@"cereal"];
+     
+    [newDiet setValue:currentDate forKey:@"fecha"];
+    [newDiet setValue:@"static" forKey:@"type"];
+    
+    NSError *error;
+    [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
+
+    return nil;
+}
+
 @end

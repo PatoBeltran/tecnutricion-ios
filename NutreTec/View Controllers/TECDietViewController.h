@@ -10,4 +10,5 @@
 
 @interface TECDietViewController : UIViewController
 
+-(void) setLastDiet;
 @end

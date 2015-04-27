@@ -31,5 +31,6 @@
 
 + (instancetype)initFromLastDietInDatabase;
 + (instancetype)initFromDateInDatabase:(NSString *)date;
++ (instancetype)saveNewDiet:(NSInteger)vegetable meat:(NSInteger)meat milk:(NSInteger)milk cereal:(NSInteger)cereal fat:(NSInteger)fat fruit:(NSInteger)fruit sugar:(NSInteger)sugar pea:(NSInteger)pea;
 
 @end
