@@ -63,8 +63,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
 
 @end
 
-//@TODO - Fix swipe
-
 @implementation CLWeeklyCalendarView
 
 - (id)initWithFrame:(CGRect)frame {

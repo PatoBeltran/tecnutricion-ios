@@ -9,8 +9,6 @@
 #import "RMDownloadIndicator.h"
 #import "RMDisplayLabel.h"
 
-//@TODO - Fix for first load on iphone 4s when ratio is 1 (filling the whole circle animated)
-
 @interface RMDownloadIndicator()
 
 /* this contains list of paths to be animated through */
