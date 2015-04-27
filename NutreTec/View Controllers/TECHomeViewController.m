@@ -55,10 +55,10 @@
         [self showSendFeeback];
     }
     
-    [self getDietFromDB];
+    //[self getDietFromDB];
     
     //Use for generating database
-    //[self genDB];
+    [self genDB];
     
     NSDate *sourceDate = [NSDate date];
     
@@ -123,7 +123,7 @@
     
     [self getDietFromDB];
     
-    for(int i=10; i>0; i--) {
+    for(int i=3; i>0; i--) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
         NSDate *sourceDate = [NSDate date];

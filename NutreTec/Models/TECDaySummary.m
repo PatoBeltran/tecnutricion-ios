@@ -216,4 +216,18 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
 
 }
 
+-(BOOL)entryExists:(NSString *)date {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
+    [request setPredicate:predicate];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+    if(matchObjects.count!=0)
+        return true;
+    return false;
+}
+
 @end

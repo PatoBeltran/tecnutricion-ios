@@ -37,4 +37,5 @@
 - (void)saveWithDate:(NSString *)date;
 - (BOOL)checkIfDietWasMade:(NSString *) date;
 - (void)dietChanged:(NSString *)date dietId:(NSString *) dietId;
+- (BOOL)entryExists:(NSString *)date;
 @end

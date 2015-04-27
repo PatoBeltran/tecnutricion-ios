@@ -149,7 +149,13 @@
 }
 
 - (void)dailyCalendarViewDidSelect:(NSDate *)date {
-    [self updateValuesForItem:date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    if([self.dayProgress entryExists:[dateFormat stringFromDate:date]])
+        [self updateValuesForItem:date];
+    else {
+        //@TODO show no progress found warning
+    }
 }
 
 - (UIImage *)infoImageForDay:(NSDate *)date {
