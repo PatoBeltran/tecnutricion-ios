@@ -134,6 +134,17 @@
 
 }
 
+- (void)emptyValues {
+        [self.vegetablesProgress setProgressValue:0 forAmount:1];
+        [self.milkProgress setProgressValue:0 forAmount:1];
+        [self.meatProgress setProgressValue:0 forAmount:1];
+        [self.sugarProgress setProgressValue:0 forAmount:1];
+        [self.peasProgress setProgressValue:0 forAmount:1];
+        [self.fruitProgress setProgressValue:0 forAmount:1];
+        [self.cerealProgress setProgressValue:0 forAmount:1];
+        [self.fatProgress setProgressValue:0 forAmount:1];
+}
+
 #pragma mark - CLWeeklyCalendarViewDelegate
 
 - (CLWeeklyCalendarView *)calendarView {
@@ -154,7 +165,7 @@
     if([self.dayProgress entryExists:[dateFormat stringFromDate:date]])
         [self updateValuesForItem:date];
     else {
-        //@TODO show no progress found warning
+        [self emptyValues];
     }
 }
 
