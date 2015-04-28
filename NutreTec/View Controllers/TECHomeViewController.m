@@ -51,6 +51,8 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     TECHomeViewController __weak * weakSelf;
 }
 
+#pragma mark - View Controller Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     weakSelf = self;
@@ -64,35 +66,30 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     }
     
     self.diet = [TECUserDiet initFromLastDietInDatabase];
-        
-    if (!self.diet) {
-        self.noDietAlertView.hidden = NO;
-        [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];
-        [self.noDietAlertInner.layer setShadowOpacity:1.0];
-        [self.noDietAlertInner.layer setShadowRadius:8.0];
-        [self.noDietAlertInner.layer setShadowOffset:CGSizeMake(3.0, 3.0)];
-    }
-    else {
+    
+    if (self.diet) {
         self.noDietAlertView.hidden = YES;
         self.todaysProgress = [TECDaySummary initFromDatabaseWithDate:[NSDate date]];
         
         if(!self.todaysProgress) {
             self.todaysProgress = [TECDaySummary createNewDayWithDate:[NSDate date] dietId:self.diet.dietId];
         }
-        
-        else {
-            if(![self.diet.dietId isEqualToString:self.todaysProgress.dietId]) {
-                [self.todaysProgress dietChangedWithId:self.diet.dietId];
-            }
+        else if(![self.diet.dietId isEqualToString:self.todaysProgress.dietId]) {
+            [self.todaysProgress dietChangedWithId:self.diet.dietId];
         }
+    }
+    else {
+        self.noDietAlertView.hidden = NO;
+        [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self.noDietAlertInner.layer setShadowOpacity:1.0];
+        [self.noDietAlertInner.layer setShadowRadius:8.0];
+        [self.noDietAlertInner.layer setShadowOffset:CGSizeMake(3.0, 3.0)];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.todaysProgress save];
 }
-
-#pragma mark - Database Interaction
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -246,9 +243,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 - (void)expandAddPortionMenu {
     if(!self.addPortionMenu) {
         CGFloat sizeOfItems = (self.view.frame.size.width/4)*0.67;
-        
         NSMutableArray *menuItems = [[NSMutableArray alloc] init];
-        
         NSArray *objectNames = @[@"vegetables", @"milk", @"meat", @"sugar", @"pea", @"fruit", @"cereal", @"fat"];
         
         for (NSInteger i = 0; i < TECPortionTypeCount; i++) {
@@ -256,7 +251,6 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
                                                                                        selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-circle-selected-icon", objectNames[i]]]
                                                                                                 size:CGSizeMake(sizeOfItems,sizeOfItems)
                                                                                                 type:i];
-            
             [menuItems addObject:item];
         }
         
@@ -270,7 +264,6 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
         [self.addPortionMenu addGestureRecognizer:dismissViewTap];
     }
     [self.view insertSubview:self.addPortionMenu belowSubview:self.checkButtonView];
-    
     [self.addPortionMenu expandMenuItems];
 }
 
@@ -329,7 +322,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [self presentViewController:self.mailComposer animated:YES completion:^{
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
     }];
 }
 
