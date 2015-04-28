@@ -14,9 +14,6 @@
 
 static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
 
-@interface TECDaySummary()
-@end
-
 @implementation TECDaySummary
 
 - (instancetype)initWithPortionsForVegetable:(TECFoodPortion *)vegetable
@@ -28,7 +25,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
                                       cereal:(TECFoodPortion *)cereal
                                          fat:(TECFoodPortion *)fat
                                       dietId:(NSString *)dietId
-                                 currentDate:(NSString *)date {
+                                 currentDate:(NSDate *)date {
     self = [super init];
     if (self) {
         _vegetable = vegetable;
@@ -45,12 +42,12 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     return self;
 }
 
-+ (instancetype)initFromDatabaseWithDate:(NSString *)date {
++ (instancetype)initFromDatabaseWithDate:(NSDate *)date {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName
                                               inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", [TECNutreTecCore GMTStringFromDate:date]];
     
     [request setEntity:entity];
     [request setPredicate:predicate];
@@ -58,10 +55,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
     
-    if([matchObjects count] == 0) {
-        return nil;
-    }
-    else {
+    if(![matchObjects count]) {
         NSManagedObject *matchRegister = [matchObjects lastObject];
         TECFoodPortion *vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
                                                                     consumedAmount:[[matchRegister valueForKey:@"vegetable"] integerValue]];
@@ -91,9 +85,10 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
                                                             dietId:[matchRegister valueForKey:@"diet"]
                                                        currentDate:date];
     }
+    return nil;
 }
 
-+ (instancetype)createNewDayWithDate:(NSString *)date dietId:(NSString *)dietId {
++ (instancetype)createNewDayWithDate:(NSDate *)date dietId:(NSString *)dietId {
     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:TECDaySummaryCoreDataEntityName
                                                              inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
@@ -106,7 +101,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     [newDiet setValue:@0 forKey:@"fruit"];
     [newDiet setValue:@0 forKey:@"pea"];
     [newDiet setValue:dietId forKey:@"diet"];
-    [newDiet setValue:date forKey:@"day"];
+    [newDiet setValue:[TECNutreTecCore GMTStringFromDate:date] forKey:@"day"];
     
     TECFoodPortion *vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
                                                                 consumedAmount:0];
@@ -137,20 +132,17 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
                                                    currentDate:date];
 }
 
-- (void)saveWithDate:(NSString *)date {
+- (void)save {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", [TECNutreTecCore GMTStringFromDate:self.date]];
     [request setEntity:entity];
     [request setPredicate:predicate];
     
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-    
-    if([matchObjects count] != 0) {
+    if([matchObjects count]) {
         NSManagedObject *modDiet = [matchObjects lastObject];
-        
         [modDiet setValue:[NSNumber numberWithInteger:self.vegetable.consumed] forKey:@"vegetable"];
         [modDiet setValue:[NSNumber numberWithInteger:self.milk.consumed] forKey:@"milk"];
         [modDiet setValue:[NSNumber numberWithInteger:self.meat.consumed] forKey:@"meat"];
@@ -164,7 +156,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     }
 }
 
-- (BOOL)checkIfDietWasMade {
+- (BOOL)dietAccomplished {
     TECUserDiet *diet = [TECUserDiet initFromDateInDatabase:self.dietId];
     
     return diet &&
@@ -178,11 +170,11 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     self.cereal.consumed == diet.cerealAmount;
 }
 
-- (void)dietChanged:(NSString *)date dietId:(NSString *) dietId{
+- (void)dietChangedWithId:(NSString *)dietId{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     [request setEntity:entity];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", date];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"day like %@", [TECNutreTecCore GMTStringFromDate:self.date]];
     [request setPredicate:predicate];
     
     NSError *error;
@@ -190,8 +182,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     
     NSManagedObject *modDiet = matchObjects[0];
     [modDiet setValue:dietId forKey:@"diet"];
-    
-    [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
+    [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
 }
 
 @end

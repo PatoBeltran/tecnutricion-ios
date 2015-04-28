@@ -33,4 +33,5 @@
 + (instancetype)sharedInstance;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
++ (NSString *)GMTStringFromDate:(NSDate *)date;
 @end

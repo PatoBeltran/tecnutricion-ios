@@ -19,7 +19,7 @@
 @property (nonatomic, strong) TECFoodPortion *cereal;
 @property (nonatomic, strong) TECFoodPortion *fat;
 @property (nonatomic, copy) NSString *dietId;
-@property (nonatomic, copy) NSString *date;
+@property (nonatomic, copy) NSDate *date;
 
 - (instancetype)initWithPortionsForVegetable:(TECFoodPortion *)vegetable
                                         milk:(TECFoodPortion *)milk
@@ -30,11 +30,11 @@
                                       cereal:(TECFoodPortion *)cereal
                                          fat:(TECFoodPortion *)fat
                                       dietId:(NSString *)dietId
-                                 currentDate:(NSString *)date;
+                                 currentDate:(NSDate *)date;
 
-+ (instancetype)initFromDatabaseWithDate:(NSString *)date;
-+ (instancetype)createNewDayWithDate:(NSString *)date dietId:(NSString *)dietId;
-- (void)saveWithDate:(NSString *)date;
-- (BOOL)checkIfDietWasMade;
-- (void)dietChanged:(NSString *)date dietId:(NSString *) dietId;
++ (instancetype)initFromDatabaseWithDate:(NSDate *)date;
++ (instancetype)createNewDayWithDate:(NSDate *)date dietId:(NSString *)dietId;
+- (void)save;
+- (BOOL)dietAccomplished;
+- (void)dietChangedWithId:(NSString *)dietId;
 @end

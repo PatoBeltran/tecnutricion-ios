@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, TECPortionType) {
     TECPortionTypePea,
     TECPortionTypeFruit,
     TECPortionTypeCereal,
-    TECPortionTypeFat
+    TECPortionTypeFat,
+    TECPortionTypeCount
 };
 
 @interface TECPortionMenuItem : UIView

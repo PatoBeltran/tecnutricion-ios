@@ -8,15 +8,17 @@
 
 #import "TECHomeViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "ILLoaderProgressView.h"
+#import <FXBlurView/FXBlurView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "ILLoaderProgressView.h"
 #import "TECNutreTecCore.h"
 #import "TECDaySummary.h"
 #import "TECUserDiet.h"
-#import <FXBlurView/FXBlurView.h>
 #import "TECPortionMenuItem.h"
 #import "TECAddPortionMenu.h"
-#import <stdlib.h>
+
+static const CGFloat TECGesturePressDurationTime = 0.6;
+static const CGFloat TECGesturePressAllowedMovement = 10;
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
@@ -37,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) TECAddPortionMenu *addPortionMenu;
 
-@property (strong, nonatomic) NSString *currentDate;
+@property (strong, nonatomic) NSDate *today;
 
 @property (weak, nonatomic) IBOutlet UIView *noDietAlertView;
 @property (weak, nonatomic) IBOutlet UIView *noDietAlertInner;
@@ -45,37 +47,24 @@
 @property MFMailComposeViewController *mailComposer;
 @end
 
-@implementation TECHomeViewController
+@implementation TECHomeViewController {
+    TECHomeViewController __weak * weakSelf;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    weakSelf = self;
+    
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
     
     if (self.isFromFeedback) {
         [self showSendFeeback];
+        return;
     }
     
-    [self getDietFromDB];
-    
-    //Use for generating database
-//    [self genDB];
-    
-    NSDate *sourceDate = [NSDate date];
-    
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    
-    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval+3600*5 sinceDate:sourceDate];
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    self.currentDate = [dateFormat stringFromDate:destinationDate];
-    
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
+        
     if (!self.diet) {
         self.noDietAlertView.hidden = NO;
         [self.noDietAlertInner.layer setShadowColor:[UIColor blackColor].CGColor];
@@ -85,89 +74,25 @@
     }
     else {
         self.noDietAlertView.hidden = YES;
-        [self getPortionsFromDB];
+        self.todaysProgress = [TECDaySummary initFromDatabaseWithDate:[NSDate date]];
+        
         if(!self.todaysProgress) {
-            self.todaysProgress = [TECDaySummary createNewDayWithDate:self.currentDate dietId:self.diet.dietId];
+            self.todaysProgress = [TECDaySummary createNewDayWithDate:[NSDate date] dietId:self.diet.dietId];
         }
+        
         else {
             if(![self.diet.dietId isEqualToString:self.todaysProgress.dietId]) {
-                [self.todaysProgress dietChanged:self.todaysProgress.date dietId:self.diet.dietId];
+                [self.todaysProgress dietChangedWithId:self.diet.dietId];
             }
         }
     }
 }
 
--(void) genDB {
-    
-    NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    
-    NSDate *today = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    
-    self.currentDate = [dateFormatter stringFromDate:today];
-    
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"vegetable"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"milk"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"meat"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"cereal"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"sugar"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fat"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"fruit"];
-    [newDiet setValue:[NSNumber numberWithInteger:4] forKey:@"pea"];
-    [newDiet setValue:self.currentDate forKey:@"fecha"];
-    [newDiet setValue:@"static" forKey:@"type"];
-    
-    NSError *error;
-    [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
-    
-    [self getDietFromDB];
-    
-    for(int i=10; i>0; i--) {
-        NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
-                                                                inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        NSDate *sourceDate = [NSDate date];
-        
-        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-        
-        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-        
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSString *date = [dateFormat stringFromDate:destinationDate];
-        
-        [newDay setValue:date forKey:@"day"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fruit"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fat"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"cereal"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"sugar"];
-        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"pea"];
-        [newDay setValue:self.diet.dietId forKey:@"diet"];
-        NSError *error;
-        [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.todaysProgress saveWithDate:self.currentDate];
+    [self.todaysProgress save];
 }
 
 #pragma mark - Database Interaction
-
-- (void)getDietFromDB {
-    self.diet = [TECUserDiet initFromLastDietInDatabase];
-}
-
-- (void)getPortionsFromDB {
-    self.todaysProgress = [TECDaySummary initFromDatabaseWithDate:self.currentDate];
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -183,75 +108,10 @@
     [self.fatProgress setupProgressIndicator];
     [self setupGesturesForView];
     [self setupColorsForView];
-    [self setProgress];
+    [self updateProgressForView];
 }
 
 #pragma mark - Progress modificators
-
-- (void)setProgress {
-    [self getPortionsFromDB];
-    [self.vegetableProgress setProgressValue:self.todaysProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
-    [self.milkProgress setProgressValue:self.todaysProgress.milk.consumed forAmount:self.diet.milkAmount];
-    [self.meatProgress setProgressValue:self.todaysProgress.meat.consumed forAmount:self.diet.meatAmount];
-    [self.sugarProgress setProgressValue:self.todaysProgress.sugar.consumed forAmount:self.diet.sugarAmount];
-    [self.peaProgress setProgressValue:self.todaysProgress.pea.consumed forAmount:self.diet.peaAmount];
-    [self.fruitProgress setProgressValue:self.todaysProgress.fruit.consumed forAmount:self.diet.fruitAmount];
-    [self.cerealProgress setProgressValue:self.todaysProgress.cereal.consumed forAmount:self.diet.cerealAmount];
-    [self.fatProgress setProgressValue:self.todaysProgress.fat.consumed forAmount:self.diet.fatAmount];
-}
-
-- (void)setupGesturesForView {
-    UILongPressGestureRecognizer *veggieGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressVegetables)];
-    veggieGesture.minimumPressDuration = 0.5;
-    veggieGesture.allowableMovement = 600;
-    [self.vegetableProgress addGestureRecognizer:veggieGesture];
-    
-    UILongPressGestureRecognizer *milkGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressMilk)];
-    milkGesture.minimumPressDuration = 0.5;
-    milkGesture.allowableMovement = 600;
-    [self.milkProgress addGestureRecognizer:milkGesture];
-    
-    UILongPressGestureRecognizer *meatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressMeat)];
-    meatGesture.minimumPressDuration = 0.5;
-    meatGesture.allowableMovement = 600;
-    [self.meatProgress addGestureRecognizer:meatGesture];
-    
-    UILongPressGestureRecognizer *sugarGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressSugar)];
-    sugarGesture.minimumPressDuration = 0.5;
-    sugarGesture.allowableMovement = 600;
-    [self.sugarProgress addGestureRecognizer:sugarGesture];
-    
-    UILongPressGestureRecognizer *peaGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressPea)];
-    peaGesture.minimumPressDuration = 0.5;
-    peaGesture.allowableMovement = 600;
-    [self.peaProgress addGestureRecognizer:peaGesture];
-    
-    UILongPressGestureRecognizer *fruitGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressFruit)];
-    fruitGesture.minimumPressDuration = 0.5;
-    fruitGesture.allowableMovement = 600;
-    [self.fruitProgress addGestureRecognizer:fruitGesture];
-    
-    UILongPressGestureRecognizer *cerealGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressCereal)];
-    cerealGesture.minimumPressDuration = 0.5;
-    cerealGesture.allowableMovement = 600;
-    [self.cerealProgress addGestureRecognizer:cerealGesture];
-    
-    UILongPressGestureRecognizer *fatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decressFat)];
-    fatGesture.minimumPressDuration = 0.5;
-    fatGesture.allowableMovement = 600;
-    [self.fatProgress addGestureRecognizer:fatGesture];
-}
-
-- (void)setupColorsForView {
-    [self.vegetableProgress setProgressColor:TECVegetablesColor];
-    [self.milkProgress setProgressColor:TECMilkColor];
-    [self.meatProgress setProgressColor:TECMeatColor];
-    [self.sugarProgress setProgressColor:TECSugarColor];
-    [self.peaProgress setProgressColor:TECPeaColor];
-    [self.fruitProgress setProgressColor:TECFruitColor];
-    [self.cerealProgress setProgressColor:TECCerealColor];
-    [self.fatProgress setProgressColor:TECFatColor];
-}
 
 - (void)updateProgressForView {
     if (self.vegetableProgress.currentAmount.integerValue != self.todaysProgress.vegetable.consumed) {
@@ -280,6 +140,61 @@
     }
 }
 
+#pragma mark - Progress setup
+
+- (void)setupGesturesForView {
+    UILongPressGestureRecognizer *veggieGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseVegetables:)];
+    veggieGesture.minimumPressDuration = TECGesturePressDurationTime;
+    veggieGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.vegetableProgress addGestureRecognizer:veggieGesture];
+    
+    UILongPressGestureRecognizer *milkGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseMilk:)];
+    milkGesture.minimumPressDuration = TECGesturePressDurationTime;
+    milkGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.milkProgress addGestureRecognizer:milkGesture];
+    
+    UILongPressGestureRecognizer *meatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseMeat:)];
+    meatGesture.minimumPressDuration = TECGesturePressDurationTime;
+    meatGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.meatProgress addGestureRecognizer:meatGesture];
+    
+    UILongPressGestureRecognizer *sugarGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseSugar:)];
+    sugarGesture.minimumPressDuration = TECGesturePressDurationTime;
+    sugarGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.sugarProgress addGestureRecognizer:sugarGesture];
+    
+    UILongPressGestureRecognizer *peaGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreasePea:)];
+    peaGesture.minimumPressDuration = TECGesturePressDurationTime;
+    peaGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.peaProgress addGestureRecognizer:peaGesture];
+    
+    UILongPressGestureRecognizer *fruitGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseFruit:)];
+    fruitGesture.minimumPressDuration = TECGesturePressDurationTime;
+    fruitGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.fruitProgress addGestureRecognizer:fruitGesture];
+    
+    UILongPressGestureRecognizer *cerealGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseCereal:)];
+    cerealGesture.minimumPressDuration = TECGesturePressDurationTime;
+    cerealGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.cerealProgress addGestureRecognizer:cerealGesture];
+    
+    UILongPressGestureRecognizer *fatGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(decreaseFat:)];
+    fatGesture.minimumPressDuration = TECGesturePressDurationTime;
+    fatGesture.allowableMovement = TECGesturePressAllowedMovement;
+    [self.fatProgress addGestureRecognizer:fatGesture];
+}
+
+- (void)setupColorsForView {
+    [self.vegetableProgress setProgressColor:TECVegetablesColor];
+    [self.milkProgress setProgressColor:TECMilkColor];
+    [self.meatProgress setProgressColor:TECMeatColor];
+    [self.sugarProgress setProgressColor:TECSugarColor];
+    [self.peaProgress setProgressColor:TECPeaColor];
+    [self.fruitProgress setProgressColor:TECFruitColor];
+    [self.cerealProgress setProgressColor:TECCerealColor];
+    [self.fatProgress setProgressColor:TECFatColor];
+}
+
 #pragma mark - Add to current diet
 
 - (IBAction)didClickOnAddToCurrentDiet:(UIButton *)sender {
@@ -289,23 +204,26 @@
         self.blurredView.blurRadius = 15;
         self.blurredView.alpha = 0;
     }
+    
     CGPoint bottomOffset = CGPointMake(0, self.scrollView.contentSize.height - self.scrollView.bounds.size.height);
     
     [self.view insertSubview:self.blurredView belowSubview:self.checkButtonView];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.blurredView.alpha = 1;
-        self.checkButtonView.hidden = NO;
-        self.plusButton.hidden = YES;
-        [self.scrollView setContentOffset:bottomOffset];
-    }
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         weakSelf.blurredView.alpha = 1;
+                         weakSelf.checkButtonView.hidden = NO;
+                         weakSelf.plusButton.hidden = YES;
+                         [weakSelf.scrollView setContentOffset:bottomOffset];
+                     }
                      completion:^(BOOL finished) {
-                         [self expandAddPortionMenu];
+                         [weakSelf expandAddPortionMenu];
                      }];
 }
 
 - (void)dismissAddPortion:(UITapGestureRecognizer*)sender {
     [self.addPortionMenu hideAndUnselectMenuItemsWithCompletion:^{
-        [self willDismissAddPortion];
+        [weakSelf willDismissAddPortion];
     }];
 }
 
@@ -314,63 +232,37 @@
     [self.scrollView setContentOffset:topOffset animated:YES];
     [UIView animateWithDuration:0.3
                      animations:^{
-                         self.plusButton.hidden = NO;
-                         self.blurredView.alpha = 0;
-                         self.checkButtonView.hidden = YES;
+                         weakSelf.plusButton.hidden = NO;
+                         weakSelf.blurredView.alpha = 0;
+                         weakSelf.checkButtonView.hidden = YES;
                      }
                      completion:^(BOOL finished) {
-                         [self.addPortionMenu removeFromSuperview];
-                         [self.blurredView removeFromSuperview];
-                         [self updateProgressForView];
+                         [weakSelf.addPortionMenu removeFromSuperview];
+                         [weakSelf.blurredView removeFromSuperview];
+                         [weakSelf updateProgressForView];
                      }];
 }
 
 - (void)expandAddPortionMenu {
     if(!self.addPortionMenu) {
         CGFloat sizeOfItems = (self.view.frame.size.width/4)*0.67;
-        TECPortionMenuItem *vegetablesMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"vegetables-circle-icon"]
-                                                                                   selectedImage:[UIImage imageNamed:@"vegetables-circle-selected-icon"]
-                                                                                            size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                            type:TECPortionTypeVegetables];
         
-        TECPortionMenuItem *milkMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"milk-circle-icon"]
-                                                                             selectedImage:[UIImage imageNamed:@"milk-circle-selected-icon"]
-                                                                                      size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                      type:TECPortionTypeMilk];
+        NSMutableArray *menuItems = [[NSMutableArray alloc] init];
         
-        TECPortionMenuItem *peaMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"pea-circle-icon"]
-                                                                            selectedImage:[UIImage imageNamed:@"pea-circle-selected-icon"]
-                                                                                     size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                     type:TECPortionTypePea];
+        NSArray *objectNames = @[@"vegetables", @"milk", @"meat", @"sugar", @"pea", @"fruit", @"cereal", @"fat"];
         
-        TECPortionMenuItem *cerealMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"cereal-circle-icon"]
-                                                                               selectedImage:[UIImage imageNamed:@"cereal-circle-selected-icon"]
-                                                                                        size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                        type:TECPortionTypeCereal];
-        
-        TECPortionMenuItem *meatMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"meat-circle-icon"]
-                                                                             selectedImage:[UIImage imageNamed:@"meat-circle-selected-icon"]
-                                                                                      size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                      type:TECPortionTypeMeat];
-        
-        TECPortionMenuItem *sugarMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"sugar-circle-icon"]
-                                                                              selectedImage:[UIImage imageNamed:@"sugar-circle-selected-icon"]
-                                                                                       size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                       type:TECPortionTypeSugar];
-        
-        TECPortionMenuItem *fruitMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"fruit-circle-icon"]
-                                                                              selectedImage:[UIImage imageNamed:@"fruit-circle-selected-icon"]
-                                                                                       size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                       type:TECPortionTypeFruit];
-        
-        TECPortionMenuItem *fatMenuItem = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:@"fat-circle-icon"]
-                                                                            selectedImage:[UIImage imageNamed:@"fat-circle-selected-icon"]
-                                                                                     size:CGSizeMake(sizeOfItems,sizeOfItems)
-                                                                                     type:TECPortionTypeFat];
+        for (NSInteger i = 0; i < TECPortionTypeCount; i++) {
+            TECPortionMenuItem *item = [[TECPortionMenuItem alloc] initWithNormalImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-circle-icon", objectNames[i]]]
+                                                                                       selectedImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-circle-selected-icon", objectNames[i]]]
+                                                                                                size:CGSizeMake(sizeOfItems,sizeOfItems)
+                                                                                                type:i];
+            
+            [menuItems addObject:item];
+        }
         
         self.addPortionMenu = [[TECAddPortionMenu alloc] initWithFrame:self.view.bounds
                                                              startItem:self.checkButtonView
-                                                             menuItems:@[vegetablesMenuItem, milkMenuItem, meatMenuItem, sugarMenuItem, peaMenuItem, fruitMenuItem, cerealMenuItem, fatMenuItem]];
+                                                             menuItems:menuItems];
         
         UITapGestureRecognizer *dismissViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                          action:@selector(dismissAddPortion:)];
@@ -410,6 +302,8 @@
                 case TECPortionTypeFat:
                     self.todaysProgress.fat.consumed++;
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -440,106 +334,92 @@
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    switch (result) {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-    }
-    
     self.mailComposer = nil;
-
     [self dismissViewControllerAnimated:YES completion:^{
-        [self setProgress];
+        [weakSelf updateProgressForView];
     }];
 }
 
-#pragma mark - Handle Descress
+#pragma mark - Handle Decrease
 
-- (void)descressPortionForType:(TECPortionType)portionType {
+- (void)decreasePortionForType:(TECPortionType)portionType {
     switch (portionType) {
         case TECPortionTypeVegetables:
-            if (self.todaysProgress.vegetable.consumed > 0) {
-                self.todaysProgress.vegetable.consumed--;
-            }
+            if (self.todaysProgress.vegetable.consumed > 0) self.todaysProgress.vegetable.consumed--;
             break;
         case TECPortionTypeMilk:
-            if (self.todaysProgress.milk.consumed > 0) {
-                self.todaysProgress.milk.consumed--;
-            }
+            if (self.todaysProgress.milk.consumed > 0) self.todaysProgress.milk.consumed--;
             break;
         case TECPortionTypeMeat:
-            if (self.todaysProgress.meat.consumed > 0) {
-                self.todaysProgress.meat.consumed--;
-            }
+            if (self.todaysProgress.meat.consumed > 0) self.todaysProgress.meat.consumed--;
             break;
         case TECPortionTypeSugar:
-            if (self.todaysProgress.sugar.consumed > 0) {
-                self.todaysProgress.sugar.consumed--;
-            }
+            if (self.todaysProgress.sugar.consumed > 0) self.todaysProgress.sugar.consumed--;
             break;
         case TECPortionTypePea:
-            if (self.todaysProgress.pea.consumed > 0) {
-                self.todaysProgress.pea.consumed--;
-            }
+            if (self.todaysProgress.pea.consumed > 0) self.todaysProgress.pea.consumed--;
             break;
         case TECPortionTypeFruit:
-            if (self.todaysProgress.fruit.consumed > 0) {
-                self.todaysProgress.fruit.consumed--;
-            }
+            if (self.todaysProgress.fruit.consumed > 0) self.todaysProgress.fruit.consumed--;
             break;
         case TECPortionTypeCereal:
-            if (self.todaysProgress.cereal.consumed > 0) {
-                self.todaysProgress.cereal.consumed--;
-            }
+            if (self.todaysProgress.cereal.consumed > 0) self.todaysProgress.cereal.consumed--;
             break;
         case TECPortionTypeFat:
-            if (self.todaysProgress.fat.consumed > 0) {
-                self.todaysProgress.fat.consumed--;
-            }
+            if (self.todaysProgress.fat.consumed > 0) self.todaysProgress.fat.consumed--;
+            break;
+        default:
             break;
     }
     [self updateProgressForView];
 }
 
-- (void)decressVegetables {
-    [self descressPortionForType:TECPortionTypeVegetables];
+- (void)decreaseVegetables:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeVegetables];
+    }
 }
 
-- (void)decressMilk {
-    [self descressPortionForType:TECPortionTypeMilk];
+- (void)decreaseMilk:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeMilk];
+    }
 }
 
-- (void)decressMeat {
-    [self descressPortionForType:TECPortionTypeMeat];
+- (void)decreaseMeat:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeMeat];
+    }
 }
 
-- (void)decressSugar {
-    [self descressPortionForType:TECPortionTypeSugar];
+- (void)decreaseSugar:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeSugar];
+    }
 }
 
-- (void)decressPea {
-    [self descressPortionForType:TECPortionTypePea];
+- (void)decreasePea:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypePea];
+    }
 }
 
-- (void)decressFruit {
-    [self descressPortionForType:TECPortionTypeFruit];
+- (void)decreaseFruit:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeFruit];
+    }
 }
 
-- (void)decressCereal {
-    [self descressPortionForType:TECPortionTypeCereal];
+- (void)decreaseCereal:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeCereal];
+    }
 }
 
-- (void)decressFat {
-    [self descressPortionForType:TECPortionTypeFat];
+- (void)decreaseFat:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan){
+        [self decreasePortionForType:TECPortionTypeFat];
+    }
 }
 
 @end

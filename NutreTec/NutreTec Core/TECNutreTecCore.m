@@ -116,4 +116,22 @@ static TECNutreTecCore *sharedInstance;
     }
 }
 
+#pragma mark - Helper Methods
+
++ (NSString *)GMTStringFromDate:(NSDate *)date {
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:date];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:date];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:interval+3600*5 sinceDate:date];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd/MM/yyyy"];
+    
+    return [dateFormat stringFromDate:destinationDate];
+}
+
 @end
