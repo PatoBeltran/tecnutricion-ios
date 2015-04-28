@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TECMenuViewController : UIViewController
-
 @end
 

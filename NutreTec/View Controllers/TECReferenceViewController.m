@@ -30,7 +30,6 @@ static NSString * const TecReferenceCellIdentifier = @"referenceCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     TECReferenceCell * cell = [tableView dequeueReusableCellWithIdentifier:TecReferenceCellIdentifier];
-    
     if (!cell) {
         cell = [[TECReferenceCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:TecReferenceCellIdentifier];

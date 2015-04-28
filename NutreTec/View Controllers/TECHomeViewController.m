@@ -301,7 +301,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
         }
     }
     [self.addPortionMenu hideMenuItemsWithCompletion:^{
-        [self willDismissAddPortion];
+        [weakSelf willDismissAddPortion];
     }];
 }
 
