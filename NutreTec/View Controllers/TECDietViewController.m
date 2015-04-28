@@ -10,6 +10,7 @@
 #import "UIViewController+MaryPopin.h"
 #import "TECDietPopupViewController.h"
 #import "TECNutreTecCore.h"
+#import "TecUserDiet.h"
 
 @interface TECDietViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *vegetablesAmount;
@@ -20,7 +21,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *peaAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fruitAmount;
 @property (weak, nonatomic) IBOutlet UITextField *fatAmount;
-@property (weak, nonatomic) NSString *currentDate;
+
+@property (strong, nonatomic) TECUserDiet *diet;
 @end
 
 @implementation TECDietViewController
@@ -36,30 +38,17 @@
     self.fruitAmount.delegate = self;
     self.fatAmount.delegate = self;
     
-    NSEntityDescription *entityDiet = [NSEntityDescription entityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    NSFetchRequest *requestDiet = [[NSFetchRequest alloc] init];
-    [requestDiet setEntity:entityDiet];
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
     
-    NSError *error;
-    NSArray *matchObjectsDiet = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:requestDiet error:&error];
-    
-    if([matchObjectsDiet count] != 0){
-        NSManagedObject *matchRegister = [matchObjectsDiet lastObject];
-        self.vegetablesAmount.text = [[matchRegister valueForKey:@"vegetable"] stringValue];
-        self.milkAmount.text = [[matchRegister valueForKey:@"milk"] stringValue];
-        self.meatAmount.text = [[matchRegister valueForKey:@"meat"] stringValue];
-        self.sugarAmount.text = [[matchRegister valueForKey:@"sugar"] stringValue];
-        self.peaAmount.text = [[matchRegister valueForKey:@"pea"] stringValue];
-        self.fruitAmount.text = [[matchRegister valueForKey:@"fruit"] stringValue];
-        self.cerealAmount.text = [[matchRegister valueForKey:@"cereal"] stringValue];
-        self.fatAmount.text = [[matchRegister valueForKey:@"fat"] stringValue];
+    if(self.diet){
+        [self setDietOnView];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (![TECNutreTecCore dietPopupHasBeenShown]) {
-        [self performSelector:@selector(presentPopupController) withObject:nil afterDelay:0.3];
+        [self performSelector:@selector(presentPopupController) withObject:nil afterDelay:0.2];
     }
 }
 
@@ -85,31 +74,17 @@
 
 - (IBAction)saveDietDidClicked:(id)sender {
     if ([self canSave]){
-        //@TODO - if diet is equals to the last diet (if user clicked save multiple times) dont save
+        TECUserDiet *diet = [[TECUserDiet alloc] initWithVegetables:[self.vegetablesAmount.text integerValue]
+                                                               milk:[self.milkAmount.text integerValue]
+                                                               meat:[self.meatAmount.text integerValue]
+                                                              sugar:[self.sugarAmount.text integerValue]
+                                                               peas:[self.peaAmount.text integerValue]
+                                                              fruit:[self.fruitAmount.text integerValue]
+                                                             cereal:[self.cerealAmount.text integerValue]
+                                                                fat:[self.fatAmount.text integerValue]
+                                                             dietId:[TECNutreTecCore dietIdFromDate:[NSDate date]]];
+        [diet save];
 
-        printf("Creating new static diet\n");
-        NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-
-        NSDate *today = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-
-        self.currentDate = [dateFormatter stringFromDate:today];
-
-        [newDiet setValue:[NSNumber numberWithInteger:[self.vegetablesAmount.text integerValue]] forKey:@"vegetable"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.milkAmount.text integerValue]] forKey:@"milk"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.meatAmount.text integerValue]] forKey:@"meat"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.cerealAmount.text integerValue]] forKey:@"cereal"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.sugarAmount.text integerValue]] forKey:@"sugar"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.fatAmount.text integerValue]] forKey:@"fat"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.fruitAmount.text integerValue]] forKey:@"fruit"];
-        [newDiet setValue:[NSNumber numberWithInteger:[self.peaAmount.text integerValue]] forKey:@"pea"];
-        [newDiet setValue:self.currentDate forKey:@"fecha"];
-        [newDiet setValue:@"static" forKey:@"type"];
-
-        NSError *error;
-        [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
-        
         [self.view endEditing:YES];
         [[[UIAlertView alloc] initWithTitle:@"¡Perfecto!"
                                     message:@"Tu dieta ha sido grabada exitosamente."
@@ -117,7 +92,8 @@
                           cancelButtonTitle:@"Ok"
                           otherButtonTitles:nil, nil] show];
         
-    } else {
+    }
+    else {
         [[[UIAlertView alloc] initWithTitle:@"¡No estas listo!"
                                     message:@"Primero llena todos los campos."
                                    delegate:nil
@@ -140,6 +116,19 @@
     }
     
     return ([textField.text length] + [string length] - range.length) <= 3;
+}
+
+#pragma mark - Helpers
+
+- (void)setDietOnView {
+    self.vegetablesAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.milkAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.meatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.sugarAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.peaAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.fruitAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.cerealAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.fatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
 }
 
 @end

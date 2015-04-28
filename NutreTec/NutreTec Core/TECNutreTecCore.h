@@ -34,4 +34,5 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 + (NSString *)GMTStringFromDate:(NSDate *)date;
++ (NSString *)dietIdFromDate:(NSDate *)date;
 @end

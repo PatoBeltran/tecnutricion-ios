@@ -134,4 +134,11 @@ static TECNutreTecCore *sharedInstance;
     return [dateFormat stringFromDate:destinationDate];
 }
 
++ (NSString *)dietIdFromDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 @end

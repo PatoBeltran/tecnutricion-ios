@@ -37,4 +37,5 @@
 - (void)save;
 - (BOOL)dietAccomplished;
 - (void)dietChangedWithId:(NSString *)dietId;
++ (BOOL)hasHistoryDays;
 @end

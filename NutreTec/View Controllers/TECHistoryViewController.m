@@ -2,7 +2,7 @@
 //  TECHistoryViewController.m
 //  NutreTec
 //
-//  Created by Gerardo Luna  on 4/26/15.
+//  Created by Patricio Beltran  on 4/26/15.
 //  Copyright (c) 2015 Tecnologico de Monterrey. All rights reserved.
 //
 
@@ -26,10 +26,10 @@
 @property (nonatomic, weak) IBOutlet ILLoaderProgressView *fatProgress;
 @property (weak, nonatomic) IBOutlet UIView *noInfoOnDayAlert;
 
-@property (nonatomic, assign) BOOL canrun;
+@property (nonatomic, assign) BOOL canRun;
 @property (nonatomic, strong) TECUserDiet *diet;
 @property (strong, nonatomic) TECDaySummary *dayProgress;
-@property (strong, nonatomic) NSDate *dayBefore;
+@property (strong, nonatomic) NSDate *yesterday;
 @property (nonatomic, strong) CLWeeklyCalendarView* calendarView;
 @end
 
@@ -38,36 +38,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Generate drop list of past entries
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
-                                              inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-    [request setEntity:entity];
-    
-    NSError *error;
-    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
-    
-    if ([matchObjects count] <= 1) {
-        self.canrun = NO;
+    if ([TECDaySummary hasHistoryDays]) {
+        self.canRun = NO;
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
         self.noInfoOnDayAlert.hidden = YES;
     }
     else {
-        self.canrun = YES;
+        self.canRun = YES;
         self.noDaysAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"dd/MM/yyyy"];
-        self.dayBefore = [df dateFromString: [matchObjects[matchObjects.count-2] valueForKey:@"day"]];
-    
+        [self setProgressForDate:[NSDate dateWithTimeIntervalSinceNow:-86400]];
         [self.view addSubview:self.calendarView];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if(self.canrun){
+    if(self.canRun){
         [self.view setNeedsLayout];
         [self.view layoutIfNeeded];
         [self.vegetablesProgress setupProgressIndicator];
@@ -79,7 +67,6 @@
         [self.cerealProgress setupProgressIndicator];
         [self.fatProgress setupProgressIndicator];
         [self setupColorsForView];
-        [self setProgress:self.dayBefore];
     }
 }
 
@@ -96,17 +83,14 @@
     [self.fatProgress setProgressColor:TECFatColor];
 }
 
-- (void)setProgress:(NSDate *)date {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    [self getProgressFromDBForDate:[dateFormat stringFromDate:date]];
+- (void)setProgressForDate:(NSDate *)date {
+    self.dayProgress = [TECDaySummary initFromDatabaseWithDate:date];
     
     if (self.dayProgress) {
         self.noInfoOnDayAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         
-        [self getDietFromDate:self.dayProgress.dietId];
-        
+        self.diet = [TECUserDiet initFromIdInDatabase:self.dayProgress.dietId];
         [self.vegetablesProgress setProgressValue:self.dayProgress.vegetable.consumed forAmount:self.diet.vegetablesAmount];
         [self.milkProgress setProgressValue:self.dayProgress.milk.consumed forAmount:self.diet.milkAmount];
         [self.meatProgress setProgressValue:self.dayProgress.meat.consumed forAmount:self.diet.meatAmount];
@@ -120,20 +104,6 @@
         self.noInfoOnDayAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;
     }
-}
-
-#pragma mark - Database Interaction
-
-- (void)getProgressFromDBForDate:(NSString *)date {
-    self.dayProgress = [TECDaySummary initFromDatabaseWithDate:date];
-}
-
-- (void)getDietFromDate:(NSString *)date {
-    self.diet = [TECUserDiet initFromDateInDatabase:date];
-}
-
-- (void)updateValuesForItem:(NSDate *)date {
-    [self setProgress:date];
 }
 
 #pragma mark - CLWeeklyCalendarViewDelegate
@@ -151,16 +121,13 @@
 }
 
 - (void)dailyCalendarViewDidSelect:(NSDate *)date {
-    [self updateValuesForItem:date];
+    [self setProgressForDate:date];
 }
 
 - (UIImage *)infoImageForDay:(NSDate *)date {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    TECDaySummary *infoDay = [TECDaySummary initFromDatabaseWithDate:[dateFormat stringFromDate:date]];
-    
+    TECDaySummary *infoDay = [TECDaySummary initFromDatabaseWithDate:date];
     if (infoDay) {
-        if ([infoDay checkIfDietWasMade]) {
+        if ([infoDay dietAccomplished]) {
            return [UIImage imageNamed:@"daily-check"];
         }
         return [UIImage imageNamed:@"daily-cross"];

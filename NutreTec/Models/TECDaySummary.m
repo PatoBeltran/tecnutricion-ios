@@ -157,7 +157,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
 }
 
 - (BOOL)dietAccomplished {
-    TECUserDiet *diet = [TECUserDiet initFromDateInDatabase:self.dietId];
+    TECUserDiet *diet = [TECUserDiet initFromIdInDatabase:self.dietId];
     
     return diet &&
     self.vegetable.consumed == diet.vegetablesAmount &&
@@ -170,7 +170,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     self.cereal.consumed == diet.cerealAmount;
 }
 
-- (void)dietChangedWithId:(NSString *)dietId{
+- (void)dietChangedWithId:(NSString *)dietId {
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:TECDaySummaryCoreDataEntityName inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     [request setEntity:entity];
@@ -183,6 +183,18 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     NSManagedObject *modDiet = matchObjects[0];
     [modDiet setValue:dietId forKey:@"diet"];
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
+}
+
++ (BOOL)hasHistoryDays {
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Day"
+                                              inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    [request setEntity:entity];
+    
+    NSError *error;
+    NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
+
+    return matchObjects.count >= 1;
 }
 
 @end

@@ -66,6 +66,16 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     }
     
     self.diet = [TECUserDiet initFromLastDietInDatabase];
+
+    //Uncomment this ONLY FOR TESTING
+    
+    //(Only run once) Generate a diet for testing with certain quantity
+    //[self genTestDiet:4];
+    
+    //[self getDietFromDB];
+    
+    //(Only run once) Use to generate dummy entries before today's date with random values
+    //[self genEntriesBefore:10];
     
     if (self.diet) {
         self.noDietAlertView.hidden = YES;
@@ -412,6 +422,59 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 - (void)decreaseFat:(UILongPressGestureRecognizer*)sender {
     if (sender.state == UIGestureRecognizerStateBegan){
         [self decreasePortionForType:TECPortionTypeFat];
+    }
+}
+
+#pragma mark - Testing Helpers
+
+- (void)genTestDiet:(int)quantity {
+    NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+    
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"vegetable"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"milk"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"meat"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"cereal"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"sugar"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fat"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"fruit"];
+    [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"pea"];
+    [newDiet setValue:[TECNutreTecCore dietIdFromDate:[NSDate date]] forKey:@"date"];
+    [newDiet setValue:@"static" forKey:@"type"];
+    
+    NSError *error;
+    [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
+}
+
+- (void)genEntriesBefore:(int)numberOfDays {
+    for(int i=numberOfDays; i>0; i--) {
+        NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+                                                                inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
+        NSDate *sourceDate = [NSDate date];
+        
+        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
+        
+        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
+        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+        
+        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+        NSString *date = [dateFormat stringFromDate:destinationDate];
+        
+        [newDay setValue:date forKey:@"day"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fruit"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"fat"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"cereal"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"sugar"];
+        [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"pea"];
+        [newDay setValue:self.diet.dietId forKey:@"diet"];
+        NSError *error;
+        [[[TECNutreTecCore sharedInstance] managedObjectContext] save: &error];
     }
 }
 

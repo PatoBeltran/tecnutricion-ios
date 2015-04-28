@@ -30,6 +30,7 @@
                             dietId:(NSString *)dietId;
 
 + (instancetype)initFromLastDietInDatabase;
-+ (instancetype)initFromDateInDatabase:(NSString *)date;
++ (instancetype)initFromIdInDatabase:(NSString *)date;
+- (void)save;
 
 @end
