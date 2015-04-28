@@ -43,9 +43,9 @@
 		239306391AD2E757007E6E3B /* TECReferencePortionInnerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239306371AD2E757007E6E3B /* TECReferencePortionInnerCell.xib */; };
 		23C080801AE7757500A9C975 /* TECDaySummary.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0807F1AE7757500A9C975 /* TECDaySummary.m */; };
 		23F331F91AD11BA30052A7CC /* TECReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */; };
+		313BA0576746C129C4D70C3D /* libPods-TecNutricion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 541388B4F616AA625EA1B3CA /* libPods-TecNutricion.a */; };
 		7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E9B8A711ADF69B500B699E8 /* CoreData.framework */; };
 		7E9B8A751ADF6A9F00B699E8 /* TECModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E9B8A731ADF6A9F00B699E8 /* TECModel.xcdatamodeld */; };
-		B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +59,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.debug.xcconfig"; sourceTree = "<group>"; };
 		193446061AEDA2D900D1168B /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
 		193446071AEDA2D900D1168B /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
 		193446081AEDA2D900D1168B /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
@@ -141,8 +140,7 @@
 		23C0807F1AE7757500A9C975 /* TECDaySummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECDaySummary.m; sourceTree = "<group>"; };
 		23F331F71AD11BA30052A7CC /* TECReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TECReferenceViewController.h; sourceTree = "<group>"; };
 		23F331F81AD11BA30052A7CC /* TECReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TECReferenceViewController.m; sourceTree = "<group>"; };
-		40C3F8AA0858C0CB658EF0AF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NutreTec.release.xcconfig"; path = "Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec.release.xcconfig"; sourceTree = "<group>"; };
+		541388B4F616AA625EA1B3CA /* libPods-TecNutricion.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TecNutricion.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E33CC0B1AE55CD400FDA535 /* TECModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		7E33CC0C1AE562C900FDA535 /* TECModel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 3.xcdatamodel"; sourceTree = "<group>"; };
 		7E443D941AE596E200DCCACE /* TECModel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -153,7 +151,8 @@
 		7E9B8A711ADF69B500B699E8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		7E9B8A741ADF6A9F00B699E8 /* TECModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TECModel.xcdatamodel; sourceTree = "<group>"; };
 		7EFFC9051AEEF1C200CAC676 /* TECModel 9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TECModel 9.xcdatamodel"; sourceTree = "<group>"; };
-		E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NutreTec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BCB05D72DA8EA796AAF8ECA /* Pods-TecNutricion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TecNutricion.release.xcconfig"; path = "Pods/Target Support Files/Pods-TecNutricion/Pods-TecNutricion.release.xcconfig"; sourceTree = "<group>"; };
+		E64F185741BA487D8F6FF54E /* Pods-TecNutricion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TecNutricion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TecNutricion/Pods-TecNutricion.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E9B8A721ADF69B500B699E8 /* CoreData.framework in Frameworks */,
-				B1CEB04A99311630CE86F15F /* libPods-NutreTec.a in Frameworks */,
+				313BA0576746C129C4D70C3D /* libPods-TecNutricion.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,15 +175,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0762349DEB97380509C0FF3F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */,
-				66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		193446051AEDA2D900D1168B /* CLWeeklyCalendarViewSourceCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,8 +261,8 @@
 				237E57091AB3BA7B0052802F /* NutreTec */,
 				237E57231AB3BA7B0052802F /* NutreTecTests */,
 				237E57081AB3BA7B0052802F /* Products */,
-				0762349DEB97380509C0FF3F /* Pods */,
 				BADC83C61FA439DCF5A9FB39 /* Frameworks */,
+				5903A5ADD17E6E7336F0D491 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -417,12 +407,20 @@
 			path = XDKAirMenu;
 			sourceTree = "<group>";
 		};
+		5903A5ADD17E6E7336F0D491 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E64F185741BA487D8F6FF54E /* Pods-TecNutricion.debug.xcconfig */,
+				8BCB05D72DA8EA796AAF8ECA /* Pods-TecNutricion.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BADC83C61FA439DCF5A9FB39 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				7E9B8A711ADF69B500B699E8 /* CoreData.framework */,
-				E6FA03FAD7982FAF188EEDFA /* libPods-NutreTec.a */,
-				40C3F8AA0858C0CB658EF0AF /* libPods.a */,
+				541388B4F616AA625EA1B3CA /* libPods-TecNutricion.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -434,11 +432,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 237E572A1AB3BA7B0052802F /* Build configuration list for PBXNativeTarget "TecNutricion" */;
 			buildPhases = (
-				32AA7D6FA8A2540795FD1DAB /* Check Pods Manifest.lock */,
+				C589B7D4245B5F363C316DB8 /* Check Pods Manifest.lock */,
 				237E57031AB3BA7B0052802F /* Sources */,
 				237E57041AB3BA7B0052802F /* Frameworks */,
 				237E57051AB3BA7B0052802F /* Resources */,
-				2007B54D498BAFB2C9C41BD4 /* Copy Pods Resources */,
+				8E09F621EDDA0911E806F60F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -527,7 +525,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2007B54D498BAFB2C9C41BD4 /* Copy Pods Resources */ = {
+		8E09F621EDDA0911E806F60F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -539,10 +537,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NutreTec/Pods-NutreTec-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TecNutricion/Pods-TecNutricion-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		32AA7D6FA8A2540795FD1DAB /* Check Pods Manifest.lock */ = {
+		C589B7D4245B5F363C316DB8 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -716,7 +714,7 @@
 		};
 		237E572B1AB3BA7B0052802F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01B485C8445817C7C19022E9 /* Pods-NutreTec.debug.xcconfig */;
+			baseConfigurationReference = E64F185741BA487D8F6FF54E /* Pods-TecNutricion.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -737,14 +735,13 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = TecNutricion;
-				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		237E572C1AB3BA7B0052802F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66C846BE0DAA6FA1F7C3BDE7 /* Pods-NutreTec.release.xcconfig */;
+			baseConfigurationReference = 8BCB05D72DA8EA796AAF8ECA /* Pods-TecNutricion.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -765,7 +762,6 @@
 					"\"UIKit\"",
 				);
 				PRODUCT_NAME = TecNutricion;
-				SWIFT_OBJC_BRIDGING_HEADER = "NutreTec/Supporting Files/Vendor/NutreTec-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -784,7 +780,7 @@
 				INFOPLIST_FILE = NutreTecTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = TecNutricionTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutreTec.app/NutreTec";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TecNutricion.app/TecNutricion";
 			};
 			name = Debug;
 		};
@@ -799,7 +795,7 @@
 				INFOPLIST_FILE = NutreTecTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = TecNutricionTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NutreTec.app/NutreTec";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TecNutricion.app/TecNutricion";
 			};
 			name = Release;
 		};

@@ -1,7 +1,7 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '6.0'
 
-target 'NutreTec' do
+target 'TecNutricion' do
     pod 'MBProgressHUD', '~> 0.9.1'
     pod 'MaryPopin'
     pod 'FXBlurView'
@@ -9,7 +9,7 @@ target 'NutreTec' do
     pod 'MaryPopin'
 end
 
-target 'NutreTecTests' do
+target 'TecNutricionTests' do
 
 end
 
