@@ -37,19 +37,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if (![TECDaySummary hasHistoryDays]) {
-        self.canRun = NO;
-        self.noDaysAlert.hidden = NO;
-        self.innerWrapperView.hidden = YES;
-        self.noInfoOnDayAlert.hidden = YES;
-    }
-    else {
+    if ([TECDaySummary hasHistoryDays]) {
         self.canRun = YES;
         self.noDaysAlert.hidden = YES;
         self.innerWrapperView.hidden = NO;
         [self setProgressForDate:[NSDate dateWithTimeIntervalSinceNow:-86400]];
         [self.view addSubview:self.calendarView];
+    }
+    else {
+        self.canRun = NO;
+        self.noDaysAlert.hidden = NO;
+        self.innerWrapperView.hidden = YES;
+        self.noInfoOnDayAlert.hidden = YES;
     }
 }
 

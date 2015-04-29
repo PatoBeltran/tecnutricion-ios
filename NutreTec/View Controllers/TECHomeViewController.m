@@ -45,6 +45,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 @property (weak, nonatomic) IBOutlet UIView *noDietAlertInner;
 
 @property MFMailComposeViewController *mailComposer;
+@property BOOL needsToSetupProgressIndicators;
 @end
 
 @implementation TECHomeViewController {
@@ -56,24 +57,24 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     weakSelf = self;
+    self.needsToSetupProgressIndicators = YES;
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
     
     if (self.isFromFeedback) {
         [self showSendFeeback];
-        return;
     }
 
     //Uncomment this ONLY FOR TESTING
     
     //(Only run once) Generate a diet for testing with certain quantity
-//    [self genTestDiet:4];
-    
-    self.diet = [TECUserDiet initFromLastDietInDatabase];
+//    [self generateTestDiet:4];
     
     //(Only run once) Use to generate dummy entries before today's date with random values
-//    [self genEntriesBefore:10];
+//    [self generateEntriesForThePastDays:10];
+    
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
     
     if (self.diet) {
         self.noDietAlertView.hidden = YES;
@@ -101,19 +102,22 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.view setNeedsLayout];
-    [self.view layoutIfNeeded];
-    [self.vegetableProgress setupProgressIndicator];
-    [self.milkProgress setupProgressIndicator];
-    [self.meatProgress setupProgressIndicator];
-    [self.sugarProgress setupProgressIndicator];
-    [self.peaProgress setupProgressIndicator];
-    [self.fruitProgress setupProgressIndicator];
-    [self.cerealProgress setupProgressIndicator];
-    [self.fatProgress setupProgressIndicator];
-    [self setupGesturesForView];
-    [self setupColorsForView];
-    [self updateProgressForView];
+    if(self.needsToSetupProgressIndicators) {
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
+        [self.vegetableProgress setupProgressIndicator];
+        [self.milkProgress setupProgressIndicator];
+        [self.meatProgress setupProgressIndicator];
+        [self.sugarProgress setupProgressIndicator];
+        [self.peaProgress setupProgressIndicator];
+        [self.fruitProgress setupProgressIndicator];
+        [self.cerealProgress setupProgressIndicator];
+        [self.fatProgress setupProgressIndicator];
+        [self setupGesturesForView];
+        [self setupColorsForView];
+        [self updateProgressForView];
+        self.needsToSetupProgressIndicators = NO;
+    }
 }
 
 #pragma mark - Progress modificators
@@ -425,7 +429,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 
 #pragma mark - Testing Helpers
 
-- (void)genTestDiet:(int)quantity {
+- (void)generateTestDiet:(NSInteger)quantity {
     NSManagedObject *newDiet = [NSEntityDescription insertNewObjectForEntityForName:@"Diet" inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
     
     [newDiet setValue:[NSNumber numberWithInteger:quantity] forKey:@"vegetable"];
@@ -443,25 +447,11 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
 }
 
-- (void)genEntriesBefore:(int)numberOfDays {
-    for(int i=numberOfDays; i>0; i--) {
+- (void)generateEntriesForThePastDays:(NSInteger)numberOfDays {
+    for(NSInteger i=numberOfDays; i>0; i--) {
         NSManagedObject *newDay = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                                 inManagedObjectContext:[[TECNutreTecCore sharedInstance] managedObjectContext]];
-        NSDate *sourceDate = [NSDate date];
-        
-        NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-        NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-        
-        NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-        NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-        NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-        
-        NSDate* destinationDate = [[NSDate alloc] initWithTimeInterval:-(interval+3600*24*i) sinceDate:sourceDate];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSString *date = [dateFormat stringFromDate:destinationDate];
-        
-        [newDay setValue:date forKey:@"day"];
+        [newDay setValue:[TECNutreTecCore GMTStringFromDate:[[NSDate alloc] initWithTimeIntervalSinceNow:-(86400*i)]] forKey:@"day"];
         [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"vegetable"];
         [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"meat"];
         [newDay setValue:[NSNumber numberWithInt:arc4random_uniform(6)] forKey:@"milk"];

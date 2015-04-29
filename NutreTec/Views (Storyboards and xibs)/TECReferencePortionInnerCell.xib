@@ -21,32 +21,28 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2I-Fa-ZG3">
                         <rect key="frame" x="0.0" y="0.0" width="160" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="160" id="EYU-o0-2d8"/>
-                            <constraint firstAttribute="height" constant="43" id="w8F-fr-6Pg"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iV-EK-nBq">
                         <rect key="frame" x="160" y="0.0" width="160" height="43"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="43" id="OLT-MH-3Tp"/>
-                            <constraint firstAttribute="width" constant="160" id="OWS-Pc-kcx"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="4iV-EK-nBq" secondAttribute="bottom" id="00T-VY-r6R"/>
-                    <constraint firstAttribute="bottom" secondItem="A2I-Fa-ZG3" secondAttribute="bottom" id="LWw-Pg-L8q"/>
-                    <constraint firstAttribute="trailing" secondItem="4iV-EK-nBq" secondAttribute="trailing" id="NVg-de-V2T"/>
-                    <constraint firstItem="A2I-Fa-ZG3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="c1Z-Jq-TIB"/>
-                    <constraint firstItem="4iV-EK-nBq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="m5T-Vk-RRn"/>
-                    <constraint firstItem="A2I-Fa-ZG3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zjs-LG-mou"/>
+                    <constraint firstAttribute="bottom" secondItem="A2I-Fa-ZG3" secondAttribute="bottom" id="2bo-LT-ueU"/>
+                    <constraint firstAttribute="trailing" secondItem="4iV-EK-nBq" secondAttribute="trailing" id="41c-5K-0wB"/>
+                    <constraint firstItem="4iV-EK-nBq" firstAttribute="height" secondItem="A2I-Fa-ZG3" secondAttribute="height" id="NJS-No-1me"/>
+                    <constraint firstItem="4iV-EK-nBq" firstAttribute="width" secondItem="A2I-Fa-ZG3" secondAttribute="width" id="O5i-Nm-6DV"/>
+                    <constraint firstItem="4iV-EK-nBq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TzS-4S-ggM"/>
+                    <constraint firstItem="4iV-EK-nBq" firstAttribute="leading" secondItem="A2I-Fa-ZG3" secondAttribute="trailing" id="Xih-dv-GGN"/>
+                    <constraint firstAttribute="bottom" secondItem="4iV-EK-nBq" secondAttribute="bottom" id="YTK-pe-i74"/>
+                    <constraint firstItem="A2I-Fa-ZG3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eZf-T1-bKZ"/>
+                    <constraint firstItem="4iV-EK-nBq" firstAttribute="leading" secondItem="A2I-Fa-ZG3" secondAttribute="trailing" id="fBi-3X-DXh"/>
+                    <constraint firstItem="A2I-Fa-ZG3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mLr-CC-DPm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

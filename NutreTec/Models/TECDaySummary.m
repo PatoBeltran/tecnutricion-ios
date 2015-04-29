@@ -180,7 +180,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
     
-    NSManagedObject *modDiet = matchObjects[0];
+    NSManagedObject *modDiet = [matchObjects lastObject];
     [modDiet setValue:dietId forKey:@"diet"];
     [[[TECNutreTecCore sharedInstance] managedObjectContext] save:&error];
 }
@@ -194,7 +194,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
 
-    return matchObjects.count >= 1;
+    return matchObjects.count > 1;
 }
 
 @end
