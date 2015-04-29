@@ -36,3 +36,19 @@ psst... if you don't have homebrew installed just run this command to install it
 
 - Open `.xcworkspace` file (Don't open the .xcodeproj!!)
 - Compile and run it! It should be ready!
+
+### Testing
+
+If you want to test we included some methods that might be usefull. Please remember for any reason **NOT TO CALL THIS METHODS ON PRODUCTION CODE**. This are only meant for testing the app without waiting various days to view all features. You can always test it this way, after all, that's how users are going to use it.
+
+On the `TECHomeViewController.m` uncomment lines `71` and `75`. This should generate a diet with all the portions set to the same number (we are using 4, you can change it if you like), and create usage for the past n days (we're using 10 days).
+
+This is made by using the methods `generateTestDiet:` and `generateEntriesForThePastDays:`.
+
+####generateTestDiet:
+
+This method creates a diet given an `NSInteger`. It will set all the portions needed to the given number. This can be made manually in the app in the `Dieta` section.
+
+####generateEntriesForThePastDays:
+
+This method simulates app usage for any given number of days. By giving an `NSInteger` as a parameter, the method will create random portion consumptions (between 0 and 6) for all portions for the past given number of days. This can be made manually in the app by using the `TECHomeViewController` features for any number of days. This method is usefull if you want to test the functionality the `TECHistoryViewController` (¿Cómo voy? view).
