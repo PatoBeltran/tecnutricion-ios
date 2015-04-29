@@ -55,6 +55,8 @@ static TECNutreTecCore *sharedInstance;
 #pragma mark - Core Data stack
 
 - (NSURL *)applicationDocumentsDirectory {
+    //Uncomment to find simulator's database
+    NSLog(@"%@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory  inDomains:NSUserDomainMask] lastObject]);
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 

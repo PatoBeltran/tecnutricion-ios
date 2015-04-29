@@ -64,18 +64,16 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
         [self showSendFeeback];
         return;
     }
-    
-    self.diet = [TECUserDiet initFromLastDietInDatabase];
 
     //Uncomment this ONLY FOR TESTING
     
     //(Only run once) Generate a diet for testing with certain quantity
-    //[self genTestDiet:4];
+//    [self genTestDiet:4];
     
-    //[self getDietFromDB];
+    self.diet = [TECUserDiet initFromLastDietInDatabase];
     
     //(Only run once) Use to generate dummy entries before today's date with random values
-    //[self genEntriesBefore:10];
+//    [self genEntriesBefore:10];
     
     if (self.diet) {
         self.noDietAlertView.hidden = YES;

@@ -122,13 +122,13 @@
 
 - (void)setDietOnView {
     self.vegetablesAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.milkAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.meatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.sugarAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.peaAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.fruitAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.cerealAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
-    self.fatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.vegetablesAmount];
+    self.milkAmount.text = [NSString stringWithFormat:@"%ld", self.diet.milkAmount];
+    self.meatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.meatAmount];
+    self.sugarAmount.text = [NSString stringWithFormat:@"%ld", self.diet.sugarAmount];
+    self.peaAmount.text = [NSString stringWithFormat:@"%ld", self.diet.peaAmount];
+    self.fruitAmount.text = [NSString stringWithFormat:@"%ld", self.diet.fruitAmount];
+    self.cerealAmount.text = [NSString stringWithFormat:@"%ld", self.diet.cerealAmount];
+    self.fatAmount.text = [NSString stringWithFormat:@"%ld", self.diet.fatAmount];
 }
 
 @end

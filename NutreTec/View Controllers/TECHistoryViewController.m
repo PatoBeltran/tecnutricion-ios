@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([TECDaySummary hasHistoryDays]) {
+    if (![TECDaySummary hasHistoryDays]) {
         self.canRun = NO;
         self.noDaysAlert.hidden = NO;
         self.innerWrapperView.hidden = YES;

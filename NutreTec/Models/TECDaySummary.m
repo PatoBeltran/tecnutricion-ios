@@ -55,7 +55,7 @@ static NSString * const TECDaySummaryCoreDataEntityName = @"Day";
     NSError *error;
     NSArray *matchObjects = [[[TECNutreTecCore sharedInstance] managedObjectContext] executeFetchRequest:request error:&error];
     
-    if(![matchObjects count]) {
+    if([matchObjects count]) {
         NSManagedObject *matchRegister = [matchObjects lastObject];
         TECFoodPortion *vegetablesEaten = [[TECFoodPortion alloc] initWithFoodType:TECFoodPortionTypeVegetables
                                                                     consumedAmount:[[matchRegister valueForKey:@"vegetable"] integerValue]];
