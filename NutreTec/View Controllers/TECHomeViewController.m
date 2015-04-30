@@ -17,7 +17,7 @@
 #import "TECPortionMenuItem.h"
 #import "TECAddPortionMenu.h"
 
-static const CGFloat TECGesturePressDurationTime = 0.6;
+static const CGFloat TECGesturePressDurationTime = 0.4;
 static const CGFloat TECGesturePressAllowedMovement = 10;
 
 @interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
