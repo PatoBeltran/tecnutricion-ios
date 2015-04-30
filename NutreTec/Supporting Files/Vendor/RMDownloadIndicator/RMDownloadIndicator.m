@@ -152,13 +152,20 @@
     self.lastUpdatedPath = [UIBezierPath bezierPathWithCGPath:self.animatingLayer.path];
     [self.paths removeAllObjects];
     ;
+    BOOL hasPassedTotal;
     
     CGFloat ratio;
-    if (total <= finished) {
+    if (total == finished) {
         ratio = 1;
+        hasPassedTotal = NO;
+    }
+    else if (total < finished) {
+        ratio = 1;
+        hasPassedTotal = YES;
     }
     else {
         ratio = finished/total;
+        hasPassedTotal = NO;
     }
     
     CGFloat destinationAngle = [self destinationAngleForRatio:ratio];
@@ -180,7 +187,10 @@
     [pathAnimation setRemovedOnCompletion:YES];
     [_animatingLayer addAnimation:pathAnimation forKey:@"path"];
     
-    if (ratio == 1) {
+    if (ratio == 1 && hasPassedTotal) {
+        [self.displayLabel setTextColor:[UIColor colorWithRed:231./255 green:76./255 blue:60./255 alpha:1.0]];
+    }
+    else if(ratio == 1) {
         [self.displayLabel setTextColor:[UIColor colorWithRed:46./255 green:204./255 blue:113./255 alpha:1.0]];
     }
     else {

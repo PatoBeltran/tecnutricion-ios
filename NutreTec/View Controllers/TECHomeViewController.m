@@ -326,8 +326,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 #pragma mark - Feedback Actions
 
 - (void)showSendFeeback {
-    //@TODO - Change email to actual Nutrition email address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"noreply@itesm.mx"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"tecdeportes.mty@servicios.itesm.mx"];
     self.mailComposer = [[MFMailComposeViewController alloc] init];
     self.mailComposer.mailComposeDelegate = self;
     [self.mailComposer setToRecipients:toRecipents];
