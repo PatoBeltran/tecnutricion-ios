@@ -326,7 +326,7 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 #pragma mark - Feedback Actions
 
 - (void)showSendFeeback {
-    NSArray *toRecipents = [NSArray arrayWithObject:@"tecdeportes.mty@servicios.itesm.mx"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"tecnutricion.mty@gmail.com"];
     self.mailComposer = [[MFMailComposeViewController alloc] init];
     self.mailComposer.mailComposeDelegate = self;
     [self.mailComposer setToRecipients:toRecipents];
