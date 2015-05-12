@@ -7,9 +7,7 @@
 //
 
 #import "TECHomeViewController.h"
-#import <MessageUI/MessageUI.h>
 #import <FXBlurView/FXBlurView.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "ILLoaderProgressView.h"
 #import "TECNutreTecCore.h"
 #import "TECDaySummary.h"
@@ -20,7 +18,7 @@
 static const CGFloat TECGesturePressDurationTime = 0.4;
 static const CGFloat TECGesturePressAllowedMovement = 10;
 
-@interface TECHomeViewController () <MFMailComposeViewControllerDelegate>
+@interface TECHomeViewController ()
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *vegetableProgress;
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *milkProgress;
 @property (weak, nonatomic) IBOutlet ILLoaderProgressView *meatProgress;
@@ -44,7 +42,6 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 @property (weak, nonatomic) IBOutlet UIView *noDietAlertView;
 @property (weak, nonatomic) IBOutlet UIView *noDietAlertInner;
 
-@property MFMailComposeViewController *mailComposer;
 @property BOOL needsToSetupProgressIndicators;
 @end
 
@@ -62,10 +59,6 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(menuWillOpen) name:@"XDAirMenuWillOpen" object:nil];
     
-    if (self.isFromFeedback) {
-        [self showSendFeeback];
-    }
-
     //Uncomment this ONLY FOR TESTING
     
     //(Only run once) Generate a diet for testing with certain quantity
@@ -321,27 +314,6 @@ static const CGFloat TECGesturePressAllowedMovement = 10;
 
 - (void)menuWillOpen {
     [self dismissAddPortion:nil];
-}
-
-#pragma mark - Feedback Actions
-
-- (void)showSendFeeback {
-    NSArray *toRecipents = [NSArray arrayWithObject:@"tecnutricion.mty@gmail.com"];
-    self.mailComposer = [[MFMailComposeViewController alloc] init];
-    self.mailComposer.mailComposeDelegate = self;
-    [self.mailComposer setToRecipients:toRecipents];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [self presentViewController:self.mailComposer animated:YES completion:^{
-        [MBProgressHUD hideAllHUDsForView:weakSelf.view animated:YES];
-    }];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    self.mailComposer = nil;
-    [self dismissViewControllerAnimated:YES completion:^{
-        [weakSelf updateProgressForView];
-    }];
 }
 
 #pragma mark - Handle Decrease

@@ -15,8 +15,7 @@ typedef NS_ENUM(NSInteger, PBMenuItem){
     PBMenuItemHowAmIGoing,
     PBMenuItemDiet,
     PBMenuItemReference,
-    PBMenuItemBlank,
-    PBMenuItemFeedback
+    PBMenuItemAbout
 };
 
 @interface TECMenuViewController () <XDKAirMenuDelegate>
@@ -54,7 +53,6 @@ typedef NS_ENUM(NSInteger, PBMenuItem){
     switch (indexPath.row) {
         case PBMenuItemHome:
             viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"home"];
-            ((TECHomeViewController *)viewContoller).isFromFeedback = NO;
             break;
         case PBMenuItemHowAmIGoing:
             viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"howAmI"];
@@ -65,9 +63,8 @@ typedef NS_ENUM(NSInteger, PBMenuItem){
         case PBMenuItemReference:
             viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"reference"];
             break;
-        case PBMenuItemFeedback:
-            viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"home"];
-            ((TECHomeViewController *)viewContoller).isFromFeedback = YES;
+        case PBMenuItemAbout:
+            viewContoller = [storyboard instantiateViewControllerWithIdentifier:@"about"];
             break;
     }
     return viewContoller;
